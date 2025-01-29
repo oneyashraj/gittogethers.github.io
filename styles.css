@@ -50,40 +50,40 @@
     flex-shrink: 0;
 }
 
-/* Update animation keyframes for smoother movement */
+/* Update animation keyframes for seamless looping */
 @keyframes slideRight {
     0% {
-        transform: translateX(-33.33%);
+        transform: translateX(-100%);
     }
     100% {
-        transform: translateX(0);
+        transform: translateX(-50%);  /* Move half way to create seamless loop */
     }
 }
 
 @keyframes slideLeft {
     0% {
-        transform: translateX(0);
+        transform: translateX(-50%);  /* Start halfway */
     }
     100% {
-        transform: translateX(-33.33%);
+        transform: translateX(-100%);
     }
 }
 
 /* Update the mosaic row styles */
 .mosaic-row {
     width: 100%;
-    height: 33.33vh;  /* Each row takes exactly one-third of viewport height */
+    height: 33.33vh;
     display: flex;
     position: relative;
-    overflow: hidden;  /* Hide overflow for smooth animation */
+    overflow: hidden;
 }
 
 .mosaic-row-1, .mosaic-row-3 {
-    animation: slideRight 30s linear infinite;
+    animation: slideRight 60s linear infinite;
 }
 
 .mosaic-row-2 {
-    animation: slideLeft 30s linear infinite;
+    animation: slideLeft 60s linear infinite;
 }
 
 body {

@@ -24,10 +24,16 @@
 
             <div class="form-container">
                 <div class="input-group">
-                    <input type="text" id="github-username" placeholder="Enter your GitHub Username">
+                    <input 
+                        type="text" 
+                        id="github-username" 
+                        placeholder="Enter your GitHub Username"
+                        aria-label="GitHub Username"
+                        aria-required="true"
+                        aria-describedby="error-message">
                 </div>
-                <button id="proceed-button">Proceed</button>
-                <p class="error-message" id="error-message"></p>
+                <button id="proceed-button" aria-label="Submit GitHub username">Proceed</button>
+                <p class="error-message" id="error-message" role="alert" aria-live="polite"></p>
             </div>
         </div>
     </main>

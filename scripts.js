@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Rate limiting implementation
+    const rateLimiter = {
+        lastCall: 0,
+        minInterval: 1000, // 1 second between calls
+        async throttle(fn) {
+            const now = Date.now();
+            if (now - this.lastCall < this.minInterval) {
+                await new Promise(resolve => setTimeout(resolve, this.minInterval));
+            }
+            this.lastCall = Date.now();
+            return fn();
+        }
+    };
+
     // Create mosaic background
     const createMosaicBackground = async () => {
         try {
@@ -103,11 +117,20 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const validateGitHubUsername = async (username) => {
-        const response = await fetch(`https://api.github.com/users/${username}`);
-        if (!response.ok) {
-            throw new Error('Invalid username');
+        // Basic validation before API call
+        if (!/^[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}$/.test(username)) {
+            throw new Error('Invalid username format');
         }
-        return await response.json();
+        
+        return rateLimiter.throttle(async () => {
+            const response = await fetch(`https://api.github.com/users/${username}`);
+            if (response.status === 404) {
+                throw new Error('Username not found');
+            } else if (!response.ok) {
+                throw new Error('GitHub API error');
+            }
+            return response.json();
+        });
     };
 
     const getUserOrganizations = async (username) => {
@@ -146,21 +169,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            // First validate the username exists
-            const response = await fetch(`https://api.github.com/users/${username}`);
-            if (!response.ok) {
-                errorMessage.textContent = 'Uh oh! Please enter a valid username.';
-                return;
-            }
-
-            // Only set loading state after confirming username is valid
             setLoading(true);
-
-            // If username is valid, get all the required data
-            const userData = await response.json();
+            const userData = await validateGitHubUsername(username);
             const orgs = await getUserOrganizations(username);
             const formUrl = constructFormUrl(userData, orgs);
-            
             window.location.href = formUrl;
         } catch (error) {
             console.error('Error:', error);

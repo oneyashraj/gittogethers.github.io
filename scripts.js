@@ -62,27 +62,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 const row = document.createElement('div');
                 row.className = `mosaic-row mosaic-row-${i + 1}`;
                 
-                // Add 3 images to each row
+                // Create a sequence of 6 images (3 original + 3 duplicates) for seamless loop
+                const rowImages = [];
                 for (let j = 0; j < 3; j++) {
                     const imgIndex = i * 3 + j;
                     const newImg = document.createElement('img');
                     newImg.src = loadedImages[imgIndex].src;
                     newImg.className = 'mosaic-image';
                     newImg.alt = '';
-                    
-                    // Add duplicate images for seamless animation
-                    row.appendChild(newImg.cloneNode(true));
+                    rowImages.push(newImg);
                 }
                 
-                // Add another set of the same images for seamless looping
-                for (let j = 0; j < 3; j++) {
-                    const imgIndex = i * 3 + j;
-                    const newImg = document.createElement('img');
-                    newImg.src = loadedImages[imgIndex].src;
-                    newImg.className = 'mosaic-image';
-                    newImg.alt = '';
-                    row.appendChild(newImg);
-                }
+                // Add original images plus duplicates for seamless loop
+                [...rowImages, ...rowImages].forEach(img => {
+                    row.appendChild(img.cloneNode(true));
+                });
                 
                 mosaicContainer.appendChild(row);
             }

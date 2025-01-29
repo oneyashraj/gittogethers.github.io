@@ -1,4 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Create mosaic background
+    const createMosaicBackground = async () => {
+        try {
+            // Fetch the YAML file
+            const response = await fetch('images.yml');
+            const yamlText = await response.text();
+            
+            // Parse YAML (using jsyaml library)
+            const imageData = jsyaml.load(yamlText);
+            const images = imageData.background_images;
+
+            // Shuffle the images array
+            const shuffledImages = [...images].sort(() => Math.random() - 0.5);
+
+            const mosaicContainer = document.createElement('div');
+            mosaicContainer.className = 'background-mosaic';
+
+            // Create 16 image elements (4x4 grid)
+            for (let i = 0; i < 16; i++) {
+                const img = document.createElement('img');
+                img.src = shuffledImages[i % shuffledImages.length];
+                img.className = 'mosaic-image';
+                img.alt = '';
+                mosaicContainer.appendChild(img);
+            }
+
+            document.body.insertBefore(mosaicContainer, document.body.firstChild);
+        } catch (error) {
+            console.error('Error loading background images:', error);
+        }
+    };
+
+    createMosaicBackground();
+
     const usernameInput = document.getElementById('github-username');
     const proceedButton = document.getElementById('proceed-button');
     const errorMessage = document.getElementById('error-message');

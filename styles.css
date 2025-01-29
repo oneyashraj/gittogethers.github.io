@@ -22,15 +22,13 @@
     height: 100%;
     z-index: 0;
     display: none;
-    grid-template-rows: repeat(3, 1fr);  /* Define 3 equal rows */
-    gap: 0;
-    padding: 0;
     opacity: 0;
     transition: opacity 0.5s ease;
 }
 
 .background-mosaic.initialized {
-    display: block;  /* Changed from grid to block */
+    display: block;
+    opacity: 1;
 }
 
 .background-mosaic::after {
@@ -55,7 +53,7 @@
 /* Update animation keyframes for smoother movement */
 @keyframes slideRight {
     0% {
-        transform: translateX(-16.665%);  /* Half of image width */
+        transform: translateX(-33.33%);
     }
     100% {
         transform: translateX(0);
@@ -67,7 +65,7 @@
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-16.665%);  /* Half of image width */
+        transform: translateX(-33.33%);
     }
 }
 
@@ -109,7 +107,7 @@ body {
 .content {
     text-align: center;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .logo {

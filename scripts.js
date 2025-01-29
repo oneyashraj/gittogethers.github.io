@@ -25,11 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('mosaicImages', JSON.stringify(images));
             }
 
-            // Shuffle the images array
-            const shuffledImages = [...images].sort(() => Math.random() - 0.5);
+            // Shuffle and select only 9 images
+            const shuffledImages = [...images]
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 9);
 
             // Create rows for different animation directions
-            const rows = Array.from({ length: 4 }, (_, i) => {
+            const rows = Array.from({ length: 3 }, (_, i) => {
                 const row = document.createElement('div');
                 row.className = `mosaic-row-${i + 1}`;
                 row.style.display = 'flex';
@@ -49,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Wait for all images to load
             const loadedImages = await Promise.all(imageLoadPromises);
 
-            // Create 16 image elements (4x4 grid)
+            // Create 9 image elements (3x3 grid)
             loadedImages.forEach((img, i) => {
                 const newImg = document.createElement('img');
                 newImg.src = img.src;
@@ -57,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 newImg.alt = '';
                 
                 // Add to appropriate row
-                const rowIndex = Math.floor(i / 4);
+                const rowIndex = Math.floor(i / 3);
                 rows[rowIndex].appendChild(newImg);
             });
 

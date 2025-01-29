@@ -32,6 +32,7 @@
 
 .background-mosaic.initialized {
     display: grid;
+    opacity: 1;
 }
 
 .background-mosaic::after {

@@ -49,9 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Wait for all images to load
             const loadedImages = await Promise.all(imageLoadPromises);
 
-            // Add initialized class to show the grid
-            mosaicContainer.classList.add('initialized');
-
             // Create 16 image elements (4x4 grid)
             loadedImages.forEach((img, i) => {
                 const newImg = document.createElement('img');
@@ -67,10 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add rows to container
             rows.forEach(row => mosaicContainer.appendChild(row));
             
-            // Show the mosaic after a brief delay
-            setTimeout(() => {
-                mosaicContainer.classList.add('loaded');
-            }, 100);
+            // Show the mosaic after everything is ready
+            requestAnimationFrame(() => {
+                mosaicContainer.classList.add('initialized');
+            });
 
         } catch (error) {
             console.error('Error loading background images:', error);

@@ -148,8 +148,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            setLoading(true);
+            // First validate the username
             const userData = await validateGitHubUsername(username);
+            
+            // Only set loading state after username is validated
+            setLoading(true);
+            
             const orgs = await getUserOrganizations(username);
             const formUrl = constructFormUrl(userData, orgs);
             window.location.href = formUrl;

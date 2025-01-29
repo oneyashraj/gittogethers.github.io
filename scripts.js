@@ -30,14 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 .sort(() => Math.random() - 0.5)
                 .slice(0, 9);
 
-            // Create rows for different animation directions
-            const rows = Array.from({ length: 3 }, (_, i) => {
-                const row = document.createElement('div');
-                row.className = `mosaic-row-${i + 1}`;
-                row.style.display = 'flex';
-                return row;
-            });
-
             // Load all images first
             const imageLoadPromises = shuffledImages.map(src => {
                 return new Promise((resolve, reject) => {
@@ -57,15 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 newImg.src = img.src;
                 newImg.className = 'mosaic-image';
                 newImg.alt = '';
-                
-                // Add to appropriate row
-                const rowIndex = Math.floor(i / 3);
-                rows[rowIndex].appendChild(newImg);
+                mosaicContainer.appendChild(newImg);
             });
 
-            // Add rows to container
-            rows.forEach(row => mosaicContainer.appendChild(row));
-            
             // Show the mosaic after everything is ready
             requestAnimationFrame(() => {
                 mosaicContainer.classList.add('initialized');

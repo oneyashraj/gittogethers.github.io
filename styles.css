@@ -48,44 +48,28 @@
 }
 
 .mosaic-image {
-    width: calc(100% / 3);
+    width: 100%;
     height: 100%;
     object-fit: cover;
-    flex-shrink: 0;
 }
 
-/* Add animation classes for each row */
-.mosaic-row-1 {
+/* Remove individual row elements and apply animations directly to images */
+.mosaic-image:nth-child(1),
+.mosaic-image:nth-child(2),
+.mosaic-image:nth-child(3) {
     animation: slideRight 80s linear infinite;
-    width: 100%;
 }
 
-.mosaic-row-2 {
+.mosaic-image:nth-child(4),
+.mosaic-image:nth-child(5),
+.mosaic-image:nth-child(6) {
     animation: slideLeft 80s linear infinite;
-    width: 100%;
 }
 
-.mosaic-row-3 {
+.mosaic-image:nth-child(7),
+.mosaic-image:nth-child(8),
+.mosaic-image:nth-child(9) {
     animation: slideRight 80s linear infinite;
-    width: 100%;
-}
-
-@keyframes slideRight {
-    from {
-        transform: translateX(-100%);
-    }
-    to {
-        transform: translateX(0%);
-    }
-}
-
-@keyframes slideLeft {
-    from {
-        transform: translateX(0%);
-    }
-    to {
-        transform: translateX(-100%);
-    }
 }
 
 body {

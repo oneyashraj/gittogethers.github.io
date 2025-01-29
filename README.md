@@ -1,4 +1,4 @@
-# GitTogethers Landing Page
+# GitTogethers Registration
 
 A sleek landing page for GitHub Community Meetups (GitTogethers) that validates GitHub usernames and redirects users to a registration form.
 

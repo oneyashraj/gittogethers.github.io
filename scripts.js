@@ -57,29 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // Wait for all images to load
             const loadedImages = await Promise.all(imageLoadPromises);
 
-            // Create rows and add images
-            for (let i = 0; i < 3; i++) {
-                const row = document.createElement('div');
-                row.className = `mosaic-row mosaic-row-${i + 1}`;
-                
-                // Create a sequence of 6 images (3 original + 3 duplicates) for seamless loop
-                const rowImages = [];
-                for (let j = 0; j < 3; j++) {
-                    const imgIndex = i * 3 + j;
-                    const newImg = document.createElement('img');
-                    newImg.src = loadedImages[imgIndex].src;
-                    newImg.className = 'mosaic-image';
-                    newImg.alt = '';
-                    rowImages.push(newImg);
-                }
-                
-                // Add original images plus duplicates for seamless loop
-                [...rowImages, ...rowImages].forEach(img => {
-                    row.appendChild(img.cloneNode(true));
-                });
-                
-                mosaicContainer.appendChild(row);
-            }
+            // Create 9 image elements in a grid
+            loadedImages.forEach((img, i) => {
+                const newImg = document.createElement('img');
+                newImg.src = img.src;
+                newImg.className = 'mosaic-image';
+                newImg.alt = '';
+                mosaicContainer.appendChild(newImg);
+            });
 
             // Show the mosaic after everything is ready
             requestAnimationFrame(() => {

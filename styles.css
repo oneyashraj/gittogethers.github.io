@@ -21,11 +21,17 @@
     width: 100%;
     height: 100%;
     z-index: 0;
-    display: grid;
+    display: none;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
-    gap: 4px;
-    padding: 4px;
+    gap: 0;
+    padding: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.background-mosaic.initialized {
+    display: grid;
 }
 
 .background-mosaic::after {
@@ -36,7 +42,7 @@
     width: 100%;
     height: 100%;
     background-color: #000e22;
-    opacity: 0.8;
+    opacity: 0.9;
     z-index: 1;
 }
 
@@ -46,9 +52,44 @@
     object-fit: cover;
 }
 
+/* Add animation classes for each row */
+.mosaic-row-1 {
+    animation: slideRight 80s linear infinite;
+}
+
+.mosaic-row-2 {
+    animation: slideLeft 80s linear infinite;
+}
+
+.mosaic-row-3 {
+    animation: slideRight 80s linear infinite;
+}
+
+.mosaic-row-4 {
+    animation: slideLeft 80s linear infinite;
+}
+
+@keyframes slideRight {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slideLeft {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
 body {
     font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background: transparent;
+    background: #000e22;
     color: var(--text-color);
     min-height: 100vh;
     display: flex;

@@ -2,36 +2,83 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create mosaic background
     const createMosaicBackground = async () => {
         try {
-            // Fetch the YAML file
-            const response = await fetch('images.yml');
-            const yamlText = await response.text();
+            const mosaicContainer = document.createElement('div');
+            mosaicContainer.className = 'background-mosaic';
+            document.body.insertBefore(mosaicContainer, document.body.firstChild);
+
+            // Check localStorage first
+            const cachedImages = localStorage.getItem('mosaicImages');
+            let images;
             
-            // Parse YAML (using jsyaml library)
-            const imageData = jsyaml.load(yamlText);
-            const images = imageData.background_images;
+            if (cachedImages) {
+                images = JSON.parse(cachedImages);
+            } else {
+                // Fetch the YAML file
+                const response = await fetch('images.yml');
+                const yamlText = await response.text();
+                
+                // Parse YAML
+                const imageData = jsyaml.load(yamlText);
+                images = imageData.background_images;
+                
+                // Cache the images
+                localStorage.setItem('mosaicImages', JSON.stringify(images));
+            }
 
             // Shuffle the images array
             const shuffledImages = [...images].sort(() => Math.random() - 0.5);
 
-            const mosaicContainer = document.createElement('div');
-            mosaicContainer.className = 'background-mosaic';
+            // Create rows for different animation directions
+            const rows = Array.from({ length: 4 }, (_, i) => {
+                const row = document.createElement('div');
+                row.className = `mosaic-row-${i + 1}`;
+                row.style.display = 'flex';
+                return row;
+            });
+
+            // Load all images first
+            const imageLoadPromises = shuffledImages.map(src => {
+                return new Promise((resolve, reject) => {
+                    const img = new Image();
+                    img.onload = () => resolve(img);
+                    img.onerror = reject;
+                    img.src = src;
+                });
+            });
+
+            // Wait for all images to load
+            const loadedImages = await Promise.all(imageLoadPromises);
+
+            // Add initialized class to show the grid
+            mosaicContainer.classList.add('initialized');
 
             // Create 16 image elements (4x4 grid)
-            for (let i = 0; i < 16; i++) {
-                const img = document.createElement('img');
-                img.src = shuffledImages[i % shuffledImages.length];
-                img.className = 'mosaic-image';
-                img.alt = '';
-                mosaicContainer.appendChild(img);
-            }
+            loadedImages.forEach((img, i) => {
+                const newImg = document.createElement('img');
+                newImg.src = img.src;
+                newImg.className = 'mosaic-image';
+                newImg.alt = '';
+                
+                // Add to appropriate row
+                const rowIndex = Math.floor(i / 4);
+                rows[rowIndex].appendChild(newImg);
+            });
 
-            document.body.insertBefore(mosaicContainer, document.body.firstChild);
+            // Add rows to container
+            rows.forEach(row => mosaicContainer.appendChild(row));
+            
+            // Show the mosaic after a brief delay
+            setTimeout(() => {
+                mosaicContainer.classList.add('loaded');
+            }, 100);
+
         } catch (error) {
             console.error('Error loading background images:', error);
         }
     };
 
-    createMosaicBackground();
+    // Start loading the background after a small delay to ensure initial color is visible
+    setTimeout(createMosaicBackground, 100);
 
     const usernameInput = document.getElementById('github-username');
     const proceedButton = document.getElementById('proceed-button');

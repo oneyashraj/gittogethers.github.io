@@ -23,7 +23,7 @@
     z-index: 0;
     display: none;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 1s ease-in;
 }
 
 .background-mosaic.initialized {
@@ -43,6 +43,7 @@
     background-color: #000e22;
     opacity: 0.9;
     z-index: 1;
+    transition: opacity 1s ease-in;
 }
 
 .mosaic-image {

@@ -53,23 +53,46 @@
     object-fit: cover;
 }
 
-/* Remove individual row elements and apply animations directly to images */
-.mosaic-image:nth-child(1),
-.mosaic-image:nth-child(2),
-.mosaic-image:nth-child(3) {
-    animation: slideRight 80s linear infinite;
+/* Update the animation keyframes */
+@keyframes slideRight {
+    0% {
+        transform: translateX(-33.33%);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }
 
-.mosaic-image:nth-child(4),
-.mosaic-image:nth-child(5),
-.mosaic-image:nth-child(6) {
-    animation: slideLeft 80s linear infinite;
+@keyframes slideLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-33.33%);
+    }
 }
 
-.mosaic-image:nth-child(7),
-.mosaic-image:nth-child(8),
-.mosaic-image:nth-child(9) {
-    animation: slideRight 80s linear infinite;
+/* Update the mosaic row styles */
+.mosaic-row {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.mosaic-row-1, .mosaic-row-3 {
+    animation: slideRight 20s linear infinite;
+}
+
+.mosaic-row-2 {
+    animation: slideLeft 20s linear infinite;
+}
+
+.mosaic-image {
+    width: 33.33%;  /* Each image takes up one-third of the row */
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;  /* Prevent images from shrinking */
 }
 
 body {

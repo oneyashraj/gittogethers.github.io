@@ -2,6 +2,8 @@
 
 A sleek landing page for GitHub Community Meetups (GitTogethers) that validates GitHub usernames and redirects users to a registration form.
 
+![image](https://github.com/user-attachments/assets/ff3905e1-f48e-4652-beb3-b77cae57612e)
+
 ## Features
 
 - Clean, modern UI with animated mosaic background

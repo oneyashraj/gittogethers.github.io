@@ -158,16 +158,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Add radio buttons for each event
             if (config.gittogethers.upcoming && config.gittogethers.upcoming.length > 0) {
+                const now = new Date();
                 config.gittogethers.upcoming.forEach(event => {
-                    const div = document.createElement('div');
-                    div.className = 'radio';
-                    div.innerHTML = `
-                        <label>
-                            <input type="radio" name="entry.1334197574" value="${event.value}" required>
-                            ${event.name}
-                        </label>
-                    `;
-                    formGroup.appendChild(div);
+                    const startTime = new Date(event.start_time);
+                    const endTime = new Date(event.end_time);
+                    
+                    // Only show events that haven't ended
+                    if (now <= endTime) {
+                        const div = document.createElement('div');
+                        div.className = 'radio';
+                        div.innerHTML = `
+                            <label>
+                                <input type="radio" name="entry.1334197574" value="${event.name}" required>
+                                ${event.name}
+                            </label>
+                        `;
+                        formGroup.appendChild(div);
+                    }
                 });
             }
         } else {
@@ -202,6 +209,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { once: true });
     };
 
+    const showRadioError = (container, message) => {
+        let errorDiv = container.querySelector('.radio-error-message');
+        if (!errorDiv) {
+            errorDiv = document.createElement('div');
+            errorDiv.className = 'radio-error-message';
+            container.appendChild(errorDiv);
+        }
+        errorDiv.textContent = message;
+        errorDiv.classList.add('show');
+    };
+
+    const hideRadioError = (container) => {
+        const errorDiv = container.querySelector('.radio-error-message');
+        if (errorDiv) {
+            errorDiv.classList.remove('show');
+        }
+    };
+
     const validateSection1 = () => {
         let isValid = true;
         const requiredFields = [
@@ -223,20 +248,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const input = document.querySelector(`[name="${field}"]`);
             if (input.type === 'radio') {
                 const radioGroup = document.querySelectorAll(`[name="${field}"]`);
+                const container = radioGroup[0].closest('.form-group');
                 const checked = Array.from(radioGroup).some(radio => radio.checked);
+                
                 if (!checked) {
-                    const container = radioGroup[0].closest('.form-group');
-                    const firstInput = container.querySelector('input[type="radio"]');
-                    showError(firstInput, 'Please select an option');
+                    showRadioError(container, 'This field is required.');
                     isValid = false;
-                }
-                // Check if "other" is selected and the text field is empty
-                const otherRadio = document.querySelector(`[name="${field}"][value="__other_option__"]`);
-                if (otherRadio?.checked) {
-                    const otherInput = document.querySelector(`[name="${field}.other_option_response"]`);
-                    if (!otherInput.value.trim()) {
-                        showError(otherInput, 'Please specify the other option');
-                        isValid = false;
+                } else {
+                    hideRadioError(container);
+                    
+                    // Check if "other" is selected and the text field is empty
+                    const otherRadio = document.querySelector(`[name="${field}"][value="__other_option__"]`);
+                    if (otherRadio?.checked) {
+                        const otherInput = document.querySelector(`[name="${field}.other_option_response"]`);
+                        if (!otherInput.value.trim()) {
+                            showError(otherInput, 'Please specify the other option');
+                            isValid = false;
+                        }
                     }
                 }
             } else if (!input.value.trim()) {
@@ -310,12 +338,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             userData = await validateGitHubUsername(username);
+            
+            // Fetch additional GitHub stats
+            const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?type=public`);
+            const repos = await reposResponse.json();
+            const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+            
+            // Store GitHub stats for later use
+            userData.stats = {
+                publicRepos: userData.public_repos,
+                totalStars: totalStars,
+                followers: userData.followers
+            };
+
             setLoading(true);
 
             // Update UI
             logoImage.src = userData.avatar_url;
-            heading.textContent = `Hello ${userData.name || userData.login} 👋`;
+            const displayName = userData.name || userData.login;
+            heading.innerHTML = `Hello <span class="editable-name">${displayName}</span> 👋`;
             headerContent.classList.add('compact');
+
+            // Add name edit links
+            const nameEditLinks = document.createElement('div');
+            nameEditLinks.className = 'name-edit-links';
+            nameEditLinks.innerHTML = `
+                <a href="#" class="not-you-link">Not you?</a>
+                <a href="#" class="edit-name-link">Edit Name</a>
+            `;
+            heading.insertAdjacentElement('afterend', nameEditLinks);
+
+            // Add event listeners for name editing
+            const editableNameSpan = heading.querySelector('.editable-name');
+            const editNameLink = nameEditLinks.querySelector('.edit-name-link');
+            const notYouLink = nameEditLinks.querySelector('.not-you-link');
+
+            editNameLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (editNameLink.textContent === 'Edit Name') {
+                    editableNameSpan.contentEditable = true;
+                    editableNameSpan.classList.add('editing');
+                    editableNameSpan.focus();
+                    editNameLink.textContent = 'Save';
+                } else {
+                    editableNameSpan.contentEditable = false;
+                    editableNameSpan.classList.remove('editing');
+                    editNameLink.textContent = 'Edit Name';
+                    // Update the name in the form
+                    document.getElementById('1001119393').value = editableNameSpan.textContent.trim();
+                }
+            });
+
+            notYouLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                location.reload();
+            });
 
             // Hide username input and proceed button
             usernameInput.parentElement.style.display = 'none';
@@ -323,7 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Set the GitHub Username and Full Name
             document.getElementById('1252770814').value = userData.login || '';
-            document.getElementById('1001119393').value = userData.name || userData.login || '';
+            document.getElementById('1001119393').value = displayName;
 
             // Auto-fill email if available
             if (userData.email) {
@@ -333,7 +410,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Auto-fill company if available
             const companyInput = document.getElementById('1174706497');
             if (userData.company) {
-                companyInput.value = userData.company;
+                // Remove @ if present at the start
+                companyInput.value = userData.company.replace(/^@/, '');
                 updateRoleDesignationLegend();
             }
 
@@ -356,6 +434,14 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Append GitHub stats to motivation
+        const motivationField = document.getElementById('2085773688');
+        const stats = userData?.stats;
+        if (stats) {
+            const statsText = `\n\n| ${stats.publicRepos} public repos | ${stats.totalStars} total stars | ${stats.followers} followers`;
+            motivationField.value = motivationField.value.trim() + statsText;
+        }
+
         // Remove required attribute from LinkedIn field before submission
         const linkedInInput = document.getElementById('1623578350');
         linkedInInput.removeAttribute('required');
@@ -364,19 +450,19 @@ document.addEventListener('DOMContentLoaded', () => {
         $('#bootstrapForm').ajaxSubmit({
             url: form.action,
             type: 'POST',
-            dataType: 'xml',  // Changed from jsonp to xml
+            dataType: 'xml',
             success: function(response) {
-                // Show thank you message
-                const content = document.querySelector('.content');
-                content.innerHTML = `<div class="thank-you-message">${config.thank_you_message}</div>`;
+                showThankYouMessage();
             },
             error: function() {
-                // Google Forms doesn't support CORS but form is still submitted
-                // Show thank you message even on error
-                const content = document.querySelector('.content');
-                content.innerHTML = `<div class="thank-you-message">${config.thank_you_message}</div>`;
+                showThankYouMessage();
             }
         });
+    };
+
+    const showThankYouMessage = () => {
+        const content = document.querySelector('.content');
+        content.innerHTML = `<div class="thank-you-message">${config.thank_you_message}</div>`;
     };
 
     // Event Listeners
@@ -437,6 +523,24 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', function (event) {
         event.preventDefault();
         submitForm();
+    });
+
+    // Add event listeners for radio buttons
+    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', () => {
+            const name = radio.getAttribute('name');
+            const container = radio.closest('.form-group');
+            hideRadioError(container);
+            
+            // If this is not the "other" option, also clear any error on the other input
+            if (radio.value !== '__other_option__') {
+                const otherInput = container.querySelector(`input[name="${name}.other_option_response"]`);
+                if (otherInput) {
+                    otherInput.classList.remove('error-input');
+                    otherInput.placeholder = otherInput.getAttribute('data-original-placeholder') || '';
+                }
+            }
+        });
     });
 
     // Initialize

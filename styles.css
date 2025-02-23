@@ -183,6 +183,11 @@ input[type="submit"]:hover {
     .logo-image {
         width: 72px;
         height: 72px;
+        margin-top: 1rem;
+    }
+
+    .header-content.compact .logo-image {
+        margin-top: 1rem;
     }
 }
 
@@ -261,6 +266,7 @@ textarea:focus {
 .btn-primary {
     background: var(--success-color);
     color: var(--text-color);
+    border: 2px solid var(--success-color);
 }
 
 .btn-primary:hover {
@@ -329,6 +335,19 @@ textarea:focus {
     white-space: pre-line;
     line-height: 1.6;
     animation: fadeIn 0.5s ease;
+    font-size: 1.2rem;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.thank-you-message a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.thank-you-message a:hover {
+    text-decoration: underline;
 }
 
 @media (max-width: 768px) {
@@ -350,4 +369,46 @@ textarea:focus {
 
 .error-input::placeholder {
     color: var(--error-color) !important;
+}
+
+.radio-error-message {
+    color: var(--error-color);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.radio-error-message.show {
+    display: block;
+}
+
+.name-edit-links {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.name-edit-links a {
+    color: var(--accent-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.name-edit-links a:hover {
+    text-decoration: underline;
+}
+
+.editable-name {
+    display: inline-block;
+    min-width: 100px;
+    padding: 0.25rem;
+    border: 1px solid transparent;
+}
+
+.editable-name.editing {
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.1);
+    outline: none;
 }

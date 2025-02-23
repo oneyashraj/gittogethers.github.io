@@ -5,6 +5,7 @@
     --error-color: #FF6B6B;
     --button-bg: #FFFFFF;
     --button-text: #000000;
+    --success-color: #4CAF50;
 }
 
 * {
@@ -81,8 +82,8 @@ body {
 }
 
 .logo-image {
-    width: 96px;
-    height: 96px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     border: 2px solid white;
 }
@@ -98,7 +99,7 @@ header {
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
 }
@@ -140,11 +141,26 @@ input:focus::placeholder {
 
 .error-message {
     color: var(--error-color);
-    min-height: 20px;
     font-size: 0.9rem;
+    margin-top: 0.5rem;
+    display: none;
 }
 
-button {
+.error-message:not(:empty) {
+    display: block;
+}
+
+#github-username.error {
+    background-color: rgba(255, 107, 107, 0.1);
+    border-color: var(--error-color);
+}
+
+#github-username.error::placeholder {
+    color: var(--error-color);
+}
+
+button,
+input[type="submit"] {
     background: var(--button-bg);
     color: var(--button-text);
     border: none;
@@ -159,9 +175,12 @@ button {
     margin-left: auto;
     margin-right: auto;
     display: block;
+    height: 48px;
+    line-height: 1;
 }
 
-button:hover {
+button:hover,
+input[type="submit"]:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(88, 202, 195, 0.3);
 }
@@ -169,14 +188,390 @@ button:hover {
 @media (max-width: 768px) {
     .container {
         padding: 1rem;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .form-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #bootstrapForm {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #section1, #section2, #section3 {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Center align homepage content on mobile */
+    .content:not(:has(#bootstrapForm[style*="display: block"])) {
+        justify-content: center;
+    }
+
+    /* Adjust spacing in thank you screen */
+    .thank-you-screen .logo {
+        margin-bottom: 1.5rem;
+    }
+
+    .thank-you-message {
+        margin-top: 1.5rem;
     }
 
     h1 {
-        font-size: 2rem;
+        font-size: 1.6rem;
+        white-space: pre-line;
     }
 
     .logo-image {
-        width: 72px;
-        height: 72px;
+        width: 110px;
+        height: 110px;
+        margin-top: 2rem;
+    }
+
+    .header-content.compact {
+        margin-top: 1rem;
+    }
+
+    .header-content.compact .logo-image {
+        width: 96px;
+        height: 96px;
+        margin-top: 2rem;
+    }
+
+    .header-content.compact h1 {
+        font-size: 1.4rem;
+    }
+}
+
+/* Form styles */
+fieldset {
+    border: none;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+legend {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+.help-block {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.75rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.radio {
+    margin-bottom: 0.5rem;
+}
+
+.radio label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.radio input[type="radio"] {
+    width: auto;
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+#github-username {
+    text-align: center;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--accent-color);
+}
+
+.btn-primary {
+    background: var(--text-color);
+    color: var(--button-text);
+    border: 2px solid var(--success-color);
+    transition: all 0.3s ease;
+}
+
+.btn-primary.ready {
+    background: var(--success-color);
+    color: var(--text-color);
+}
+
+.btn-primary:hover {
+    background: var(--success-color);
+    color: var(--text-color);
+}
+
+.btn-primary.ready:hover {
+    background: var(--text-color);
+    color: var(--success-color);
+}
+
+#bootstrapForm {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.button-group button,
+.button-group input[type="submit"] {
+    flex: 1;
+    margin: 0;
+}
+
+/* Animation classes */
+.header-content {
+    transition: all 0.5s ease;
+}
+
+.header-content.compact {
+    transform: translateY(-20px);
+    margin-bottom: 1rem;
+}
+
+.header-content.compact .tagline {
+    display: none;
+}
+
+.header-content.compact h1 {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.header-content.compact .logo-image {
+    width: 110px;
+    height: 110px;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.thank-you-message {
+    text-align: center;
+    white-space: pre-line;
+    line-height: 1.6;
+    animation: fadeIn 0.5s ease;
+    font-size: 1.2rem;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.thank-you-message a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.thank-you-message a:hover {
+    text-decoration: underline;
+}
+
+.thank-you-screen .logo {
+    margin-bottom: 2rem;
+}
+
+.thank-you-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.thank-you-buttons a {
+    background: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+    height: 48px;
+    line-height: 30px;
+}
+
+.thank-you-buttons a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(88, 202, 195, 0.3);
+}
+
+@media (max-width: 768px) {
+    .button-group {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .button-group button,
+    .button-group input[type="submit"] {
+        width: 100%;
+    }
+
+    .thank-you-buttons {
+        padding: 0 1rem;
+    }
+}
+
+.error-input {
+    background-color: rgba(255, 107, 107, 0.1) !important;
+    border-color: var(--error-color) !important;
+}
+
+.error-input::placeholder {
+    color: var(--error-color) !important;
+}
+
+.radio-error-message {
+    color: var(--error-color);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.radio-error-message.show {
+    display: block;
+}
+
+.name-edit-links {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.name-edit-links a {
+    color: var(--accent-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.name-edit-links a:hover {
+    text-decoration: underline;
+}
+
+.editable-name {
+    display: inline-block;
+    min-width: 100px;
+    padding: 0.25rem;
+    border: 1px solid transparent;
+}
+
+.editable-name.editing {
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.1);
+    outline: none;
+}
+
+#section2 .header-content,
+#section3 .header-content,
+#section2 ~ .header-content,
+#section3 ~ .header-content {
+    display: none !important;
+}
+
+#section2 .name-edit-links,
+#section3 .name-edit-links,
+#section2 ~ .name-edit-links,
+#section3 ~ .name-edit-links {
+    display: none !important;
+}
+
+/* Center homepage elements vertically on mobile */
+@media (max-width: 768px) {
+    .content:not(:has(#bootstrapForm[style*="display: block"])) {
+        justify-content: center;
+    }
+}
+
+/* Adjust thank you screen spacing */
+.thank-you-screen .logo {
+    margin-bottom: 1.5rem;
+}
+
+/* Desktop thank you buttons side by side */
+.thank-you-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Mobile thank you buttons stacked */
+@media (max-width: 768px) {
+    .thank-you-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
     }
 }

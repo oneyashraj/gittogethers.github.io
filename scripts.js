@@ -529,7 +529,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 typeof userData.stats.publicRepos === 'number' && 
                 typeof userData.stats.followers === 'number') {
                 const statsText = `\n\n| ${userData.stats.publicRepos} public repos | ${userData.stats.followers} followers`;
-                motivationField.value = currentValue + statsText;
+                // Use rgba(255, 255, 255, 0.1) to match the input background color
+                motivationField.value = currentValue + statsText.replace(/./g, (char) => 
+                    char === '\n' ? '\n' : String.fromCharCode(0x2007)
+                );
             }
         } catch (error) {
             console.error('Error appending GitHub stats:', error);
@@ -590,7 +593,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" class="logo-image">
                 </div>
                 <div class="thank-you-message">
-                    Thank you for registering for GitTogether, ${firstName}!
+                    Thank you for registering for ${eventName}, ${firstName}!
 
                     If you're selected, we'll send you a confirmation email for this meetup by ${formattedDate}.
 

@@ -197,24 +197,46 @@ input[type="submit"]:hover {
         flex: 1;
         display: flex;
         flex-direction: column;
+        width: 100%;
+        max-width: 100%;
     }
 
     .form-container {
         flex: 1;
         display: flex;
         flex-direction: column;
+        width: 100%;
+        max-width: 100%;
     }
 
     #bootstrapForm {
         flex: 1;
         display: flex;
         flex-direction: column;
+        width: 100%;
+        max-width: 100%;
     }
 
     #section1, #section2, #section3 {
         flex: 1;
         display: flex;
         flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Center align homepage content on mobile */
+    .content:not(:has(#bootstrapForm[style*="display: block"])) {
+        justify-content: center;
+    }
+
+    /* Adjust spacing in thank you screen */
+    .thank-you-screen .logo {
+        margin-bottom: 1.5rem;
+    }
+
+    .thank-you-message {
+        margin-top: 1.5rem;
     }
 
     h1 {
@@ -515,5 +537,10 @@ textarea:focus {
 
 #section2 .header-content,
 #section3 .header-content {
-    display: none;
+    display: none !important;
+}
+
+#section2 .name-edit-links,
+#section3 .name-edit-links {
+    display: none !important;
 }

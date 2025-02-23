@@ -143,27 +143,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const populateGitTogetherChoices = () => {
         const fieldset = document.querySelector('legend[for="1521228078"]').parentElement;
         const formGroup = fieldset.querySelector('.form-group');
-        const helpBlock = formGroup.querySelector('.help-block');
         
-        // Update description
-        helpBlock.textContent = config.gittogethers.description;
+        // Clear existing content
+        formGroup.innerHTML = '';
+        
+        if (config && config.gittogethers) {
+            // Add help block if description exists
+            if (config.gittogethers.description) {
+                const helpBlock = document.createElement('p');
+                helpBlock.className = 'help-block';
+                helpBlock.textContent = config.gittogethers.description;
+                formGroup.appendChild(helpBlock);
+            }
 
-        // Clear existing radio buttons
-        const radioContainer = formGroup.querySelector('.radio').parentElement;
-        radioContainer.innerHTML = '';
-
-        // Add new radio buttons
-        config.gittogethers.upcoming.forEach(event => {
+            // Add radio buttons for each event
+            if (config.gittogethers.upcoming && config.gittogethers.upcoming.length > 0) {
+                config.gittogethers.upcoming.forEach(event => {
+                    const div = document.createElement('div');
+                    div.className = 'radio';
+                    div.innerHTML = `
+                        <label>
+                            <input type="radio" name="entry.1334197574" value="${event.value}" required>
+                            ${event.name}
+                        </label>
+                    `;
+                    formGroup.appendChild(div);
+                });
+            }
+        } else {
+            // Fallback for local development
             const div = document.createElement('div');
             div.className = 'radio';
             div.innerHTML = `
                 <label>
-                    <input type="radio" name="entry.1334197574" value="${event.value}" required>
-                    ${event.name}
+                    <input type="radio" name="entry.1334197574" value="Test Event" required>
+                    Test Event
                 </label>
             `;
-            radioContainer.appendChild(div);
-        });
+            formGroup.appendChild(div);
+        }
     };
 
     const showSection = (section) => {
@@ -173,7 +191,19 @@ document.addEventListener('DOMContentLoaded', () => {
         section.style.display = 'block';
     };
 
+    const showError = (element, message) => {
+        element.classList.add('error-input');
+        element.placeholder = message;
+        
+        element.addEventListener('focus', function onFocus() {
+            element.classList.remove('error-input');
+            element.placeholder = element.getAttribute('data-original-placeholder') || '';
+            element.removeEventListener('focus', onFocus);
+        }, { once: true });
+    };
+
     const validateSection1 = () => {
+        let isValid = true;
         const requiredFields = [
             'entry.1334197574',  // GitTogether choice
             'entry.1294570093',  // Email
@@ -185,8 +215,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const emailInput = document.getElementById('1294570093');
         if (!validateEmail(emailInput.value)) {
-            alert('Please enter a valid email address');
-            return false;
+            showError(emailInput, 'Please enter a valid email address');
+            isValid = false;
         }
 
         for (const field of requiredFields) {
@@ -195,27 +225,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 const radioGroup = document.querySelectorAll(`[name="${field}"]`);
                 const checked = Array.from(radioGroup).some(radio => radio.checked);
                 if (!checked) {
-                    alert('Please fill in all required fields');
-                    return false;
+                    const container = radioGroup[0].closest('.form-group');
+                    const firstInput = container.querySelector('input[type="radio"]');
+                    showError(firstInput, 'Please select an option');
+                    isValid = false;
                 }
                 // Check if "other" is selected and the text field is empty
                 const otherRadio = document.querySelector(`[name="${field}"][value="__other_option__"]`);
                 if (otherRadio?.checked) {
                     const otherInput = document.querySelector(`[name="${field}.other_option_response"]`);
                     if (!otherInput.value.trim()) {
-                        alert('Please specify the other option');
-                        return false;
+                        showError(otherInput, 'Please specify the other option');
+                        isValid = false;
                     }
                 }
             } else if (!input.value.trim()) {
-                alert('Please fill in all required fields');
-                return false;
+                showError(input, 'This field is required');
+                isValid = false;
             }
         }
-        return true;
+        return isValid;
     };
 
     const validateSection2 = () => {
+        let isValid = true;
         const requiredFields = [
             'entry.220097591',   // Role/Designation
             'entry.2114391014',  // Years of experience
@@ -227,31 +260,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 const radioGroup = document.querySelectorAll(`[name="${field}"]`);
                 const checked = Array.from(radioGroup).some(radio => radio.checked);
                 if (!checked) {
-                    alert('Please fill in all required fields');
-                    return false;
+                    const container = radioGroup[0].closest('.form-group');
+                    const firstInput = container.querySelector('input[type="radio"]');
+                    showError(firstInput, 'Please select an option');
+                    isValid = false;
                 }
             } else if (!input.value.trim()) {
-                alert('Please fill in all required fields');
-                return false;
+                showError(input, 'This field is required');
+                isValid = false;
             }
         }
 
         const linkedInInput = document.getElementById('1623578350');
         if (linkedInInput.value && !validateLinkedInUrl(linkedInInput.value)) {
-            alert('Please enter a valid LinkedIn profile URL');
-            return false;
+            showError(linkedInInput, 'Please enter a valid LinkedIn profile URL');
+            isValid = false;
         }
 
-        return true;
+        return isValid;
     };
 
     const validateSection3 = () => {
+        let isValid = true;
         const motivationField = document.getElementById('2085773688');
         if (!motivationField.value.trim()) {
-            alert('Please fill in your motivation for attending');
-            return false;
+            showError(motivationField, 'This field is required');
+            isValid = false;
         }
-        return true;
+        return isValid;
     };
 
     const updateRoleDesignationLegend = () => {
@@ -366,6 +402,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const currentRole = document.querySelector('input[name="entry.2134794723"]:checked');
         if (currentRole && (currentRole.value === 'University Student' || currentRole.value === 'High School Student')) {
+            // Set default values for Section 2
+            document.getElementById('220097591').value = 'N/A';  // Role/Designation
+            const yearsExpRadio = document.querySelector('input[name="entry.2114391014"][value="0 to 2 years"]');
+            if (yearsExpRadio) {
+                yearsExpRadio.checked = true;
+            }
             showSection(section3);
         } else {
             showSection(section2);

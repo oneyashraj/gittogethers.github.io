@@ -266,6 +266,7 @@ textarea:focus {
 .btn-primary:hover {
     background: var(--text-color);
     color: var(--success-color);
+    border: 2px solid var(--success-color);
 }
 
 #bootstrapForm {
@@ -340,4 +341,13 @@ textarea:focus {
     .button-group input[type="submit"] {
         width: 100%;
     }
+}
+
+.error-input {
+    background-color: rgba(255, 107, 107, 0.1) !important;
+    border-color: var(--error-color) !important;
+}
+
+.error-input::placeholder {
+    color: var(--error-color) !important;
 }

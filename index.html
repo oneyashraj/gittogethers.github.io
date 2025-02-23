@@ -10,11 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
 </head>
 <body>
     <main class="container">
         <div class="content">
-            <header>
+            <header class="header-content">
                 <div class="logo">
                     <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" class="logo-image">
                 </div>
@@ -34,6 +36,234 @@
                 </div>
                 <button id="proceed-button" aria-label="Submit GitHub username">Proceed</button>
                 <p class="error-message" id="error-message" role="alert" aria-live="polite"></p>
+
+                <form action="https://docs.google.com/forms/d/e/1FAIpQLScb3J5YDjU3Pn-znAV0S9rrLA1OkWGWwtqD56FayN9ptsbE4w/formResponse"
+                    target="_self"
+                    id="bootstrapForm"
+                    method="POST"
+                    style="display:none;">
+
+                    <!-- Hidden fields for GitHub info -->
+                    <input type="hidden" id="1252770814" name="entry.1252770814">
+                    <input type="hidden" id="1001119393" name="entry.1001119393">
+
+                    <div id="section1" class="fade-in">
+                        <!-- Field type: "choices" id: "1521228078" -->
+                        <fieldset>
+                            <legend for="1521228078">Which upcoming GitTogether you'd like to join?</legend>
+                            <div class="form-group">
+                                <p class="help-block">Delhi NCR (22nd February 2025) registrations are now closed.</p>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="entry.1334197574" value="Bengaluru (8th March 2025)" required>
+                                        Bengaluru (8th March 2025)
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="entry.1334197574" value="Hyderabad (8th March 2025)" required>
+                                        Hyderabad (8th March 2025)
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="entry.1334197574" value="Delhi NCR (22nd March 2025)" required>
+                                        Delhi NCR (22nd March 2025)
+                                    </label>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- Field type: "short" id: "521252668" -->
+                        <fieldset>
+                            <legend for="521252668">Email Address</legend>
+                            <div class="form-group">
+                                <p class="help-block">If you're selected, we'll send you a confirmation email for this meetup.</p>
+                                <input id="1294570093" type="text" name="entry.1294570093" class="form-control" required>
+                            </div>
+                        </fieldset>
+
+                        <!-- Field type: "choices" id: "1939983559" -->
+                        <fieldset>
+                            <legend for="1939983559">City</legend>
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="entry.1547278427" value="Bengaluru" required>
+                                        Bengaluru
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="entry.1547278427" value="Delhi NCR" required>
+                                        Delhi NCR
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="entry.1547278427" value="Hyderabad" required>
+                                        Hyderabad
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="entry.1547278427" value="Mumbai" required>
+                                        Mumbai
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="entry.1547278427" value="__other_option__">
+                                        <input type="text" name="entry.1547278427.other_option_response" placeholder="Other city">
+                                    </label>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- Field type: "choices" id: "1909141924" -->
+                        <fieldset>
+                            <legend for="1909141924">Country</legend>
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="entry.2043018353" value="India" required>
+                                        India
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="entry.2043018353" value="__other_option__">
+                                        <input type="text" name="entry.2043018353.other_option_response" placeholder="Other country">
+                                    </label>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- Field type: "choices" id: "1792541714" -->
+                        <fieldset>
+                            <legend for="1792541714">Current Role</legend>
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="entry.2134794723" value="Working Professional" required>
+                                        Working Professional
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="entry.2134794723" value="University Student" required>
+                                        University Student
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="entry.2134794723" value="High School Student" required>
+                                        High School Student
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="entry.2134794723" value="__other_option__">
+                                        <input type="text" name="entry.2134794723.other_option_response" placeholder="Other role">
+                                    </label>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- Field type: "short" id: "913513785" -->
+                        <fieldset>
+                            <legend for="913513785">Company/Organisation Name</legend>
+                            <div class="form-group">
+                                <input id="1174706497" type="text" name="entry.1174706497" class="form-control" required>
+                            </div>
+                        </fieldset>
+
+                        <button type="button" id="proceedSection1">Proceed</button>
+                    </div>
+
+                    <div id="section2" style="display:none;" class="fade-in">
+                        <!-- Field type: "short" id: "1835765444" -->
+                        <fieldset>
+                            <legend for="1835765444">Role/Designation</legend>
+                            <div class="form-group">
+                                <input id="220097591" type="text" name="entry.220097591" class="form-control" required>
+                            </div>
+                        </fieldset>
+
+                        <!-- Field type: "choices" id: "1647365904" -->
+                        <fieldset>
+                            <legend for="1647365904">Years of experience</legend>
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="entry.2114391014" value="0 to 2 years" required>
+                                        0 to 2 years
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="entry.2114391014" value="2 to 5 years" required>
+                                        2 to 5 years
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="entry.2114391014" value="5 to 10 years" required>
+                                        5 to 10 years
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="entry.2114391014" value="10+ years" required>
+                                        10+ years
+                                    </label>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- Field type: "short" id: "809650961" -->
+                        <fieldset>
+                            <legend for="809650961">LinkedIn profile link</legend>
+                            <div class="form-group">
+                                <input id="1623578350" type="text" name="entry.1623578350" class="form-control">
+                            </div>
+                        </fieldset>
+
+                        <div class="button-group">
+                            <button type="button" id="backSection2">Back</button>
+                            <button type="button" id="proceedSection2">Proceed</button>
+                        </div>
+                    </div>
+
+                    <div id="section3" style="display:none;" class="fade-in">
+                        <!-- Field type: "paragraph" id: "1962943491" -->
+                        <fieldset>
+                            <legend for="1962943491">Motivation for attending</legend>
+                            <div class="form-group">
+                                <textarea id="2085773688" name="entry.2085773688" class="form-control" required
+                                    placeholder="Please share why you want to attend, your motivation, and what you hope to gain from the meetup. Your answer would help us in shortlisting."></textarea>
+                            </div>
+                        </fieldset>
+
+                        <!-- Field type: "paragraph" id: "121499795" -->
+                        <fieldset>
+                            <legend for="121499795">Do you identify yourself as part of an underrepresented group in local technology ecosystem? (Optional)</legend>
+                            <div class="form-group">
+                                <textarea id="367452512" name="entry.367452512" class="form-control"
+                                    placeholder="If yes, please tell us a bit about yourself and how we can make this event more welcoming and equitable."></textarea>
+                            </div>
+                        </fieldset>
+
+                        <input type="hidden" name="fvv" value="1">
+                        <input type="hidden" name="fbzx" value="7335859619604875862">
+                        <input type="hidden" name="pageHistory" value="0,1,2">
+
+                        <div class="button-group">
+                            <button type="button" id="backSection3">Back</button>
+                            <input class="btn btn-primary" type="submit" value="Submit">
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </main>

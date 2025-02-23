@@ -14,3 +14,18 @@ background_images:
   - https://secure.meetupstatic.com/photos/event/2/a/7/7/highres_525850871.webp
   - https://secure.meetupstatic.com/photos/event/3/d/1/0/highres_525195632.webp
   - https://secure.meetupstatic.com/photos/event/3/c/f/e/highres_525195614.webp
+
+gittogethers:
+  description: "Delhi NCR (22nd February 2025) registrations are now closed."
+  upcoming:
+    - name: "Bengaluru (8th March 2025)"
+      value: "Bengaluru (8th March 2025)"
+    - name: "Hyderabad (8th March 2025)"
+      value: "Hyderabad (8th March 2025)"
+    - name: "Delhi NCR (22nd March 2025)"
+      value: "Delhi NCR (22nd March 2025)"
+
+thank_you_message: |
+  Thank you for registering for GitTogether! If you're selected, we'll send you a confirmation email for this meetup.
+
+  For queries related to GitTogethers, you can reach out to the community leader in your city. For all other queries, you can reach out to meetups@github.com 

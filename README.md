@@ -4,25 +4,66 @@ A modern, responsive web application for handling GitTogethers event registratio
 
 ## Features
 
-- GitHub username validation with profile integration
-  - Auto-fills email and company name from GitHub profile
-  - Displays user's avatar and customizable name (editable in Section 1)
-  - Includes GitHub stats (public repos and followers) in form submission
-- Dynamic form with three sections based on user role
-  - Auto-fills professional details for students
-  - Smart validation with inline error messages
-  - Optional LinkedIn profile with URL validation
-- Modern UI/UX
-  - Responsive design with mobile support
-  - Background mosaic using community images
-  - Smooth animations and transitions
-  - Consistent button heights and styling
-- Configuration through config.yml
-  - Time-based event visibility with end dates
-  - Customizable messages with HTML support
-  - Dynamic form options and help text
-  - Confirmation date display for each event
-  - Configurable thank you screen buttons
+### User Interface
+- Modern, responsive design optimized for both desktop and mobile
+- Vertically centered homepage elements
+- Smooth transitions between sections
+- Consistent button heights and styling
+- Background mosaic using community images
+- Accessible form elements with ARIA labels
+
+### GitHub Integration
+- Real-time GitHub username validation
+- Profile picture display on initial form
+- Editable display name with "Not you?" option
+- Invisible GitHub stats (public repos and followers) appended to motivation response
+- Rate-limited API calls to prevent throttling
+
+### Multi-step Form
+1. **Initial GitHub Verification**
+   - Username validation
+   - Profile picture and name display
+   - Name editing capabilities
+
+2. **Section 1: Basic Information**
+   - GitTogether event selection (time-based visibility)
+   - Email address
+   - City (with "Other" option)
+   - Country (with "Other" option)
+   - Current Role
+   - Company/Organization Name
+
+3. **Section 2: Professional Details** (Skipped for students)
+   - Role/Designation
+   - Years of experience
+   - Optional LinkedIn profile URL
+
+4. **Section 3: Additional Information**
+   - Motivation for attending
+   - Optional underrepresented group identification
+
+### Form Validation
+- Required field validation with error messages
+- Mobile-optimized error display with auto-scroll
+- Email format validation
+- LinkedIn URL format validation
+- Radio button group validation
+- "Other" option input validation
+- Validation before section transitions
+
+### Dynamic Content
+- Time-based event visibility
+- Automatic event hiding after end time
+- Configurable confirmation dates
+- Role-based form field adaptation
+  - Students skip Section 2
+  - Company field changes to School/College based on role
+
+### Thank You Screen
+- Personalized message with first name
+- Event-specific confirmation date
+- Configurable message with HTML support
+- Responsive button layout (side-by-side on desktop, stacked on mobile)
 
 ## Configuration
 
@@ -47,8 +88,6 @@ gittogethers:
       confirmation_date: "2025-03-06T23:59:00+05:30"  # When results will be announced
 ```
 
-Events are automatically hidden after their end_time has passed. If no active events exist, the no_events_message is displayed.
-
 ### Thank You Message and Buttons
 ```yaml
 thank_you_message: |
@@ -68,47 +107,14 @@ thank_you_buttons:
    - Default thank you message will be shown
    - Background will use placeholder images
 
-## Form Sections
+## Dependencies
+- jQuery 3.2.1
+- jQuery Form Plugin 4.2.2
+- js-yaml 4.1.0
+- Google Fonts (Roboto)
 
-1. **Section 1**: Basic Information
-   - GitTogether event selection (time-based visibility)
-   - Email address (auto-filled from GitHub)
-   - City and Country
-   - Current Role
-   - Company/Organization Name (auto-filled from GitHub, @ prefix removed)
-   - Name editing options ("Not you?" and "Edit Name")
-
-2. **Section 2**: Professional Details
-   - Role/Designation (includes company name)
-   - Years of experience
-   - LinkedIn profile (Optional)
-
-3. **Section 3**: Additional Information
-   - Motivation for attending
-   - Underrepresented group identification (Optional)
-
-## Notes
-
-- For students (University/High School):
-  - Section 2 is auto-filled with default values
-  - Role/Designation set to "N/A"
-  - Years of experience set to "0 to 2 years"
-  - Company field changes to "College/University Name" or "School Name"
-- Form validation:
-  - Required fields show inline error messages
-  - Radio button groups show errors below the question
-  - Other options validate input text
-  - LinkedIn URL must be a valid LinkedIn URL
-- GitHub integration:
-  - Profile picture and name shown after validation
-  - Name can be edited in Section 1 only
-  - Company names are cleaned (@ prefix removed)
-  - GitHub stats (repos and followers) included in form submission
-- Event handling:
-  - Events are shown until their end_time
-  - No events message shown when all events have ended
-  - Confirmation dates shown in thank you message
-- Thank you screen:
-  - Shows user's first name
-  - Displays confirmation date
-  - Configurable buttons for additional actions
+## Browser Support
+- Modern browsers with CSS Grid support
+- Flexbox for layouts
+- CSS custom properties (variables)
+- Intersection Observer API for animations

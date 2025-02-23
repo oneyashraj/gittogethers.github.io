@@ -536,11 +536,42 @@ textarea:focus {
 }
 
 #section2 .header-content,
-#section3 .header-content {
+#section3 .header-content,
+#section2 ~ .header-content,
+#section3 ~ .header-content {
     display: none !important;
 }
 
 #section2 .name-edit-links,
-#section3 .name-edit-links {
+#section3 .name-edit-links,
+#section2 ~ .name-edit-links,
+#section3 ~ .name-edit-links {
     display: none !important;
+}
+
+/* Center homepage elements vertically on mobile */
+@media (max-width: 768px) {
+    .content:not(:has(#bootstrapForm[style*="display: block"])) {
+        justify-content: center;
+    }
+}
+
+/* Adjust thank you screen spacing */
+.thank-you-screen .logo {
+    margin-bottom: 1.5rem;
+}
+
+/* Desktop thank you buttons side by side */
+.thank-you-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Mobile thank you buttons stacked */
+@media (max-width: 768px) {
+    .thank-you-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 }

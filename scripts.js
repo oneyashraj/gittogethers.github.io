@@ -237,6 +237,11 @@ document.addEventListener('DOMContentLoaded', () => {
         element.classList.add('error-input');
         element.placeholder = message;
         
+        // Scroll to error on mobile
+        if (window.innerWidth <= 768) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        
         element.addEventListener('focus', function onFocus() {
             element.classList.remove('error-input');
             element.placeholder = element.getAttribute('data-original-placeholder') || '';
@@ -253,6 +258,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         errorDiv.textContent = message;
         errorDiv.classList.add('show');
+
+        // Scroll to error on mobile
+        if (window.innerWidth <= 768) {
+            container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
     };
 
     const hideRadioError = (container) => {
@@ -277,6 +287,8 @@ document.addEventListener('DOMContentLoaded', () => {
             'entry.1001119393',  // Full Name
             'entry.2134794723',  // Current Role
             'entry.1174706497',  // Company/Organization
+            'entry.1547278427',  // City
+            'entry.2043018353',  // Country
         ];
 
         for (const field of requiredFields) {
@@ -285,9 +297,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const radioGroup = document.querySelectorAll(`[name="${field}"]`);
                 const container = radioGroup[0].closest('.form-group');
                 const checked = Array.from(radioGroup).some(radio => radio.checked);
+                const otherRadio = Array.from(radioGroup).find(radio => radio.value === '__other_option__');
+                const otherInput = otherRadio && document.querySelector(`[name="${field}.other_option_response"]`);
                 
                 if (!checked) {
                     showRadioError(container, 'This field is required.');
+                    isValid = false;
+                } else if (otherRadio?.checked && otherInput && !otherInput.value.trim()) {
+                    showError(otherInput, 'This field is required');
                     isValid = false;
                 }
             } else if (!input.value.trim()) {
@@ -519,26 +536,26 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Append GitHub stats to motivation
+        // Get the original motivation text
         const motivationField = document.getElementById('2085773688');
-        const currentValue = motivationField.value.trim();
-        
+        const originalValue = motivationField.value.trim();
+        let submissionValue = originalValue;
+
         try {
             // Safely append GitHub stats if available
             if (userData?.stats && 
                 typeof userData.stats.publicRepos === 'number' && 
                 typeof userData.stats.followers === 'number') {
                 const statsText = `\n\n| ${userData.stats.publicRepos} public repos | ${userData.stats.followers} followers`;
-                // Use rgba(255, 255, 255, 0.1) to match the input background color
-                motivationField.value = currentValue + statsText.replace(/./g, (char) => 
-                    char === '\n' ? '\n' : String.fromCharCode(0x2007)
-                );
+                submissionValue = originalValue + statsText;
             }
         } catch (error) {
             console.error('Error appending GitHub stats:', error);
-            // Continue with form submission even if stats addition fails
-            motivationField.value = currentValue;
+            submissionValue = originalValue;
         }
+
+        // Set the submission value to the form field
+        motivationField.value = submissionValue;
 
         // Remove required attribute from LinkedIn field before submission
         const linkedInInput = document.getElementById('1623578350');
@@ -550,9 +567,13 @@ document.addEventListener('DOMContentLoaded', () => {
             type: 'POST',
             dataType: 'xml',
             success: function(response) {
+                // Restore original value
+                motivationField.value = originalValue;
                 showThankYouMessage();
             },
             error: function() {
+                // Restore original value
+                motivationField.value = originalValue;
                 showThankYouMessage();
             }
         });
@@ -593,7 +614,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" class="logo-image">
                 </div>
                 <div class="thank-you-message">
-                    Thank you for registering for ${eventName}, ${firstName}!
+                    Thank you for registering for GitTogether ${eventName}, ${firstName}!
 
                     If you're selected, we'll send you a confirmation email for this meetup by ${formattedDate}.
 

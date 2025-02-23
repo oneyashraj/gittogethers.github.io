@@ -16,7 +16,7 @@ background_images:
   - https://secure.meetupstatic.com/photos/event/3/c/f/e/highres_525195614.webp
 
 gittogethers:
-  description: "Registrations will close 2 days before the event."
+  description: "Registrations close 2 days before the event."
   no_events_message: "No GitTogethers are scheduled at the moment. Please check <a href='https://gh.io/meetups'>gh.io/meetups</a> for more information."
   upcoming:
     - name: "Bengaluru (8th March 2025)"

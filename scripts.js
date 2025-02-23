@@ -319,9 +319,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const validateSection3 = () => {
         let isValid = true;
         const motivationField = document.getElementById('2085773688');
+        const submitButton = document.querySelector('.btn-primary');
+
         if (!motivationField.value.trim()) {
             showError(motivationField, 'This field is required');
+            submitButton.classList.remove('ready');
             isValid = false;
+        } else {
+            submitButton.classList.add('ready');
         }
         return isValid;
     };
@@ -380,6 +385,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const editableNameSpan = heading.querySelector('.editable-name');
             const editNameLink = nameEditLinks.querySelector('.edit-name-link');
             const notYouLink = nameEditLinks.querySelector('.not-you-link');
+            let originalName = displayName;
+
+            const cancelNameEdit = () => {
+                editableNameSpan.textContent = originalName;
+                editableNameSpan.contentEditable = false;
+                editableNameSpan.classList.remove('editing');
+                editNameLink.textContent = 'Edit Name';
+            };
 
             editNameLink.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -389,11 +402,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     editableNameSpan.focus();
                     editNameLink.textContent = 'Save';
                 } else {
+                    originalName = editableNameSpan.textContent.trim();
                     editableNameSpan.contentEditable = false;
                     editableNameSpan.classList.remove('editing');
                     editNameLink.textContent = 'Edit Name';
                     // Update the name in the form
-                    document.getElementById('1001119393').value = editableNameSpan.textContent.trim();
+                    document.getElementById('1001119393').value = originalName;
+                }
+            });
+
+            editableNameSpan.addEventListener('blur', (e) => {
+                if (editNameLink.textContent === 'Save') {
+                    cancelNameEdit();
                 }
             });
 
@@ -481,14 +501,23 @@ document.addEventListener('DOMContentLoaded', () => {
             day: 'numeric',
             month: 'long',
             year: 'numeric'
-        });
+        }).replace(' at', '').replace(',', '');
         
-        const userName = document.querySelector('.editable-name').textContent;
-        let message = config.thank_you_message
-            .replace('{name}', userName)
-            .replace('{confirmation_date}', `<strong>${formattedDate}</strong>`);
+        const userName = document.querySelector('.editable-name').textContent.trim();
+        const firstName = userName.split(' ')[0];
         
-        content.innerHTML = `<div class="thank-you-message">${message}</div>`;
+        content.innerHTML = `
+            <div class="logo">
+                <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" class="logo-image">
+            </div>
+            <div class="thank-you-message">
+                Thank you for registering for GitTogether, ${firstName}!
+
+                If you're selected, we'll send you a confirmation email for this meetup by ${formattedDate}.
+
+                ${config.thank_you_message}
+            </div>
+        `;
     };
 
     // Event Listeners
@@ -510,6 +539,16 @@ document.addEventListener('DOMContentLoaded', () => {
     proceedSection1Button.addEventListener('click', () => {
         if (!validateSection1()) {
             return;
+        }
+
+        // Cancel name edit if in progress
+        const editableNameSpan = document.querySelector('.editable-name');
+        const editNameLink = document.querySelector('.edit-name-link');
+        if (editNameLink && editNameLink.textContent === 'Save') {
+            editableNameSpan.textContent = editableNameSpan.getAttribute('data-original-name');
+            editableNameSpan.contentEditable = false;
+            editableNameSpan.classList.remove('editing');
+            editNameLink.textContent = 'Edit Name';
         }
 
         // Hide name edit links when leaving section 1
@@ -580,6 +619,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
+    });
+
+    // Add event listener for motivation field
+    document.getElementById('2085773688').addEventListener('input', (e) => {
+        const submitButton = document.querySelector('.btn-primary');
+        if (e.target.value.trim()) {
+            submitButton.classList.add('ready');
+            e.target.classList.remove('error-input');
+        } else {
+            submitButton.classList.remove('ready');
+        }
     });
 
     // Initialize

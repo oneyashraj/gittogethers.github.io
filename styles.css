@@ -264,15 +264,25 @@ textarea:focus {
 }
 
 .btn-primary {
+    background: var(--text-color);
+    color: var(--button-text);
+    border: 2px solid var(--success-color);
+    transition: all 0.3s ease;
+}
+
+.btn-primary.ready {
     background: var(--success-color);
     color: var(--text-color);
-    border: 2px solid var(--success-color);
 }
 
 .btn-primary:hover {
+    background: var(--success-color);
+    color: var(--text-color);
+}
+
+.btn-primary.ready:hover {
     background: var(--text-color);
     color: var(--success-color);
-    border: 2px solid var(--success-color);
 }
 
 #bootstrapForm {

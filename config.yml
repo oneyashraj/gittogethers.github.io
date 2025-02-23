@@ -30,8 +30,4 @@ gittogethers:
       confirmation_date: "2025-03-20T23:59:00+05:30"
 
 thank_you_message: |
-  Hi {name}! Thank you for registering for GitTogether!
-
-  If you're selected, we'll send you a confirmation email for this meetup by {confirmation_date}.
-
   For queries related to GitTogethers, you can reach out to the community leader in your city. For all other queries, you can reach out to <a href="mailto:meetups@github.com">meetups@github.com</a> 

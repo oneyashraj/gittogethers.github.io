@@ -17,18 +17,21 @@ background_images:
 
 gittogethers:
   description: "Delhi NCR (22nd February 2025) registrations are now closed."
+  no_events_message: "No GitTogethers are scheduled at the moment. Please check <a href='https://gh.io/meetups'>gh.io/meetups</a> for more information."
   upcoming:
     - name: "Bengaluru (8th March 2025)"
-      start_time: "2025-03-08T09:00:00+05:30"
       end_time: "2025-03-08T17:00:00+05:30"
+      confirmation_date: "2025-03-06T23:59:00+05:30"
     - name: "Hyderabad (8th March 2025)"
-      start_time: "2025-03-08T09:00:00+05:30"
       end_time: "2025-03-08T17:00:00+05:30"
+      confirmation_date: "2025-03-06T23:59:00+05:30"
     - name: "Delhi NCR (22nd March 2025)"
-      start_time: "2025-03-22T09:00:00+05:30"
       end_time: "2025-03-22T17:00:00+05:30"
+      confirmation_date: "2025-03-20T23:59:00+05:30"
 
 thank_you_message: |
-  Thank you for registering for GitTogether! If you're selected, we'll send you a confirmation email for this meetup.
+  Hi {name}! Thank you for registering for GitTogether!
+
+  If you're selected, we'll send you a confirmation email for this meetup by {confirmation_date}.
 
   For queries related to GitTogethers, you can reach out to the community leader in your city. For all other queries, you can reach out to <a href="mailto:meetups@github.com">meetups@github.com</a> 

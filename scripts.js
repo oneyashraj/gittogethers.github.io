@@ -148,23 +148,17 @@ document.addEventListener('DOMContentLoaded', () => {
         formGroup.innerHTML = '';
         
         if (config && config.gittogethers) {
-            // Add help block if description exists
-            if (config.gittogethers.description) {
-                const helpBlock = document.createElement('p');
-                helpBlock.className = 'help-block';
-                helpBlock.textContent = config.gittogethers.description;
-                formGroup.appendChild(helpBlock);
-            }
-
+            let hasActiveEvents = false;
+            
             // Add radio buttons for each event
             if (config.gittogethers.upcoming && config.gittogethers.upcoming.length > 0) {
                 const now = new Date();
                 config.gittogethers.upcoming.forEach(event => {
-                    const startTime = new Date(event.start_time);
                     const endTime = new Date(event.end_time);
                     
                     // Only show events that haven't ended
                     if (now <= endTime) {
+                        hasActiveEvents = true;
                         const div = document.createElement('div');
                         div.className = 'radio';
                         div.innerHTML = `
@@ -176,6 +170,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         formGroup.appendChild(div);
                     }
                 });
+            }
+
+            // Show description or no events message
+            if (hasActiveEvents && config.gittogethers.description) {
+                const helpBlock = document.createElement('p');
+                helpBlock.className = 'help-block';
+                helpBlock.textContent = config.gittogethers.description;
+                formGroup.insertBefore(helpBlock, formGroup.firstChild);
+            } else if (!hasActiveEvents) {
+                const content = document.querySelector('.content');
+                content.innerHTML = `<div class="thank-you-message">${config.gittogethers.no_events_message}</div>`;
+                form.style.display = 'none';
             }
         } else {
             // Fallback for local development
@@ -286,12 +292,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const input = document.querySelector(`[name="${field}"]`);
             if (input.type === 'radio') {
                 const radioGroup = document.querySelectorAll(`[name="${field}"]`);
+                const container = radioGroup[0].closest('.form-group');
                 const checked = Array.from(radioGroup).some(radio => radio.checked);
+                
                 if (!checked) {
-                    const container = radioGroup[0].closest('.form-group');
-                    const firstInput = container.querySelector('input[type="radio"]');
-                    showError(firstInput, 'Please select an option');
+                    showRadioError(container, 'This field is required.');
                     isValid = false;
+                } else {
+                    hideRadioError(container);
                 }
             } else if (!input.value.trim()) {
                 showError(input, 'This field is required');
@@ -462,7 +470,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const showThankYouMessage = () => {
         const content = document.querySelector('.content');
-        content.innerHTML = `<div class="thank-you-message">${config.thank_you_message}</div>`;
+        const selectedEvent = document.querySelector('input[name="entry.1334197574"]:checked');
+        const eventName = selectedEvent.value;
+        const event = config.gittogethers.upcoming.find(e => e.name === eventName);
+        const confirmationDate = new Date(event.confirmation_date);
+        const formattedDate = confirmationDate.toLocaleString('en-US', {
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true,
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+        
+        const userName = document.querySelector('.editable-name').textContent;
+        let message = config.thank_you_message
+            .replace('{name}', userName)
+            .replace('{confirmation_date}', `<strong>${formattedDate}</strong>`);
+        
+        content.innerHTML = `<div class="thank-you-message">${message}</div>`;
     };
 
     // Event Listeners
@@ -486,10 +512,15 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Hide name edit links when leaving section 1
+        const nameEditLinks = document.querySelector('.name-edit-links');
+        if (nameEditLinks) {
+            nameEditLinks.style.display = 'none';
+        }
+
         const currentRole = document.querySelector('input[name="entry.2134794723"]:checked');
         if (currentRole && (currentRole.value === 'University Student' || currentRole.value === 'High School Student')) {
-            // Set default values for Section 2
-            document.getElementById('220097591').value = 'N/A';  // Role/Designation
+            document.getElementById('220097591').value = 'N/A';
             const yearsExpRadio = document.querySelector('input[name="entry.2114391014"][value="0 to 2 years"]');
             if (yearsExpRadio) {
                 yearsExpRadio.checked = true;
@@ -501,6 +532,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     backSection2Button.addEventListener('click', () => {
+        const nameEditLinks = document.querySelector('.name-edit-links');
+        if (nameEditLinks) {
+            nameEditLinks.style.display = 'flex';
+        }
         showSection(section1);
     });
 
@@ -514,6 +549,10 @@ document.addEventListener('DOMContentLoaded', () => {
     backSection3Button.addEventListener('click', () => {
         const currentRole = document.querySelector('input[name="entry.2134794723"]:checked');
         if (currentRole && (currentRole.value === 'University Student' || currentRole.value === 'High School Student')) {
+            const nameEditLinks = document.querySelector('.name-edit-links');
+            if (nameEditLinks) {
+                nameEditLinks.style.display = 'flex';
+            }
             showSection(section1);
         } else {
             showSection(section2);

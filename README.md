@@ -6,8 +6,8 @@ A modern, responsive web application for handling GitTogethers event registratio
 
 - GitHub username validation with profile integration
   - Auto-fills email and company name from GitHub profile
-  - Displays user's avatar and customizable name
-  - Includes GitHub stats in motivation field (public repos, stars, followers)
+  - Displays user's avatar and customizable name (editable in Section 1)
+  - Includes GitHub stats in form submission
 - Dynamic form with three sections based on user role
   - Auto-fills professional details for students
   - Smart validation with inline error messages
@@ -18,9 +18,10 @@ A modern, responsive web application for handling GitTogethers event registratio
   - Smooth animations and transitions
   - Consistent button heights and styling
 - Configuration through config.yml
-  - Time-based event visibility
-  - Customizable thank you message with HTML support
+  - Time-based event visibility with end dates
+  - Customizable messages with HTML support
   - Dynamic form options and help text
+  - Confirmation date display for each event
 
 ## Configuration
 
@@ -38,21 +39,26 @@ background_images:
 ```yaml
 gittogethers:
   description: "Description for closed registrations"
+  no_events_message: "Message to show when no events are active"
   upcoming:
-    - name: "City Name (Date)"  # This is used as both display name and form value
-      start_time: "2025-03-08T09:00:00+05:30"  # Indian Standard Time
-      end_time: "2025-03-08T17:00:00+05:30"
-    # Add more events as needed
+    - name: "City Name (Date)"  # Used as both display name and form value
+      end_time: "2025-03-08T17:00:00+05:30"  # Indian Standard Time
+      confirmation_date: "2025-03-06T23:59:00+05:30"  # When results will be announced
 ```
 
-Events are automatically hidden after their end_time has passed.
+Events are automatically hidden after their end_time has passed. If no active events exist, the no_events_message is displayed.
 
 ### Thank You Message
 ```yaml
 thank_you_message: |
-  Your multi-line thank you message.
+  Hi {name}! Thank you for registering for GitTogether!
+  
+  If you're selected, we'll send you a confirmation email for this meetup by {confirmation_date}.
+  
   Supports <a href="mailto:example@example.com">HTML links</a>
 ```
+
+The message supports placeholders for user's name and confirmation date.
 
 ## Local Development
 
@@ -71,6 +77,7 @@ thank_you_message: |
    - City and Country
    - Current Role
    - Company/Organization Name (auto-filled from GitHub, @ prefix removed)
+   - Name editing options ("Not you?" and "Edit Name")
 
 2. **Section 2**: Professional Details
    - Role/Designation (includes company name)
@@ -78,7 +85,7 @@ thank_you_message: |
    - LinkedIn profile (Optional)
 
 3. **Section 3**: Additional Information
-   - Motivation for attending (includes GitHub stats)
+   - Motivation for attending
    - Underrepresented group identification (Optional)
 
 ## Notes
@@ -94,6 +101,10 @@ thank_you_message: |
   - LinkedIn URL must be a valid LinkedIn URL
 - GitHub integration:
   - Profile picture and name shown after validation
-  - Name can be edited before submission
+  - Name can be edited in Section 1 only
   - Company names are cleaned (@ prefix removed)
-  - GitHub stats appended to motivation
+  - GitHub stats included in form submission
+- Event handling:
+  - Events are shown until their end_time
+  - No events message shown when all events have ended
+  - Confirmation dates shown in thank you message

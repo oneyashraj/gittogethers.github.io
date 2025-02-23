@@ -82,8 +82,8 @@ body {
 }
 
 .logo-image {
-    width: 96px;
-    height: 96px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     border: 2px solid white;
 }
@@ -99,7 +99,7 @@ header {
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
 }
@@ -141,8 +141,22 @@ input:focus::placeholder {
 
 .error-message {
     color: var(--error-color);
-    min-height: 20px;
     font-size: 0.9rem;
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.error-message:not(:empty) {
+    display: block;
+}
+
+#github-username.error {
+    background-color: rgba(255, 107, 107, 0.1);
+    border-color: var(--error-color);
+}
+
+#github-username.error::placeholder {
+    color: var(--error-color);
 }
 
 button,
@@ -174,20 +188,58 @@ input[type="submit"]:hover {
 @media (max-width: 768px) {
     .container {
         padding: 1rem;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #bootstrapForm {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #section1, #section2, #section3 {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
     }
 
     h1 {
-        font-size: 2rem;
+        font-size: 1.6rem;
+        white-space: pre-line;
     }
 
     .logo-image {
-        width: 72px;
-        height: 72px;
+        width: 110px;
+        height: 110px;
+        margin-top: 2rem;
+    }
+
+    .header-content.compact {
         margin-top: 1rem;
     }
 
     .header-content.compact .logo-image {
-        margin-top: 1rem;
+        width: 96px;
+        height: 96px;
+        margin-top: 2rem;
+    }
+
+    .header-content.compact h1 {
+        font-size: 1.4rem;
     }
 }
 
@@ -318,10 +370,12 @@ textarea:focus {
 
 .header-content.compact h1 {
     margin-bottom: 1rem;
+    font-size: 1.8rem;
 }
 
 .header-content.compact .logo-image {
-    margin-top: 1rem;
+    width: 110px;
+    height: 110px;
 }
 
 .fade-in {
@@ -360,6 +414,38 @@ textarea:focus {
     text-decoration: underline;
 }
 
+.thank-you-screen .logo {
+    margin-bottom: 2rem;
+}
+
+.thank-you-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.thank-you-buttons a {
+    background: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+    height: 48px;
+    line-height: 30px;
+}
+
+.thank-you-buttons a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(88, 202, 195, 0.3);
+}
+
 @media (max-width: 768px) {
     .button-group {
         flex-direction: column;
@@ -369,6 +455,10 @@ textarea:focus {
     .button-group button,
     .button-group input[type="submit"] {
         width: 100%;
+    }
+
+    .thank-you-buttons {
+        padding: 0 1rem;
     }
 }
 
@@ -421,4 +511,9 @@ textarea:focus {
     border-color: var(--accent-color);
     background: rgba(255, 255, 255, 0.1);
     outline: none;
+}
+
+#section2 .header-content,
+#section3 .header-content {
+    display: none;
 }

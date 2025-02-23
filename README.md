@@ -7,7 +7,7 @@ A modern, responsive web application for handling GitTogethers event registratio
 - GitHub username validation with profile integration
   - Auto-fills email and company name from GitHub profile
   - Displays user's avatar and customizable name (editable in Section 1)
-  - Includes GitHub stats in form submission
+  - Includes GitHub stats (public repos and followers) in form submission
 - Dynamic form with three sections based on user role
   - Auto-fills professional details for students
   - Smart validation with inline error messages
@@ -22,6 +22,7 @@ A modern, responsive web application for handling GitTogethers event registratio
   - Customizable messages with HTML support
   - Dynamic form options and help text
   - Confirmation date display for each event
+  - Configurable thank you screen buttons
 
 ## Configuration
 
@@ -48,17 +49,15 @@ gittogethers:
 
 Events are automatically hidden after their end_time has passed. If no active events exist, the no_events_message is displayed.
 
-### Thank You Message
+### Thank You Message and Buttons
 ```yaml
 thank_you_message: |
-  Hi {name}! Thank you for registering for GitTogether!
-  
-  If you're selected, we'll send you a confirmation email for this meetup by {confirmation_date}.
-  
-  Supports <a href="mailto:example@example.com">HTML links</a>
-```
+  Your message with <a href="mailto:example@example.com">HTML links</a>
 
-The message supports placeholders for user's name and confirmation date.
+thank_you_buttons:
+  - text: "Button Text 📢"
+    url: "https://example.com"
+```
 
 ## Local Development
 
@@ -94,6 +93,7 @@ The message supports placeholders for user's name and confirmation date.
   - Section 2 is auto-filled with default values
   - Role/Designation set to "N/A"
   - Years of experience set to "0 to 2 years"
+  - Company field changes to "College/University Name" or "School Name"
 - Form validation:
   - Required fields show inline error messages
   - Radio button groups show errors below the question
@@ -103,8 +103,12 @@ The message supports placeholders for user's name and confirmation date.
   - Profile picture and name shown after validation
   - Name can be edited in Section 1 only
   - Company names are cleaned (@ prefix removed)
-  - GitHub stats included in form submission
+  - GitHub stats (repos and followers) included in form submission
 - Event handling:
   - Events are shown until their end_time
   - No events message shown when all events have ended
   - Confirmation dates shown in thank you message
+- Thank you screen:
+  - Shows user's first name
+  - Displays confirmation date
+  - Configurable buttons for additional actions

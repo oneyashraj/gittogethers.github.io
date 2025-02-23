@@ -30,4 +30,12 @@ gittogethers:
       confirmation_date: "2025-03-20T23:59:00+05:30"
 
 thank_you_message: |
-  For queries related to GitTogethers, you can reach out to the community leader in your city. For all other queries, you can reach out to <a href="mailto:meetups@github.com">meetups@github.com</a> 
+  For queries related to GitTogethers, you can reach out to the community leader in your city. For all other queries, you can reach out to <a href="mailto:meetups@github.com">meetups@github.com</a>
+
+thank_you_buttons:
+  - text: "Join WhatsApp Channel for Updates 📢"
+    url: "https://gh.io/meetups/wa"
+  - text: "Apply to be a Speaker ⭐️"
+    url: "https://gh.io/cfs"
+  - text: "Apply for Community Spotlight 💡"
+    url: "https://gh.io/spotlight" 

@@ -5,11 +5,20 @@ document.addEventListener('DOMContentLoaded', () => {
         minInterval: 1000, // 1 second between calls
         async throttle(fn) {
             const now = Date.now();
-            if (now - this.lastCall < this.minInterval) {
-                await new Promise(resolve => setTimeout(resolve, this.minInterval));
+            const timeToWait = Math.max(0, this.lastCall + this.minInterval - now);
+            
+            if (timeToWait > 0) {
+                await new Promise(resolve => setTimeout(resolve, timeToWait));
             }
-            this.lastCall = Date.now();
-            return fn();
+            
+            try {
+                const result = await fn();
+                this.lastCall = Date.now(); // Update after successful execution
+                return result;
+            } catch (error) {
+                // Don't update lastCall on error to allow immediate retry
+                throw error;
+            }
         }
     };
 
@@ -132,8 +141,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    const validateEmail = (email) => {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const validateEmail = (email, input) => {
+        // Clear any existing error state
+        input.classList.remove('error-input');
+        const errorElement = input.nextElementSibling;
+        if (errorElement?.classList.contains('error-message')) {
+            errorElement.textContent = '';
+        }
+
+        // Check for empty field first
+        if (!email.trim()) {
+            showError(input, 'Email address is required');
+            return false;
+        }
+
+        // Email regex pattern
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            showError(input, 'Please enter a valid email address');
+            return false;
+        }
+
+        return true;
     };
 
     const validateLinkedInUrl = (url) => {
@@ -235,20 +264,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const validateSection1 = () => {
         let isValid = true;
-        const requiredFields = [
-            'entry.1334197574',  // GitTogether choice
-            'entry.1294570093',  // Email
-            'entry.1547278427',  // City
-            'entry.2043018353',  // Country
-            'entry.2134794723',  // Current Role
-            'entry.1174706497'   // Company/Organisation
-        ];
-
         const emailInput = document.getElementById('1294570093');
-        if (!validateEmail(emailInput.value)) {
-            showError(emailInput, 'Please enter a valid email address');
+        
+        // Validate email first
+        if (!validateEmail(emailInput.value, emailInput)) {
             isValid = false;
         }
+
+        // Continue with other Section 1 validations
+        const requiredFields = [
+            'entry.1334197574',  // GitTogether event
+            'entry.1001119393',  // Full Name
+            'entry.2134794723',  // Current Role
+            'entry.1174706497',  // Company/Organization
+        ];
 
         for (const field of requiredFields) {
             const input = document.querySelector(`[name="${field}"]`);
@@ -260,24 +289,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!checked) {
                     showRadioError(container, 'This field is required.');
                     isValid = false;
-                } else {
-                    hideRadioError(container);
-                    
-                    // Check if "other" is selected and the text field is empty
-                    const otherRadio = document.querySelector(`[name="${field}"][value="__other_option__"]`);
-                    if (otherRadio?.checked) {
-                        const otherInput = document.querySelector(`[name="${field}.other_option_response"]`);
-                        if (!otherInput.value.trim()) {
-                            showError(otherInput, 'Please specify the other option');
-                            isValid = false;
-                        }
-                    }
                 }
             } else if (!input.value.trim()) {
                 showError(input, 'This field is required');
                 isValid = false;
             }
         }
+
         return isValid;
     };
 
@@ -322,10 +340,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const submitButton = document.querySelector('.btn-primary');
 
         if (!motivationField.value.trim()) {
-            showError(motivationField, 'This field is required');
+            motivationField.classList.add('error-input');
+            motivationField.setAttribute('data-original-placeholder', motivationField.placeholder);
+            motivationField.placeholder = 'This field is required';
             submitButton.classList.remove('ready');
             isValid = false;
         } else {
+            motivationField.classList.remove('error-input');
             submitButton.classList.add('ready');
         }
         return isValid;
@@ -343,9 +364,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const username = usernameInput.value.trim();
         errorMessage.textContent = '';
+        usernameInput.classList.remove('error');
         
         if (!username) {
             errorMessage.textContent = 'Uh oh! Please enter a valid username.';
+            usernameInput.classList.add('error');
             return;
         }
 
@@ -355,12 +378,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Fetch additional GitHub stats
             const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?type=public`);
             const repos = await reposResponse.json();
-            const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
             
             // Store GitHub stats for later use
             userData.stats = {
                 publicRepos: userData.public_repos,
-                totalStars: totalStars,
                 followers: userData.followers
             };
 
@@ -369,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Update UI
             logoImage.src = userData.avatar_url;
             const displayName = userData.name || userData.login;
-            heading.innerHTML = `Hello <span class="editable-name">${displayName}</span> 👋`;
+            heading.innerHTML = `Hello<span class="editable-name">${displayName}</span> 👋`;
             headerContent.classList.add('compact');
 
             // Add name edit links
@@ -386,6 +407,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const editNameLink = nameEditLinks.querySelector('.edit-name-link');
             const notYouLink = nameEditLinks.querySelector('.not-you-link');
             let originalName = displayName;
+            editableNameSpan.setAttribute('data-original-name', originalName);
 
             const cancelNameEdit = () => {
                 editableNameSpan.textContent = originalName;
@@ -394,27 +416,61 @@ document.addEventListener('DOMContentLoaded', () => {
                 editNameLink.textContent = 'Edit Name';
             };
 
+            const saveNameEdit = () => {
+                const newName = editableNameSpan.textContent.trim();
+                if (newName) {
+                    originalName = newName;
+                    editableNameSpan.contentEditable = false;
+                    editableNameSpan.classList.remove('editing');
+                    editNameLink.textContent = 'Edit Name';
+                    // Update the name in the form and data attribute
+                    document.getElementById('1001119393').value = originalName;
+                    editableNameSpan.setAttribute('data-original-name', originalName);
+                    editableNameSpan.textContent = originalName;
+                } else {
+                    cancelNameEdit();
+                }
+            };
+
+            editableNameSpan.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault(); // Prevent default Enter behavior
+                    if (editNameLink.textContent === 'Save') {
+                        saveNameEdit();
+                    }
+                } else if (e.key === 'Escape') {
+                    cancelNameEdit();
+                }
+            });
+
             editNameLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 if (editNameLink.textContent === 'Edit Name') {
                     editableNameSpan.contentEditable = true;
                     editableNameSpan.classList.add('editing');
                     editableNameSpan.focus();
+                    const range = document.createRange();
+                    range.selectNodeContents(editableNameSpan);
+                    const selection = window.getSelection();
+                    selection.removeAllRanges();
+                    selection.addRange(range);
                     editNameLink.textContent = 'Save';
                 } else {
-                    originalName = editableNameSpan.textContent.trim();
-                    editableNameSpan.contentEditable = false;
-                    editableNameSpan.classList.remove('editing');
-                    editNameLink.textContent = 'Edit Name';
-                    // Update the name in the form
-                    document.getElementById('1001119393').value = originalName;
+                    saveNameEdit();
                 }
             });
 
             editableNameSpan.addEventListener('blur', (e) => {
-                if (editNameLink.textContent === 'Save') {
-                    cancelNameEdit();
-                }
+                // Only cancel if we clicked outside and not on the save button
+                // Use requestAnimationFrame to ensure click events are processed first
+                requestAnimationFrame(() => {
+                    const activeElement = document.activeElement;
+                    if (editNameLink.textContent === 'Save' && 
+                        !activeElement?.closest('.name-edit-links') && 
+                        activeElement !== editableNameSpan) {
+                        cancelNameEdit();
+                    }
+                });
             });
 
             notYouLink.addEventListener('click', (e) => {
@@ -453,6 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('Error:', error);
             errorMessage.textContent = 'Uh oh! Please enter a valid username.';
+            usernameInput.classList.add('error');
             setLoading(false);
         }
     };
@@ -464,10 +521,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Append GitHub stats to motivation
         const motivationField = document.getElementById('2085773688');
-        const stats = userData?.stats;
-        if (stats) {
-            const statsText = `\n\n| ${stats.publicRepos} public repos | ${stats.totalStars} total stars | ${stats.followers} followers`;
-            motivationField.value = motivationField.value.trim() + statsText;
+        const currentValue = motivationField.value.trim();
+        
+        try {
+            // Safely append GitHub stats if available
+            if (userData?.stats && 
+                typeof userData.stats.publicRepos === 'number' && 
+                typeof userData.stats.followers === 'number') {
+                const statsText = `\n\n| ${userData.stats.publicRepos} public repos | ${userData.stats.followers} followers`;
+                motivationField.value = currentValue + statsText;
+            }
+        } catch (error) {
+            console.error('Error appending GitHub stats:', error);
+            // Continue with form submission even if stats addition fails
+            motivationField.value = currentValue;
         }
 
         // Remove required attribute from LinkedIn field before submission
@@ -505,17 +572,31 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const userName = document.querySelector('.editable-name').textContent.trim();
         const firstName = userName.split(' ')[0];
+
+        let buttonsHtml = '';
+        if (config.thank_you_buttons) {
+            buttonsHtml = `
+                <div class="thank-you-buttons">
+                    ${config.thank_you_buttons.map(button => 
+                        `<a href="${button.url}" target="_blank" rel="noopener noreferrer">${button.text}</a>`
+                    ).join('')}
+                </div>
+            `;
+        }
         
         content.innerHTML = `
-            <div class="logo">
-                <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" class="logo-image">
-            </div>
-            <div class="thank-you-message">
-                Thank you for registering for GitTogether, ${firstName}!
+            <div class="thank-you-screen">
+                <div class="logo">
+                    <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" class="logo-image">
+                </div>
+                <div class="thank-you-message">
+                    Thank you for registering for GitTogether, ${firstName}!
 
-                If you're selected, we'll send you a confirmation email for this meetup by ${formattedDate}.
+                    If you're selected, we'll send you a confirmation email for this meetup by ${formattedDate}.
 
-                ${config.thank_you_message}
+                    ${config.thank_you_message}
+                </div>
+                ${buttonsHtml}
             </div>
         `;
     };
@@ -621,15 +702,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Add event listener for motivation field
+    // Add event listeners for motivation field
     document.getElementById('2085773688').addEventListener('input', (e) => {
         const submitButton = document.querySelector('.btn-primary');
         if (e.target.value.trim()) {
-            submitButton.classList.add('ready');
             e.target.classList.remove('error-input');
+            e.target.placeholder = e.target.getAttribute('data-original-placeholder') || '';
+            submitButton.classList.add('ready');
         } else {
             submitButton.classList.remove('ready');
         }
+    });
+
+    document.getElementById('2085773688').addEventListener('focus', function onFocus() {
+        if (this.classList.contains('error-input')) {
+            this.classList.remove('error-input');
+            this.placeholder = this.getAttribute('data-original-placeholder') || '';
+        }
+    });
+
+    // Add event listeners for role selection
+    document.querySelectorAll('input[name="entry.2134794723"]').forEach(radio => {
+        radio.addEventListener('change', () => {
+            const companyLegend = document.querySelector('legend[for="913513785"]');
+            const companyInput = document.getElementById('1174706497');
+            
+            switch(radio.value) {
+                case 'University Student':
+                    companyLegend.textContent = 'College/University Name';
+                    companyInput.placeholder = 'Enter your college/university name';
+                    break;
+                case 'High School Student':
+                    companyLegend.textContent = 'School Name';
+                    companyInput.placeholder = 'Enter your school name';
+                    break;
+                default:
+                    companyLegend.textContent = 'Company/Organisation Name';
+                    companyInput.placeholder = '';
+            }
+        });
+    });
+
+    // Add input event listener to clear error state
+    usernameInput.addEventListener('input', () => {
+        errorMessage.textContent = '';
+        usernameInput.classList.remove('error');
     });
 
     // Initialize

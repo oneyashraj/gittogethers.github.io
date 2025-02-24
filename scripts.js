@@ -487,8 +487,7 @@ document.addEventListener('DOMContentLoaded', () => {
         usernameInput.classList.remove('error');
         
         if (!username) {
-            errorMessage.textContent = 'Uh oh! Please enter a valid username.';
-            usernameInput.classList.add('error');
+            showInputError('Please enter your GitHub username');
             return;
         }
 
@@ -630,9 +629,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return true;
         } catch (error) {
             console.error('Error:', error);
-            errorMessage.textContent = 'Uh oh! Please enter a valid username.';
-            usernameInput.classList.add('error');
-            setLoading(false);
+            showInputError('Invalid GitHub username');
             return false;
         }
     };
@@ -949,8 +946,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add input event listener to clear error state
     usernameInput.addEventListener('input', () => {
-        errorMessage.textContent = '';
         usernameInput.classList.remove('error');
+        errorMessage.textContent = '';
+    });
+
+    // Add homepage class when form is not visible
+    const container = document.querySelector('.container');
+    if (!document.getElementById('bootstrapForm').style.display || 
+        document.getElementById('bootstrapForm').style.display === 'none') {
+        container.classList.add('homepage');
+    }
+    
+    // Remove homepage class when form becomes visible
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.target.style.display === 'block') {
+                container.classList.remove('homepage');
+            }
+        });
+    });
+    
+    observer.observe(document.getElementById('bootstrapForm'), {
+        attributes: true,
+        attributeFilter: ['style']
     });
 
     // Initialize
@@ -960,4 +978,20 @@ document.addEventListener('DOMContentLoaded', () => {
         populateGitTogetherChoices();
         addHomepageLinks();
     })();
+
+    // Add this new function for handling input errors
+    const showInputError = (message) => {
+        const input = document.getElementById('github-username');
+        const originalPlaceholder = input.placeholder;
+        
+        input.classList.add('error');
+        input.value = '';
+        input.placeholder = message;
+        
+        // Reset the input state after animation
+        setTimeout(() => {
+            input.classList.remove('error');
+            input.placeholder = originalPlaceholder;
+        }, 2000);
+    };
 });

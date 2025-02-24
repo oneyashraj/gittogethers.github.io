@@ -5,13 +5,14 @@ A modern, responsive web application for handling GitTogethers event registratio
 ![image](https://github.com/user-attachments/assets/95e71204-001f-475c-946a-a03073ae69b0)
 
 ## Key Features ✨
-- 🎨 Modern, responsive design optimized for both desktop and mobile
-- ⚡ Real-time GitHub username validation
-- 📊 Invisible GitHub stats appended to motivation response
-- 🔄 Optimized API calls to avoid rate-limiting
+- 🎨 Modern, responsive design
+- ⚡ GitHub username validation
+- 🔄 Optimized API calls
 - 📱 Mobile-optimized error display with auto-scroll
-- 💾 Smart form response caching (username-specific)
-- 🌟 GitHub Skyline integration with fallback avatar
+- 💾 Form response caching (username-specific)
+- 📊 GitHub Skyline integration with fallback avatar
+- 🌟 CSS Grid support, Flexbox for layouts and CSS custom properties (variables)
+- 👁️ Intersection Observer API for animations
 
 ## User Interface 🖥️
 1. **Homepage** 🏠
@@ -27,6 +28,9 @@ A modern, responsive web application for handling GitTogethers event registratio
    - Country (with "Other" option)
    - Current Role
    - Company/Organization Name
+   - Form responses cached per GitHub username
+   - Cached responses restored only for matching username
+   - Cache cleared on browser data reset
 
 3. **Section 2: Professional Details** 💼 _(Skipped for students)_
    - Role/Designation
@@ -36,21 +40,15 @@ A modern, responsive web application for handling GitTogethers event registratio
 4. **Section 3: Additional Information** ℹ️
    - Motivation for attending
    - Underrepresented group identification (Optional)
+   - GitHub stats (number of repos and followers) appended to form response
 
 5. **Thank You Screen** 🎉
    - Personalized message with first name
    - Event-specific confirmation date
    - Configurable thank you message with HTML support
-   - Side-by-side buttons on desktop (stacked on mobile)
    - GitHub Skyline visualization (fallback to avatar for users with no repos)
    - Smooth fade-in animations for all elements
 
-## Smart Caching 🔄
-- Form responses cached per GitHub username
-- Cached responses restored only for matching username
-- Email field shows "pre-filled" notification when restored
-- GitTogether event selection never cached
-- Cache cleared on browser data reset
 
 ## Configuration ⚙️
 The application uses `config.yml` for configuration:
@@ -85,13 +83,8 @@ thank_you_buttons:
 ```
 
 ## Dependencies 📦
-- 📚 jQuery 3.2.1
-- 📝 jQuery Form Plugin 4.2.2
+- 📚 jQuery 3.7.1
+- 📝 jQuery Form Plugin 4.3.0
 - 📄 js-yaml 4.1.0
 - 🔤 Google Fonts (Roboto)
 
-## Browser Support 🌐
-- 🌟 Modern browsers with CSS Grid support
-- 📱 Flexbox for layouts
-- 🎨 CSS custom properties (variables)
-- 👁️ Intersection Observer API for animations

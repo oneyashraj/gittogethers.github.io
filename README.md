@@ -7,12 +7,59 @@ A modern, responsive web application for handling GitTogethers event registratio
 ## Key Features ✨
 - 🎨 Modern, responsive design
 - ⚡ GitHub username validation
-- 🔄 Optimized API calls
+- 🔄 Optimized API calls with rate limiting
 - 📱 Mobile-optimized error display with auto-scroll
 - 💾 Form response caching (username-specific)
 - 📊 GitHub Skyline integration with fallback avatar
 - 🌟 CSS Grid support, Flexbox for layouts and CSS custom properties (variables)
 - 👁️ Intersection Observer API for animations
+
+## Code Organization 📁
+The codebase is organized into modular components:
+
+### JavaScript Modules 📦
+- `shared.js`: Common utilities and functions
+  - Rate limiting for API calls
+  - Config loading
+  - Background mosaic creation
+  - GitHub username validation
+  - Error handling utilities
+  - Loading state management
+
+- `checkin.js`: Check-in specific functionality
+  - Form handling
+  - Event selection
+  - GitHub profile integration
+  - Name editing
+  - Form submission
+
+### Configuration (config.yml) ⚙️
+```yaml
+# Background images for mosaic
+background_images:
+  - image_url_1
+  - image_url_2
+  # ...
+
+# Messages and notifications
+messages:
+  no_events: "Message when no events are available"
+  checkin_thank_you: "Check-in confirmation message"
+  thank_you: "Post-registration message"
+
+# GitTogether event configuration
+gittogethers:
+  description: "Event registration info"
+  upcoming:
+    - name: "Event Name"
+      end_time: "Event end time"
+      confirmation_date: "When confirmation emails will be sent"
+
+# Post-registration action buttons
+thank_you_buttons:
+  - text: "Button text"
+    url: "Button URL"
+```
 
 ## User Interface 🖥️
 1. **Homepage** 🏠
@@ -49,42 +96,26 @@ A modern, responsive web application for handling GitTogethers event registratio
    - GitHub Skyline visualization (fallback to avatar for users with no repos)
    - Smooth fade-in animations for all elements
 
-
-## Configuration ⚙️
-The application uses `config.yml` for configuration:
-
-### Background Images 🖼️
-```yaml
-background_images:
-  - https://example.com/image1.webp
-  - https://example.com/image2.webp
-  # Add more image URLs as needed
-```
-
-### GitTogether Events 📅
-```yaml
-gittogethers:
-  description: "Text to display below GitTogether event selection question"
-  no_events_message: "Message to show when no events are active"
-  upcoming:
-    - name: "City Name (Date)"
-      end_time: "2025-03-08T17:00:00+05:30"  # Indian Standard Time
-      confirmation_date: "2025-03-06T23:59:00+05:30"  # When confirmation emails will be sent
-```
-
-### Thank You Message and Buttons 💌
-```yaml
-thank_you_message: |
-  Your message with <a href="mailto:example@example.com">HTML links</a>
-
-thank_you_buttons:
-  - text: "Button Text 📢"
-    url: "https://example.com"
-```
-
 ## Dependencies 📦
 - 📚 jQuery 3.7.1
 - 📝 jQuery Form Plugin 4.3.0
 - 📄 js-yaml 4.1.0
 - 🔤 Google Fonts (Roboto)
+
+## Browser Support 🌐
+- Modern browsers with ES6 module support
+- CSS Grid and Flexbox support
+- Fallbacks for GitHub Skyline visualization
+
+## Development 💻
+1. Clone the repository
+2. No build process required - pure HTML, CSS, and JavaScript
+3. Serve the files using any web server
+4. Update `config.yml` to configure events and messages
+
+## Security 🔒
+- Rate limiting on GitHub API calls
+- Form validation and sanitization
+- No sensitive data stored in localStorage
+- HTTPS required for GitHub API calls
 

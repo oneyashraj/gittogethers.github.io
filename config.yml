@@ -15,10 +15,16 @@ background_images:
   - https://secure.meetupstatic.com/photos/event/3/d/1/0/highres_525195632.webp
   - https://secure.meetupstatic.com/photos/event/3/c/f/e/highres_525195614.webp
 
+# Messages and notifications
+messages:
+  no_events: "No GitTogethers are scheduled at the moment. Please check <a href='https://gh.io/meetups'>gh.io/meetups</a> for more information."
+  checkin_thank_you: "Thank you, {firstName}! We're glad you're here!"
+  thank_you: |
+    For queries related to GitTogethers, you can reach out to the community leader in your city. For all other queries, you can reach out to <a href="mailto:meetups@github.com">meetups@github.com</a>
+
+# GitTogether event configuration
 gittogethers:
   description: "Registrations close 2 days before the event."
-  no_events_message: "No GitTogethers are scheduled at the moment. Please check <a href='https://gh.io/meetups'>gh.io/meetups</a> for more information."
-  checkin_thank_you_message: "Thank you, {firstName}! We're glad you're here!"
   upcoming:
     - name: "Bengaluru (8th March 2025)"
       end_time: "2025-03-08T17:00:00+05:30"
@@ -30,9 +36,7 @@ gittogethers:
       end_time: "2025-03-08T17:00:00+05:30"
       confirmation_date: "2025-03-06T23:59:00+05:30"
 
-thank_you_message: |
-  For queries related to GitTogethers, you can reach out to the community leader in your city. For all other queries, you can reach out to <a href="mailto:meetups@github.com">meetups@github.com</a>
-
+# Post-registration action buttons
 thank_you_buttons:
   - text: "Join WhatsApp Channel for Updates 📢"
     url: "https://gh.io/meetups/wa"

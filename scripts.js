@@ -378,6 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Cache form responses
     const cacheKey = 'gittogethers_form_cache';
+    const usernameCacheKey = 'gittogethers_username';
     
     const cacheableFields = {
         'entry.1294570093': 'email',  // Email Address
@@ -393,6 +394,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadCachedResponses = () => {
         try {
             const cache = JSON.parse(localStorage.getItem(cacheKey) || '{}');
+            const cachedUsername = localStorage.getItem(usernameCacheKey);
+            const currentUsername = document.getElementById('1252770814').value;
+            
+            // Only load cache if username matches
+            if (cachedUsername !== currentUsername) {
+                return;
+            }
             
             // Fill in cached values
             Object.entries(cacheableFields).forEach(([fieldName, cacheKey]) => {
@@ -439,6 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cacheFormResponses = () => {
         try {
             const cache = {};
+            const currentUsername = document.getElementById('1252770814').value;
             
             Object.entries(cacheableFields).forEach(([fieldName, cacheKey]) => {
                 const input = document.querySelector(`[name="${fieldName}"]`);
@@ -464,6 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             localStorage.setItem(cacheKey, JSON.stringify(cache));
+            localStorage.setItem(usernameCacheKey, currentUsername);
         } catch (error) {
             console.error('Error caching form responses:', error);
         }
@@ -714,18 +724,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
         }
-        
+
+        // Create initial thank you screen without skyline
         content.innerHTML = `
             <div class="thank-you-screen">
-                <div class="skyline-container">
-                    <iframe
-                        src="https://skyline3d.in/${githubUsername}/embed?endDate=${today}&enableZoom=false"
-                        width="100%"
-                        height="400"
-                        frameborder="0"
-                        title="GitHub Skyline"
-                    ></iframe>
-                </div>
                 <div class="thank-you-message">
                     Thank you for registering for GitTogether ${eventName}, ${firstName}!
 
@@ -734,8 +736,59 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${config.thank_you_message}
                 </div>
                 ${buttonsHtml}
+                <div class="skyline-container loading">
+                    <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" style="display: none;">
+                </div>
             </div>
         `;
+
+        // Only show skyline if user has repos
+        if (userData?.stats?.publicRepos > 0) {
+            const skylineContainer = content.querySelector('.skyline-container');
+            const fallbackImage = skylineContainer.querySelector('img');
+            const iframe = document.createElement('iframe');
+            
+            iframe.src = `https://skyline3d.in/${githubUsername}/embed?endDate=${today}&enableZoom=false`;
+            iframe.width = '100%';
+            iframe.height = '100%';
+            iframe.frameBorder = '0';
+            iframe.title = 'GitHub Skyline';
+            
+            // Show skyline only when loaded
+            iframe.onload = () => {
+                skylineContainer.classList.remove('loading');
+                fallbackImage.style.display = 'none';
+                iframe.style.display = 'block';
+            };
+            
+            // Show fallback on error
+            iframe.onerror = () => {
+                skylineContainer.classList.remove('loading');
+                fallbackImage.style.display = 'block';
+                iframe.remove();
+            };
+            
+            skylineContainer.appendChild(iframe);
+        } else {
+            // Show app avatar for users with no repos
+            const skylineContainer = content.querySelector('.skyline-container');
+            const fallbackImage = skylineContainer.querySelector('img');
+            skylineContainer.classList.remove('loading');
+            fallbackImage.style.display = 'block';
+        }
+    };
+
+    // Add homepage links
+    const addHomepageLinks = () => {
+        if (!config?.thank_you_buttons) return;
+        
+        const links = document.createElement('div');
+        links.className = 'homepage-links';
+        links.innerHTML = config.thank_you_buttons
+            .map(button => `<a href="${button.url}" target="_blank" rel="noopener noreferrer">${button.text}</a>`)
+            .join('');
+        
+        document.querySelector('.form-container').appendChild(links);
     };
 
     // Event Listeners
@@ -887,5 +940,6 @@ document.addEventListener('DOMContentLoaded', () => {
         await loadConfig();
         createMosaicBackground();
         populateGitTogetherChoices();
+        addHomepageLinks();
     })();
 });

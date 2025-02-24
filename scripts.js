@@ -500,7 +500,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Update UI
             logoImage.src = userData.avatar_url;
             const displayName = userData.name || userData.login;
-            heading.innerHTML = `Hello<span class="editable-name">${displayName}</span> 👋`;
+            heading.innerHTML = `Hello <span class="editable-name">${displayName}</span> 👋`;
             headerContent.classList.add('compact');
 
             // Add name edit links
@@ -518,6 +518,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const notYouLink = nameEditLinks.querySelector('.not-you-link');
             let originalName = displayName;
             editableNameSpan.setAttribute('data-original-name', originalName);
+
+            // Function to toggle name edit links visibility
+            const toggleNameEditLinks = (show) => {
+                nameEditLinks.classList.toggle('hidden', !show);
+            };
+
+            // Update section navigation to handle name edit links visibility
+            const originalShowSection = showSection;
+            showSection = (section) => {
+                originalShowSection(section);
+                toggleNameEditLinks(section === section1);
+            };
 
             const cancelNameEdit = () => {
                 editableNameSpan.textContent = originalName;
@@ -714,6 +726,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
         }
+
+        // Only show Skyline if user has repos
+        const showSkyline = userData?.stats?.publicRepos > 0;
+        const visualizationHtml = showSkyline ? `
+            <div class="skyline-container">
+                <iframe
+                    src="https://skyline3d.in/${githubUsername}/embed?endDate=${today}&enableZoom=false"
+                    width="100%"
+                    height="400"
+                    frameborder="0"
+                    title="GitHub Skyline"
+                    style="opacity: 0;"
+                    onload="this.style.opacity='1'; this.parentElement.classList.add('loaded')"
+                    onerror="this.remove(); document.querySelector('.fallback-avatar').classList.add('show')"
+                ></iframe>
+            </div>
+        ` : `
+            <img 
+                src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" 
+                alt="Logo" 
+                class="fallback-avatar show"
+            >
+        `;
         
         content.innerHTML = `
             <div class="thank-you-screen">
@@ -725,23 +760,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${config.thank_you_message}
                 </div>
                 ${buttonsHtml}
-                <div class="skyline-container">
-                    <iframe
-                        src="https://skyline3d.in/${githubUsername}/embed?endDate=${today}&enableZoom=false"
-                        width="100%"
-                        height="400"
-                        frameborder="0"
-                        title="GitHub Skyline"
-                        style="opacity: 0;"
-                        onload="this.style.opacity='1'; this.parentElement.classList.add('loaded')"
-                        onerror="this.remove(); document.querySelector('.fallback-avatar').classList.add('show')"
-                    ></iframe>
-                </div>
-                <img 
-                    src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" 
-                    alt="Logo" 
-                    class="fallback-avatar"
-                >
+                ${visualizationHtml}
             </div>
         `;
     };

@@ -447,8 +447,8 @@ textarea:focus {
     color: var(--button-text);
     border: none;
     border-radius: 8px;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    font-size: clamp(0.75rem, 1vw, 1rem);
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -457,11 +457,12 @@ textarea:focus {
     height: 48px;
     line-height: 30px;
     min-width: 200px;
-}
-
-.thank-you-buttons a:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(88, 202, 195, 0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Mobile thank you buttons stacked */
@@ -475,6 +476,11 @@ textarea:focus {
     .thank-you-buttons a {
         width: 100%;
         min-width: unset;
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+        white-space: normal;
+        height: auto;
+        min-height: 48px;
     }
 }
 
@@ -554,4 +560,46 @@ textarea:focus {
     .skyline-container {
         aspect-ratio: 4/3;
     }
+}
+
+.name-edit-links {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.name-edit-links.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.name-edit-links a {
+    color: var(--accent-color);
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.name-edit-links a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.editable-name {
+    display: inline-block;
+    min-width: 100px;
+    padding: 0.25rem;
+    border: 1px solid transparent;
+    margin-left: 0.5rem;
+}
+
+.editable-name.editing {
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.1);
+    outline: none;
 }

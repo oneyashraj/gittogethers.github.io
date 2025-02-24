@@ -1,27 +1,15 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Rate limiting implementation
-    const rateLimiter = {
-        lastCall: 0,
-        minInterval: 1000, // 1 second between calls
-        async throttle(fn) {
-            const now = Date.now();
-            const timeToWait = Math.max(0, this.lastCall + this.minInterval - now);
-            
-            if (timeToWait > 0) {
-                await new Promise(resolve => setTimeout(resolve, timeToWait));
-            }
-            
-            try {
-                const result = await fn();
-                this.lastCall = Date.now(); // Update after successful execution
-                return result;
-            } catch (error) {
-                // Don't update lastCall on error to allow immediate retry
-                throw error;
-            }
-        }
-    };
+import {
+    rateLimiter,
+    loadConfig,
+    createMosaicBackground,
+    validateGitHubUsername,
+    showInputError,
+    showRadioError,
+    setLoading,
+    createSkylineDisplay
+} from './shared.js';
 
+document.addEventListener('DOMContentLoaded', () => {
     let config = null;
     let userData = null;
 
@@ -122,23 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
             proceedButton.style.opacity = '1';
             proceedButton.disabled = false;
         }
-    };
-
-    const validateGitHubUsername = async (username) => {
-        // Basic validation before API call
-        if (!/^[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}$/.test(username)) {
-            throw new Error('Invalid username format');
-        }
-        
-        return rateLimiter.throttle(async () => {
-            const response = await fetch(`https://api.github.com/users/${username}`);
-            if (response.status === 404) {
-                throw new Error('Username not found');
-            } else if (!response.ok) {
-                throw new Error('GitHub API error');
-            }
-            return response.json();
-        });
     };
 
     const validateEmail = (email, input) => {
@@ -741,24 +712,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const userName = document.querySelector('.editable-name').textContent.trim();
         const firstName = userName.split(' ')[0];
         const githubUsername = document.getElementById('1252770814').value;
-        const today = new Date().toISOString().split('T')[0];
 
-        let buttonsHtml = '';
-        if (config.thank_you_buttons) {
-            buttonsHtml = `
-                <div class="thank-you-buttons">
-                    ${config.thank_you_buttons.map(button => 
-                        `<a href="${button.url}" target="_blank" rel="noopener noreferrer" title="${button.text}">${button.text}</a>`
-                    ).join('')}
-                </div>
-            `;
-        }
-
-        // Create initial thank you screen without skyline
         content.innerHTML = `
             <div class="thank-you-screen">
-                <div class="skyline-container loading">
-                    <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" style="display: none;">
+                <div class="skyline-container">
+                    <div class="avatar-container loading">
+                        <img src="${userData.avatar_url}" alt="GitHub Avatar" class="logo-image">
+                    </div>
                 </div>
                 <div class="thank-you-message">
                     Thank you for registering for GitTogether ${eventName}, ${firstName}!
@@ -767,7 +727,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     ${config.thank_you_message}
                 </div>
-                ${buttonsHtml}
+                ${config.thank_you_buttons ? `
+                <div class="thank-you-buttons">
+                    ${config.thank_you_buttons.map(button => 
+                        `<a href="${button.url}" target="_blank" rel="noopener noreferrer" title="${button.text}">${button.text}</a>`
+                    ).join('')}
+                </div>` : ''}
             </div>
         `;
 
@@ -942,25 +907,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize
     (async () => {
-        await loadConfig();
-        createMosaicBackground();
+        config = await loadConfig();
+        await createMosaicBackground(config);
         populateGitTogetherChoices();
         addHomepageLinks();
     })();
-
-    // Add this new function for handling input errors
-    const showInputError = (message) => {
-        const input = document.getElementById('github-username');
-        const originalPlaceholder = input.placeholder;
-        
-        input.classList.add('error');
-        input.value = '';
-        input.placeholder = message;
-        
-        // Reset the input state after animation
-        setTimeout(() => {
-            input.classList.remove('error');
-            input.placeholder = originalPlaceholder;
-        }, 2000);
-    };
 });

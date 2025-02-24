@@ -5,7 +5,8 @@ import {
     validateGitHubUsername,
     showInputError,
     showRadioError,
-    setLoading
+    setLoading,
+    createSkylineDisplay
 } from './shared.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -64,12 +65,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         const userName = document.getElementById('766830585').value;
         const firstName = userName.split(' ')[0];
         const githubUsername = document.getElementById('846479285').value;
-        const today = new Date().toISOString().split('T')[0];
         
         content.innerHTML = `
             <div class="thank-you-screen">
-                <div class="skyline-container loading">
-                    <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" class="logo-image">
+                <div class="skyline-container">
+                    <div class="avatar-container loading">
+                        <img src="${userData.avatar_url}" alt="GitHub Avatar" class="logo-image">
+                    </div>
                 </div>
                 <div class="thank-you-message">
                     ${config.messages.checkin_thank_you.replace('{firstName}', firstName)}

@@ -632,10 +632,12 @@ textarea:focus {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     min-height: 100vh;
     padding: 2rem 1rem;
     max-width: 1200px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .thank-you-message {
@@ -825,4 +827,25 @@ textarea:focus {
 
 .name-edit-links a:hover {
     text-decoration: none;
+}
+
+/* Update container styles for thank you screen */
+.container:has(.thank-you-screen) {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.container:has(.thank-you-screen) .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    padding: 2rem;
 }

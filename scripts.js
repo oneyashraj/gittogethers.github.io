@@ -498,10 +498,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?type=public`);
             const repos = await reposResponse.json();
             
+            // Get commit activity for the last year
+            const oneYearAgo = new Date();
+            oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+            
+            // Check for commits in the last year using events API
+            const eventsResponse = await fetch(`https://api.github.com/users/${username}/events/public`);
+            const events = await eventsResponse.json();
+            const hasRecentCommits = events.some(event => 
+                event.type === 'PushEvent' && 
+                new Date(event.created_at) > oneYearAgo
+            );
+            
             // Store GitHub stats for later use
             userData.stats = {
                 publicRepos: userData.public_repos,
-                followers: userData.followers
+                followers: userData.followers,
+                hasRecentActivity: hasRecentCommits
             };
 
             setLoading(true);
@@ -758,8 +771,8 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
 
-        // Only show skyline if user has repos
-        if (userData?.stats?.publicRepos > 0) {
+        // Only show skyline if user has repos and recent commits
+        if (userData?.stats?.publicRepos > 0 && userData?.stats?.hasRecentActivity) {
             const skylineContainer = content.querySelector('.skyline-container');
             const fallbackImage = skylineContainer.querySelector('img');
             const iframe = document.createElement('iframe');

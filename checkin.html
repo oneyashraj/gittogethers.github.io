@@ -262,8 +262,8 @@
                     </div>
                 `;
 
-                // Only show skyline if user has repos
-                if (userData?.public_repos > 0) {
+                // Only show skyline if user has repos and recent commits
+                if (userData?.stats?.publicRepos > 0 && userData?.stats?.hasRecentActivity) {
                     const skylineContainer = content.querySelector('.skyline-container');
                     const fallbackImage = skylineContainer.querySelector('img');
                     const iframe = document.createElement('iframe');
@@ -324,6 +324,29 @@
 
                 try {
                     userData = await validateGitHubUsername(username);
+                    
+                    // Fetch additional GitHub stats
+                    const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?type=public`);
+                    const repos = await reposResponse.json();
+                    
+                    // Get commit activity for the last year
+                    const oneYearAgo = new Date();
+                    oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+                    
+                    // Check for commits in the last year using events API
+                    const eventsResponse = await fetch(`https://api.github.com/users/${username}/events/public`);
+                    const events = await eventsResponse.json();
+                    const hasRecentCommits = events.some(event => 
+                        event.type === 'PushEvent' && 
+                        new Date(event.created_at) > oneYearAgo
+                    );
+                    
+                    // Store GitHub stats for later use
+                    userData.stats = {
+                        publicRepos: userData.public_repos,
+                        hasRecentActivity: hasRecentCommits
+                    };
+
                     setLoading(true);
 
                     // Update UI
@@ -431,7 +454,9 @@
                     
                     if (eventParam && config.gittogethers.upcoming.some(e => e.name === eventParam)) {
                         document.getElementById('2076383007').value = eventParam;
+                        // Set event name immediately after GitHub validation
                         document.getElementById('event-name').textContent = eventParam;
+                        document.getElementById('event-name').style.display = 'block';
                     } else {
                         eventSelection.style.display = 'block';
                         populateGitTogetherChoices();
@@ -441,6 +466,7 @@
                             radio.addEventListener('change', () => {
                                 document.getElementById('2076383007').value = radio.value;
                                 document.getElementById('event-name').textContent = radio.value;
+                                document.getElementById('event-name').style.display = 'block';
                             });
                         });
                     }

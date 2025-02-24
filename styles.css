@@ -645,16 +645,18 @@ textarea:focus {
     opacity: 0;
     animation: fadeIn 0.5s ease forwards;
     animation-delay: 0.4s;
+    padding: 0 1rem;
 }
 
 .thank-you-buttons a {
     flex: 1;
+    min-width: 0;
     background: var(--button-bg);
     color: var(--button-text);
     border: none;
     border-radius: 8px;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -665,7 +667,7 @@ textarea:focus {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    min-width: 0;
+    display: block;
 }
 
 .thank-you-buttons a:hover {
@@ -698,7 +700,7 @@ textarea:focus {
 }
 
 .skyline-container.loading {
-    background: rgba(255, 255, 255, 0.1);
+    min-height: 300px;
 }
 
 .skyline-container.loading::after {
@@ -736,15 +738,18 @@ textarea:focus {
 
     .thank-you-buttons a {
         width: 100%;
+        font-size: 1rem;
     }
 
     .skyline-container {
         aspect-ratio: 4/3;
-        margin: 1rem auto;
+        margin: 0.5rem auto;
+        min-height: 250px;
     }
 }
 
 /* Hide homepage links when form is visible */
+.form-container:has(#bootstrapForm[style*="display: block"]) ~ .homepage-links,
 #bootstrapForm[style*="display: block"] ~ .homepage-links {
     display: none;
 }

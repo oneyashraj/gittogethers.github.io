@@ -694,6 +694,25 @@ document.addEventListener('DOMContentLoaded', () => {
         cacheFormResponses();
     };
 
+    const addHomepageLinks = () => {
+        if (!config?.thank_you_buttons) return;
+        
+        // Remove any existing homepage links
+        const existingLinks = document.querySelector('.homepage-links');
+        if (existingLinks) {
+            existingLinks.remove();
+        }
+        
+        const links = document.createElement('div');
+        links.className = 'homepage-links';
+        links.innerHTML = config.thank_you_buttons
+            .map(button => `<a href="${button.url}" target="_blank" rel="noopener noreferrer">${button.text}</a>`)
+            .join('');
+        
+        // Add links after the form container
+        document.querySelector('.form-container').insertAdjacentElement('afterend', links);
+    };
+
     const showThankYouMessage = () => {
         const content = document.querySelector('.content');
         const selectedEvent = document.querySelector('input[name="entry.1334197574"]:checked');
@@ -719,7 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
             buttonsHtml = `
                 <div class="thank-you-buttons">
                     ${config.thank_you_buttons.map(button => 
-                        `<a href="${button.url}" target="_blank" rel="noopener noreferrer">${button.text}</a>`
+                        `<a href="${button.url}" target="_blank" rel="noopener noreferrer" title="${button.text}">${button.text}</a>`
                     ).join('')}
                 </div>
             `;
@@ -738,7 +757,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ${buttonsHtml}
                 <div class="skyline-container loading">
                     <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" style="display: none;">
-                    <div class="loading-indicator"></div>
                 </div>
             </div>
         `;
@@ -758,17 +776,28 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Show skyline only when loaded
             iframe.onload = () => {
-                skylineContainer.classList.remove('loading');
-                fallbackImage.style.display = 'none';
-                iframe.style.display = 'block';
+                requestAnimationFrame(() => {
+                    skylineContainer.classList.remove('loading');
+                    fallbackImage.style.display = 'none';
+                    iframe.style.display = 'block';
+                });
             };
             
-            // Show fallback on error
+            // Show fallback on error or if loading takes too long
             iframe.onerror = () => {
                 skylineContainer.classList.remove('loading');
                 fallbackImage.style.display = 'block';
                 iframe.remove();
             };
+
+            // Fallback if loading takes too long
+            setTimeout(() => {
+                if (skylineContainer.classList.contains('loading')) {
+                    skylineContainer.classList.remove('loading');
+                    fallbackImage.style.display = 'block';
+                    iframe.remove();
+                }
+            }, 10000); // 10 seconds timeout
             
             skylineContainer.appendChild(iframe);
         } else {
@@ -778,20 +807,6 @@ document.addEventListener('DOMContentLoaded', () => {
             skylineContainer.classList.remove('loading');
             fallbackImage.style.display = 'block';
         }
-    };
-
-    // Add homepage links
-    const addHomepageLinks = () => {
-        if (!config?.thank_you_buttons) return;
-        
-        const links = document.createElement('div');
-        links.className = 'homepage-links';
-        links.innerHTML = config.thank_you_buttons
-            .map(button => `<a href="${button.url}" target="_blank" rel="noopener noreferrer">${button.text}</a>`)
-            .join('');
-        
-        // Add links to content div instead of form container
-        document.querySelector('.content').appendChild(links);
     };
 
     // Event Listeners

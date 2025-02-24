@@ -406,15 +406,19 @@ textarea:focus {
     }
 }
 
+.thank-you-screen {
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
 .thank-you-message {
     text-align: center;
     white-space: pre-line;
     line-height: 1.6;
-    animation: fadeIn 0.5s ease;
     font-size: 1.2rem;
     max-width: 500px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 .thank-you-message a {
@@ -426,18 +430,19 @@ textarea:focus {
     text-decoration: underline;
 }
 
-.thank-you-screen .logo {
-    margin-bottom: 2rem;
-}
-
+/* Desktop thank you buttons side by side */
 .thank-you-buttons {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     gap: 1rem;
-    margin-top: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    padding: 0 1rem;
 }
 
 .thank-you-buttons a {
+    flex: 1;
     background: var(--button-bg);
     color: var(--button-text);
     border: none;
@@ -451,6 +456,7 @@ textarea:focus {
     text-align: center;
     height: 48px;
     line-height: 30px;
+    min-width: 200px;
 }
 
 .thank-you-buttons a:hover {
@@ -458,124 +464,35 @@ textarea:focus {
     box-shadow: 0 4px 12px rgba(88, 202, 195, 0.3);
 }
 
-@media (max-width: 768px) {
-    .button-group {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .button-group button,
-    .button-group input[type="submit"] {
-        width: 100%;
-    }
-
-    .thank-you-buttons {
-        padding: 0 1rem;
-    }
-}
-
-.error-input {
-    background-color: rgba(255, 107, 107, 0.1) !important;
-    border-color: var(--error-color) !important;
-}
-
-.error-input::placeholder {
-    color: var(--error-color) !important;
-}
-
-.radio-error-message {
-    color: var(--error-color);
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
-    display: none;
-}
-
-.radio-error-message.show {
-    display: block;
-}
-
-.name-edit-links {
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.name-edit-links a {
-    color: var(--accent-color);
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.name-edit-links a:hover {
-    text-decoration: underline;
-}
-
-.editable-name {
-    display: inline-block;
-    min-width: 100px;
-    padding: 0.25rem;
-    border: 1px solid transparent;
-}
-
-.editable-name.editing {
-    border-color: var(--accent-color);
-    background: rgba(255, 255, 255, 0.1);
-    outline: none;
-}
-
-#section2 .header-content,
-#section3 .header-content,
-#section2 ~ .header-content,
-#section3 ~ .header-content {
-    display: none !important;
-}
-
-#section2 .name-edit-links,
-#section3 .name-edit-links,
-#section2 ~ .name-edit-links,
-#section3 ~ .name-edit-links {
-    display: none !important;
-}
-
-/* Center homepage elements vertically on mobile */
-@media (max-width: 768px) {
-    .content:not(:has(#bootstrapForm[style*="display: block"])) {
-        justify-content: center;
-    }
-}
-
-/* Adjust thank you screen spacing */
-.thank-you-screen .logo {
-    margin-bottom: 1.5rem;
-}
-
-/* Desktop thank you buttons side by side */
-.thank-you-buttons {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
 /* Mobile thank you buttons stacked */
 @media (max-width: 768px) {
     .thank-you-buttons {
         flex-direction: column;
         gap: 0.5rem;
+        padding: 0 1rem;
+    }
+
+    .thank-you-buttons a {
+        width: 100%;
+        min-width: unset;
     }
 }
 
-/* Add styles for skyline container */
+/* Skyline container styles */
 .skyline-container {
     width: 100%;
     max-width: 800px;
-    margin: 0 auto 2rem;
+    margin: 0 auto;
     aspect-ratio: 16/9;
     position: relative;
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+}
+
+.skyline-container.loaded {
+    animation: fadeIn 0.5s ease forwards;
 }
 
 .skyline-container iframe {
@@ -586,9 +503,55 @@ textarea:focus {
     height: 100%;
 }
 
+/* Fallback avatar */
+.fallback-avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: none;
+    opacity: 0;
+}
+
+.fallback-avatar.show {
+    display: block;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Homepage footer links */
+.homepage-footer {
+    position: fixed;
+    bottom: 1rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 0.9rem;
+    z-index: 10;
+}
+
+.homepage-footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.homepage-footer a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
 @media (max-width: 768px) {
+    .homepage-footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        bottom: 2rem;
+    }
+
     .skyline-container {
         aspect-ratio: 4/3;
-        margin: 0 auto 1.5rem;
     }
 }

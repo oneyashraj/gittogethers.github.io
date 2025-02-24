@@ -717,15 +717,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         content.innerHTML = `
             <div class="thank-you-screen">
-                <div class="skyline-container">
-                    <iframe
-                        src="https://skyline3d.in/${githubUsername}/embed?endDate=${today}&enableZoom=false"
-                        width="100%"
-                        height="400"
-                        frameborder="0"
-                        title="GitHub Skyline"
-                    ></iframe>
-                </div>
                 <div class="thank-you-message">
                     Thank you for registering for GitTogether ${eventName}, ${firstName}!
 
@@ -734,8 +725,52 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${config.thank_you_message}
                 </div>
                 ${buttonsHtml}
+                <div class="skyline-container">
+                    <iframe
+                        src="https://skyline3d.in/${githubUsername}/embed?endDate=${today}&enableZoom=false"
+                        width="100%"
+                        height="400"
+                        frameborder="0"
+                        title="GitHub Skyline"
+                        style="opacity: 0;"
+                        onload="this.style.opacity='1'; this.parentElement.classList.add('loaded')"
+                        onerror="this.remove(); document.querySelector('.fallback-avatar').classList.add('show')"
+                    ></iframe>
+                </div>
+                <img 
+                    src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" 
+                    alt="Logo" 
+                    class="fallback-avatar"
+                >
             </div>
         `;
+    };
+
+    // Add homepage footer links
+    const addHomepageFooter = () => {
+        const footer = document.createElement('div');
+        footer.className = 'homepage-footer';
+        
+        if (config && config.thank_you_buttons) {
+            footer.innerHTML = config.thank_you_buttons.map(button => 
+                `<a href="${button.url}" target="_blank" rel="noopener noreferrer">${button.text}</a>`
+            ).join('');
+            
+            document.body.appendChild(footer);
+
+            // Hide footer when form is displayed
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.target.style.display === 'block') {
+                        footer.style.display = 'none';
+                    } else if (mutation.target.style.display === 'none') {
+                        footer.style.display = 'flex';
+                    }
+                });
+            });
+
+            observer.observe(form, { attributes: true, attributeFilter: ['style'] });
+        }
     };
 
     // Event Listeners
@@ -887,5 +922,6 @@ document.addEventListener('DOMContentLoaded', () => {
         await loadConfig();
         createMosaicBackground();
         populateGitTogetherChoices();
+        addHomepageFooter();
     })();
 });

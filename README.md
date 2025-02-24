@@ -4,6 +4,8 @@ A modern, responsive web application for handling GitTogethers event registratio
 
 ![image](https://github.com/user-attachments/assets/33485341-5836-4e2c-8656-3c9381de8175)
 
+![image](https://github.com/user-attachments/assets/417b671a-820c-4ec5-9054-b190b1c31ab7)
+
 ## Key Features ✨
 - 🎨 Modern, responsive design
 - ⚡ GitHub username validation

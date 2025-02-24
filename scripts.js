@@ -470,7 +470,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const handleSubmit = async (event) => {
-        event?.preventDefault();
+        if (event) {
+            event.preventDefault();
+        }
         
         const username = usernameInput.value.trim();
         errorMessage.textContent = '';
@@ -479,10 +481,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!username) {
             errorMessage.textContent = 'Uh oh! Please enter a valid username.';
             usernameInput.classList.add('error');
-            return;
+            return false;
         }
 
         try {
+            setLoading(true);
             userData = await validateGitHubUsername(username);
             
             // Fetch additional GitHub stats
@@ -494,8 +497,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 publicRepos: userData.public_repos,
                 followers: userData.followers
             };
-
-            setLoading(true);
 
             // Update UI
             logoImage.src = userData.avatar_url;
@@ -538,33 +539,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 editNameLink.textContent = 'Edit Name';
             };
 
-            const saveNameEdit = () => {
-                const newName = editableNameSpan.textContent.trim();
-                if (newName) {
-                    originalName = newName;
-                    editableNameSpan.contentEditable = false;
-                    editableNameSpan.classList.remove('editing');
-                    editNameLink.textContent = 'Edit Name';
-                    // Update the name in the form and data attribute
-                    document.getElementById('1001119393').value = originalName;
-                    editableNameSpan.setAttribute('data-original-name', originalName);
-                    editableNameSpan.textContent = originalName;
-                } else {
-                    cancelNameEdit();
-                }
-            };
-
-            editableNameSpan.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault(); // Prevent default Enter behavior
-                    if (editNameLink.textContent === 'Save') {
-                        saveNameEdit();
-                    }
-                } else if (e.key === 'Escape') {
-                    cancelNameEdit();
-                }
-            });
-
+            // Add event listeners for name editing
             editNameLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 if (editNameLink.textContent === 'Edit Name') {
@@ -578,13 +553,44 @@ document.addEventListener('DOMContentLoaded', () => {
                     selection.addRange(range);
                     editNameLink.textContent = 'Save';
                 } else {
-                    saveNameEdit();
+                    const newName = editableNameSpan.textContent.trim();
+                    if (newName) {
+                        originalName = newName;
+                        editableNameSpan.contentEditable = false;
+                        editableNameSpan.classList.remove('editing');
+                        editNameLink.textContent = 'Edit Name';
+                        document.getElementById('1001119393').value = originalName;
+                        editableNameSpan.setAttribute('data-original-name', originalName);
+                        editableNameSpan.textContent = originalName;
+                    } else {
+                        cancelNameEdit();
+                    }
+                }
+            });
+
+            editableNameSpan.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (editNameLink.textContent === 'Save') {
+                        const newName = editableNameSpan.textContent.trim();
+                        if (newName) {
+                            originalName = newName;
+                            editableNameSpan.contentEditable = false;
+                            editableNameSpan.classList.remove('editing');
+                            editNameLink.textContent = 'Edit Name';
+                            document.getElementById('1001119393').value = originalName;
+                            editableNameSpan.setAttribute('data-original-name', originalName);
+                            editableNameSpan.textContent = originalName;
+                        } else {
+                            cancelNameEdit();
+                        }
+                    }
+                } else if (e.key === 'Escape') {
+                    cancelNameEdit();
                 }
             });
 
             editableNameSpan.addEventListener('blur', (e) => {
-                // Only cancel if we clicked outside and not on the save button
-                // Use requestAnimationFrame to ensure click events are processed first
                 requestAnimationFrame(() => {
                     const activeElement = document.activeElement;
                     if (editNameLink.textContent === 'Save' && 
@@ -624,11 +630,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add event listener for company name changes
             companyInput.addEventListener('input', updateRoleDesignationLegend);
 
-            setLoading(false);
+            // Show form and load cached responses
             form.style.display = 'block';
             showSection(section1);
-
             loadCachedResponses();
+
+            setLoading(false);
             return true;
         } catch (error) {
             console.error('Error:', error);

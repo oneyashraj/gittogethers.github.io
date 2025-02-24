@@ -1,4 +1,4 @@
-# GitTogethers Registration Form 🎯
+# GitTogethers Registration
 
 A modern, responsive web application for handling GitTogethers event registrations.
 

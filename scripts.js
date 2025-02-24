@@ -376,6 +376,109 @@ document.addEventListener('DOMContentLoaded', () => {
         roleDesignationLegend.textContent = companyName ? `Role/Designation at ${companyName}` : 'Role/Designation';
     };
 
+    // Cache form responses
+    const cacheKey = 'gittogethers_form_cache';
+    const usernameCacheKey = 'gittogethers_username';
+    
+    const cacheableFields = {
+        'entry.1294570093': 'email',  // Email Address
+        'entry.1547278427': 'city',   // City
+        'entry.2043018353': 'country', // Country
+        'entry.2134794723': 'role',   // Current Role
+        'entry.1174706497': 'company', // Company/Organization
+        'entry.220097591': 'designation', // Role/Designation
+        'entry.2114391014': 'experience', // Years of experience
+        'entry.1623578350': 'linkedin'  // LinkedIn profile
+    };
+
+    const loadCachedResponses = () => {
+        try {
+            const cache = JSON.parse(localStorage.getItem(cacheKey) || '{}');
+            const cachedUsername = localStorage.getItem(usernameCacheKey);
+            const currentUsername = document.getElementById('1252770814').value;
+            
+            // Only load cache if username matches
+            if (cachedUsername !== currentUsername) {
+                return;
+            }
+            
+            // Fill in cached values
+            Object.entries(cacheableFields).forEach(([fieldName, cacheKey]) => {
+                const value = cache[cacheKey];
+                if (!value) return;
+
+                const input = document.querySelector(`[name="${fieldName}"]`);
+                if (!input) return;
+
+                if (input.type === 'radio') {
+                    // Handle radio buttons
+                    const radioGroup = document.querySelectorAll(`[name="${fieldName}"]`);
+                    const matchingRadio = Array.from(radioGroup).find(radio => radio.value === value);
+                    if (matchingRadio) {
+                        matchingRadio.checked = true;
+                    } else if (value.startsWith('__other_option__:')) {
+                        // Handle "Other" option
+                        const otherValue = value.replace('__other_option__:', '');
+                        const otherRadio = Array.from(radioGroup).find(radio => radio.value === '__other_option__');
+                        const otherInput = document.querySelector(`[name="${fieldName}.other_option_response"]`);
+                        if (otherRadio && otherInput) {
+                            otherRadio.checked = true;
+                            otherInput.value = otherValue;
+                        }
+                    }
+                } else {
+                    // Handle text inputs
+                    input.value = value;
+                    
+                    // Special handling for email field
+                    if (fieldName === 'entry.1294570093' && value) {
+                        const helpBlock = input.closest('.form-group').querySelector('.help-block');
+                        if (helpBlock) {
+                            helpBlock.textContent = "If you're selected, we'll send you a confirmation email. Your previous response is pre-filled. Edit if needed.";
+                        }
+                    }
+                }
+            });
+        } catch (error) {
+            console.error('Error loading cached responses:', error);
+        }
+    };
+
+    const cacheFormResponses = () => {
+        try {
+            const cache = {};
+            const currentUsername = document.getElementById('1252770814').value;
+            
+            Object.entries(cacheableFields).forEach(([fieldName, cacheKey]) => {
+                const input = document.querySelector(`[name="${fieldName}"]`);
+                if (!input) return;
+
+                if (input.type === 'radio') {
+                    // Handle radio buttons
+                    const checkedRadio = document.querySelector(`[name="${fieldName}"]:checked`);
+                    if (checkedRadio) {
+                        if (checkedRadio.value === '__other_option__') {
+                            const otherInput = document.querySelector(`[name="${fieldName}.other_option_response"]`);
+                            if (otherInput && otherInput.value) {
+                                cache[cacheKey] = `__other_option__:${otherInput.value}`;
+                            }
+                        } else {
+                            cache[cacheKey] = checkedRadio.value;
+                        }
+                    }
+                } else {
+                    // Handle text inputs
+                    cache[cacheKey] = input.value;
+                }
+            });
+
+            localStorage.setItem(cacheKey, JSON.stringify(cache));
+            localStorage.setItem(usernameCacheKey, currentUsername);
+        } catch (error) {
+            console.error('Error caching form responses:', error);
+        }
+    };
+
     const handleSubmit = async (event) => {
         event?.preventDefault();
         
@@ -523,11 +626,14 @@ document.addEventListener('DOMContentLoaded', () => {
             form.style.display = 'block';
             showSection(section1);
 
+            loadCachedResponses();
+            return true;
         } catch (error) {
             console.error('Error:', error);
             errorMessage.textContent = 'Uh oh! Please enter a valid username.';
             usernameInput.classList.add('error');
             setLoading(false);
+            return false;
         }
     };
 
@@ -546,7 +652,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (userData?.stats && 
                 typeof userData.stats.publicRepos === 'number' && 
                 typeof userData.stats.followers === 'number') {
-                const statsText = `\n\n| ${userData.stats.publicRepos} public repos | ${userData.stats.followers} followers`;
+                // Append stats in the same line with a separator
+                const statsText = ` | ${userData.stats.publicRepos} public repos | ${userData.stats.followers} followers`;
                 submissionValue = originalValue + statsText;
             }
         } catch (error) {
@@ -554,8 +661,13 @@ document.addEventListener('DOMContentLoaded', () => {
             submissionValue = originalValue;
         }
 
-        // Set the submission value to the form field
-        motivationField.value = submissionValue;
+        // Set the submission value to the form field without showing it to the user
+        const tempMotivationField = document.createElement('textarea');
+        tempMotivationField.style.display = 'none';
+        tempMotivationField.name = motivationField.name;
+        tempMotivationField.value = submissionValue;
+        motivationField.parentNode.appendChild(tempMotivationField);
+        motivationField.removeAttribute('name');
 
         // Remove required attribute from LinkedIn field before submission
         const linkedInInput = document.getElementById('1623578350');
@@ -567,16 +679,38 @@ document.addEventListener('DOMContentLoaded', () => {
             type: 'POST',
             dataType: 'xml',
             success: function(response) {
-                // Restore original value
-                motivationField.value = originalValue;
                 showThankYouMessage();
             },
             error: function() {
-                // Restore original value
-                motivationField.value = originalValue;
                 showThankYouMessage();
+            },
+            complete: function() {
+                // Clean up
+                motivationField.setAttribute('name', tempMotivationField.name);
+                tempMotivationField.remove();
             }
         });
+
+        cacheFormResponses();
+    };
+
+    const addHomepageLinks = () => {
+        if (!config?.thank_you_buttons) return;
+        
+        // Remove any existing homepage links
+        const existingLinks = document.querySelector('.homepage-links');
+        if (existingLinks) {
+            existingLinks.remove();
+        }
+        
+        const links = document.createElement('div');
+        links.className = 'homepage-links';
+        links.innerHTML = config.thank_you_buttons
+            .map(button => `<a href="${button.url}" target="_blank" rel="noopener noreferrer">${button.text}</a>`)
+            .join('');
+        
+        // Add links after the form container
+        document.querySelector('.form-container').insertAdjacentElement('afterend', links);
     };
 
     const showThankYouMessage = () => {
@@ -596,23 +730,23 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const userName = document.querySelector('.editable-name').textContent.trim();
         const firstName = userName.split(' ')[0];
+        const githubUsername = document.getElementById('1252770814').value;
+        const today = new Date().toISOString().split('T')[0];
 
         let buttonsHtml = '';
         if (config.thank_you_buttons) {
             buttonsHtml = `
                 <div class="thank-you-buttons">
                     ${config.thank_you_buttons.map(button => 
-                        `<a href="${button.url}" target="_blank" rel="noopener noreferrer">${button.text}</a>`
+                        `<a href="${button.url}" target="_blank" rel="noopener noreferrer" title="${button.text}">${button.text}</a>`
                     ).join('')}
                 </div>
             `;
         }
-        
+
+        // Create initial thank you screen without skyline
         content.innerHTML = `
             <div class="thank-you-screen">
-                <div class="logo">
-                    <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" class="logo-image">
-                </div>
                 <div class="thank-you-message">
                     Thank you for registering for GitTogether ${eventName}, ${firstName}!
 
@@ -621,8 +755,58 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${config.thank_you_message}
                 </div>
                 ${buttonsHtml}
+                <div class="skyline-container loading">
+                    <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" style="display: none;">
+                </div>
             </div>
         `;
+
+        // Only show skyline if user has repos
+        if (userData?.stats?.publicRepos > 0) {
+            const skylineContainer = content.querySelector('.skyline-container');
+            const fallbackImage = skylineContainer.querySelector('img');
+            const iframe = document.createElement('iframe');
+            
+            iframe.src = `https://skyline3d.in/${githubUsername}/embed?endDate=${today}&enableZoom=false`;
+            iframe.width = '100%';
+            iframe.height = '100%';
+            iframe.frameBorder = '0';
+            iframe.title = 'GitHub Skyline';
+            iframe.style.display = 'none';
+            
+            // Show skyline only when loaded
+            iframe.onload = () => {
+                requestAnimationFrame(() => {
+                    skylineContainer.classList.remove('loading');
+                    fallbackImage.style.display = 'none';
+                    iframe.style.display = 'block';
+                });
+            };
+            
+            // Show fallback on error or if loading takes too long
+            iframe.onerror = () => {
+                skylineContainer.classList.remove('loading');
+                fallbackImage.style.display = 'block';
+                iframe.remove();
+            };
+
+            // Fallback if loading takes too long
+            setTimeout(() => {
+                if (skylineContainer.classList.contains('loading')) {
+                    skylineContainer.classList.remove('loading');
+                    fallbackImage.style.display = 'block';
+                    iframe.remove();
+                }
+            }, 10000); // 10 seconds timeout
+            
+            skylineContainer.appendChild(iframe);
+        } else {
+            // Show app avatar for users with no repos
+            const skylineContainer = content.querySelector('.skyline-container');
+            const fallbackImage = skylineContainer.querySelector('img');
+            skylineContainer.classList.remove('loading');
+            fallbackImage.style.display = 'block';
+        }
     };
 
     // Event Listeners
@@ -728,13 +912,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add event listeners for motivation field
     document.getElementById('2085773688').addEventListener('input', (e) => {
-        const submitButton = document.querySelector('.btn-primary');
         if (e.target.value.trim()) {
             e.target.classList.remove('error-input');
             e.target.placeholder = e.target.getAttribute('data-original-placeholder') || '';
-            submitButton.classList.add('ready');
-        } else {
-            submitButton.classList.remove('ready');
         }
     });
 
@@ -778,5 +958,6 @@ document.addEventListener('DOMContentLoaded', () => {
         await loadConfig();
         createMosaicBackground();
         populateGitTogetherChoices();
+        addHomepageLinks();
     })();
 });

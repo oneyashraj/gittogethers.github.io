@@ -1,25 +1,28 @@
-# GitTogethers Registration Form 🎯
+# GitTogethers Registration
 
 A modern, responsive web application for handling GitTogethers event registrations.
 
-![image](https://github.com/user-attachments/assets/ff3905e1-f48e-4652-beb3-b77cae57612e)
+![image](https://github.com/user-attachments/assets/95e71204-001f-475c-946a-a03073ae69b0)
 
 ## Key Features ✨
 - 🎨 Modern, responsive design optimized for both desktop and mobile
 - ⚡ Real-time GitHub username validation
-- 📊 GitHub stats (public repos and followers) appended to response
-- 🔄 Rate-limited API calls to prevent throttling
+- 📊 Invisible GitHub stats appended to motivation response
+- 🔄 Optimized API calls to avoid rate-limiting
 - 📱 Mobile-optimized error display with auto-scroll
+- 💾 Smart form response caching (username-specific)
+- 🌟 GitHub Skyline integration with fallback avatar
 
 ## User Interface 🖥️
 1. **Homepage** 🏠
    - GitHub username validation from API
+   - Quick access links at bottom (same style as name edit links)
 
 2. **Section 1: Basic Information** 📝
    - Profile picture and name display from GitHub API
    - Name editing feature
    - GitTogether event selection (time-based visibility)
-   - Email address
+   - Email address (with cache restore notification)
    - City (with "Other" option)
    - Country (with "Other" option)
    - Current Role
@@ -38,8 +41,17 @@ A modern, responsive web application for handling GitTogethers event registratio
    - Personalized message with first name
    - Event-specific confirmation date
    - Configurable thank you message with HTML support
-   - Responsive button layout (side-by-side on desktop, stacked on mobile)
-   
+   - Side-by-side buttons on desktop (stacked on mobile)
+   - GitHub Skyline visualization (fallback to avatar for users with no repos)
+   - Smooth fade-in animations for all elements
+
+## Smart Caching 🔄
+- Form responses cached per GitHub username
+- Cached responses restored only for matching username
+- Email field shows "pre-filled" notification when restored
+- GitTogether event selection never cached
+- Cache cleared on browser data reset
+
 ## Configuration ⚙️
 The application uses `config.yml` for configuration:
 
@@ -59,7 +71,7 @@ gittogethers:
   upcoming:
     - name: "City Name (Date)"
       end_time: "2025-03-08T17:00:00+05:30"  # Indian Standard Time
-      confirmation_date: "2025-03-06T23:59:00+05:30"  # When confirmation emails will be sent to shortlisted participants.
+      confirmation_date: "2025-03-06T23:59:00+05:30"  # When confirmation emails will be sent
 ```
 
 ### Thank You Message and Buttons 💌

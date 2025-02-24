@@ -30,8 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
         async loadConfig() {
             try {
                 const response = await fetch('config.yml');
+                if (!response.ok) {
+                    throw new Error('Failed to load config.yml');
+                }
                 const yamlText = await response.text();
                 config = jsyaml.load(yamlText);
+                if (!config) {
+                    throw new Error('Failed to parse config.yml');
+                }
                 return config;
             } catch (error) {
                 console.error('Error loading config:', error);
@@ -131,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (!hasActiveEvents) {
                     const content = document.querySelector('.content');
-                    content.innerHTML = `<div class="thank-you-message">${config.gittogethers.no_events_message}</div>`;
+                    content.innerHTML = `<div class="thank-you-message">${config.messages.no_events}</div>`;
                     return false;
                 }
 
@@ -140,19 +146,28 @@ document.addEventListener('DOMContentLoaded', () => {
         },
 
         async validateGitHubUsername(username) {
+            if (!username) {
+                throw new Error('Username is required');
+            }
+            
             // Basic validation before API call
             if (!/^[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}$/.test(username)) {
                 throw new Error('Invalid username format');
             }
             
             return rateLimiter.throttle(async () => {
-                const response = await fetch(`https://api.github.com/users/${username}`);
-                if (response.status === 404) {
-                    throw new Error('Username not found');
-                } else if (!response.ok) {
-                    throw new Error('GitHub API error');
+                try {
+                    const response = await fetch(`https://api.github.com/users/${username}`);
+                    if (response.status === 404) {
+                        throw new Error('Username not found');
+                    } else if (!response.ok) {
+                        throw new Error('GitHub API error');
+                    }
+                    return response.json();
+                } catch (error) {
+                    console.error('GitHub API error:', error);
+                    throw error;
                 }
-                return response.json();
             });
         },
 
@@ -209,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     originalName = newName;
                     nameSpan.contentEditable = false;
                     nameSpan.classList.remove('editing');
-                    editLink.textContent = 'Edit Name';
+                    editLink.textContent = 'Save';
                     nameSpan.setAttribute('data-original-name', originalName);
                     nameSpan.textContent = originalName;
                     if (onSave) onSave(originalName);
@@ -341,6 +356,61 @@ document.addEventListener('DOMContentLoaded', () => {
                 skylineContainer.classList.remove('loading');
                 fallbackImage.style.display = 'block';
             }
+        },
+
+        showThankYouMessage() {
+            try {
+                const content = document.querySelector('.content');
+                if (!content) {
+                    throw new Error('Content container not found');
+                }
+
+                const userNameInput = document.getElementById('766830585');
+                const githubUsernameInput = document.getElementById('846479285');
+
+                if (!userNameInput || !githubUsernameInput) {
+                    throw new Error('Required form fields not found');
+                }
+
+                const userName = userNameInput.value;
+                const firstName = userName.split(' ')[0];
+                const githubUsername = githubUsernameInput.value;
+
+                if (!config?.messages?.checkin_thank_you) {
+                    throw new Error('Thank you message configuration not found');
+                }
+                
+                content.innerHTML = `
+                    <div class="thank-you-screen">
+                        <div class="skyline-container loading">
+                            <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" style="display: none;">
+                        </div>
+                        <div class="thank-you-message">
+                            ${config.messages.checkin_thank_you.replace('{firstName}', firstName)}
+                        </div>
+                        <div class="thank-you-buttons">
+                            ${(config.thank_you_buttons || []).map(button => 
+                                `<a href="${button.url}" target="_blank" rel="noopener noreferrer" title="${button.text}">${button.text}</a>`
+                            ).join('')}
+                        </div>
+                    </div>
+                `;
+
+                this.createSkylineViewer(content, githubUsername, 'https://avatars.githubusercontent.com/u/98106734?s=200&v=4');
+            } catch (error) {
+                console.error('Error showing thank you message:', error);
+                // Show a fallback message
+                const content = document.querySelector('.content');
+                if (content) {
+                    content.innerHTML = `
+                        <div class="thank-you-screen">
+                            <div class="thank-you-message">
+                                Thank you for checking in!
+                            </div>
+                        </div>
+                    `;
+                }
+            }
         }
     };
 
@@ -379,31 +449,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         button.style.opacity = '1';
                         button.disabled = false;
                     }
-                },
-
-                showThankYouMessage() {
-                    const content = document.querySelector('.content');
-                    const userName = document.getElementById('766830585').value;
-                    const firstName = userName.split(' ')[0];
-                    const githubUsername = document.getElementById('846479285').value;
-                    
-                    content.innerHTML = `
-                        <div class="thank-you-screen">
-                            <div class="skyline-container loading">
-                                <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" style="display: none;">
-                            </div>
-                            <div class="thank-you-message">
-                                ${config.gittogethers.checkin_thank_you_message.replace('{firstName}', firstName)}
-                            </div>
-                            <div class="thank-you-buttons">
-                                ${config.thank_you_buttons.map(button => 
-                                    `<a href="${button.url}" target="_blank" rel="noopener noreferrer" title="${button.text}">${button.text}</a>`
-                                ).join('')}
-                            </div>
-                        </div>
-                    `;
-
-                    utils.createSkylineViewer(content, githubUsername, 'https://avatars.githubusercontent.com/u/98106734?s=200&v=4');
                 },
 
                 async handleSubmit(event) {

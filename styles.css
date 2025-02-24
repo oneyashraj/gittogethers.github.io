@@ -338,25 +338,15 @@ textarea:focus {
 }
 
 .btn-primary {
-    background: var(--text-color);
-    color: var(--button-text);
+    background: var(--success-color) !important;
+    color: var(--text-color) !important;
     border: 2px solid var(--success-color);
     transition: all 0.3s ease;
 }
 
-.btn-primary.ready {
-    background: var(--success-color);
-    color: var(--text-color);
-}
-
 .btn-primary:hover {
-    background: var(--success-color);
-    color: var(--text-color);
-}
-
-.btn-primary.ready:hover {
-    background: var(--text-color);
-    color: var(--success-color);
+    background: var(--text-color) !important;
+    color: var(--success-color) !important;
 }
 
 #bootstrapForm {
@@ -573,5 +563,32 @@ textarea:focus {
     .thank-you-buttons {
         flex-direction: column;
         gap: 0.5rem;
+    }
+}
+
+/* Add styles for skyline container */
+.skyline-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    aspect-ratio: 16/9;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.skyline-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .skyline-container {
+        aspect-ratio: 4/3;
+        margin: 0 auto 1.5rem;
     }
 }

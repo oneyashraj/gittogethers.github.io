@@ -738,6 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ${buttonsHtml}
                 <div class="skyline-container loading">
                     <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" style="display: none;">
+                    <div class="loading-indicator"></div>
                 </div>
             </div>
         `;
@@ -753,6 +754,7 @@ document.addEventListener('DOMContentLoaded', () => {
             iframe.height = '100%';
             iframe.frameBorder = '0';
             iframe.title = 'GitHub Skyline';
+            iframe.style.display = 'none';
             
             // Show skyline only when loaded
             iframe.onload = () => {
@@ -788,7 +790,8 @@ document.addEventListener('DOMContentLoaded', () => {
             .map(button => `<a href="${button.url}" target="_blank" rel="noopener noreferrer">${button.text}</a>`)
             .join('');
         
-        document.querySelector('.form-container').appendChild(links);
+        // Add links to content div instead of form container
+        document.querySelector('.content').appendChild(links);
     };
 
     // Event Listeners

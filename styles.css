@@ -595,17 +595,18 @@ textarea:focus {
 
 .homepage-links {
     font-size: 0.9rem;
-    margin-top: 2rem;
+    margin-top: auto;
+    padding-top: 2rem;
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+    gap: 1.5rem;
 }
 
 .homepage-links a {
     color: var(--accent-color);
     text-decoration: none;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .homepage-links a:hover {
@@ -616,6 +617,10 @@ textarea:focus {
 .thank-you-screen {
     opacity: 0;
     animation: fadeIn 0.5s ease forwards;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 2rem 1rem;
 }
 
 .thank-you-message {
@@ -625,7 +630,6 @@ textarea:focus {
     font-size: 1.2rem;
     max-width: 500px;
     margin: 0 auto;
-    padding: 1rem;
     opacity: 0;
     animation: fadeIn 0.5s ease forwards;
     animation-delay: 0.2s;
@@ -633,9 +637,11 @@ textarea:focus {
 
 .thank-you-buttons {
     display: flex;
+    flex-direction: row;
     gap: 1rem;
     margin: 2rem auto;
     max-width: 800px;
+    width: 100%;
     opacity: 0;
     animation: fadeIn 0.5s ease forwards;
     animation-delay: 0.4s;
@@ -669,7 +675,7 @@ textarea:focus {
 
 .skyline-container {
     width: 100%;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
     aspect-ratio: 16/9;
     position: relative;
@@ -695,7 +701,34 @@ textarea:focus {
     background: rgba(255, 255, 255, 0.1);
 }
 
+.skyline-container.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 4px solid var(--accent-color);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 @media (max-width: 768px) {
+    .homepage-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 2rem 1rem;
+    }
+
     .thank-you-buttons {
         flex-direction: column;
         padding: 0 1rem;
@@ -709,8 +742,9 @@ textarea:focus {
         aspect-ratio: 4/3;
         margin: 1rem auto;
     }
+}
 
-    .homepage-links {
-        padding: 0 1rem;
-    }
+/* Hide homepage links when form is visible */
+#bootstrapForm[style*="display: block"] ~ .homepage-links {
+    display: none;
 }

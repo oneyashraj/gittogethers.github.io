@@ -744,6 +744,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Create initial thank you screen without skyline
         content.innerHTML = `
             <div class="thank-you-screen">
+                <div class="skyline-container loading">
+                    <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" style="display: none;">
+                </div>
                 <div class="thank-you-message">
                     Thank you for registering for GitTogether ${eventName}, ${firstName}!
 
@@ -752,9 +755,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${config.thank_you_message}
                 </div>
                 ${buttonsHtml}
-                <div class="skyline-container loading">
-                    <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" style="display: none;">
-                </div>
             </div>
         `;
 

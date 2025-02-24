@@ -18,6 +18,7 @@ background_images:
 gittogethers:
   description: "Registrations close 2 days before the event."
   no_events_message: "No GitTogethers are scheduled at the moment. Please check <a href='https://gh.io/meetups'>gh.io/meetups</a> for more information."
+  checkin_thank_you_message: "Thank you, {firstName}! We're glad you're here!"
   upcoming:
     - name: "Bengaluru (8th March 2025)"
       end_time: "2025-03-08T17:00:00+05:30"

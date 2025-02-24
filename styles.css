@@ -435,23 +435,23 @@ textarea:focus {
     flex-direction: row;
     gap: 1rem;
     margin: 2rem auto;
-    max-width: 800px;
+    max-width: 900px;
     width: 100%;
     opacity: 0;
     animation: fadeIn 0.5s ease forwards;
     animation-delay: 0.4s;
     padding: 0 1rem;
+    justify-content: center;
 }
 
 .thank-you-buttons a {
-    flex: 1;
-    min-width: 0;
+    flex: 0 1 auto;
     background: var(--button-bg);
     color: var(--button-text);
     border: none;
     border-radius: 8px;
-    padding: 0.75rem 1rem;
-    font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+    padding: 0 1.5rem;
+    font-size: 0.95rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -462,8 +462,7 @@ textarea:focus {
     align-items: center;
     justify-content: center;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    min-width: min-content;
 }
 
 .thank-you-buttons a:hover {
@@ -475,6 +474,7 @@ textarea:focus {
     .thank-you-buttons {
         flex-direction: column;
         padding: 0 1rem;
+        align-items: stretch;
     }
 
     .thank-you-buttons a {
@@ -484,6 +484,7 @@ textarea:focus {
         height: 48px;
         white-space: normal;
         line-height: 1.2;
+        flex: none;
     }
 }
 

@@ -581,59 +581,27 @@ textarea:focus {
 /* Add styles for skyline container */
 .skyline-container {
     width: 100%;
-    height: 300px;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    aspect-ratio: 16/9;
     position: relative;
-    margin: 20px auto;
-    transition: all 0.3s ease;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.skyline-container.skyline-mode {
-    height: 500px;
-}
-
-.skyline-container.avatar-mode {
-    height: 200px;
-}
-
-.avatar-container {
+.skyline-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.3s ease;
 }
 
-.avatar-container.loading {
-    opacity: 0.5;
-}
-
-.avatar-container.logo {
-    width: 150px;
-    height: 150px;
-    margin: 0 auto;
-}
-
-.avatar-container img.logo-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-@media screen and (max-width: 768px) {
-    .skyline-container.skyline-mode {
-        height: 400px;
-    }
-
-    .skyline-container.avatar-mode {
-        height: 150px;
-    }
-
-    .avatar-container.logo {
-        width: 120px;
-        height: 120px;
+@media (max-width: 768px) {
+    .skyline-container {
+        aspect-ratio: 4/3;
+        margin: 0 auto 1.5rem;
     }
 }
 

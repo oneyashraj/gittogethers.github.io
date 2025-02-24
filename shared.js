@@ -149,65 +149,6 @@ const setLoading = (button, isLoading) => {
     }
 };
 
-// Skyline display functionality
-const showFallbackAvatar = (container, image) => {
-    const avatarContainer = container.querySelector('.avatar-container');
-    avatarContainer.classList.remove('loading');
-    avatarContainer.classList.add('logo');
-    image.style.display = 'block';
-    container.classList.add('avatar-mode');
-};
-
-const createSkylineDisplay = (content, userData, githubUsername) => {
-    const today = new Date().toISOString().split('T')[0];
-    const skylineContainer = content.querySelector('.skyline-container');
-    const avatarContainer = skylineContainer.querySelector('.avatar-container');
-    const fallbackImage = skylineContainer.querySelector('.logo-image');
-
-    // Only show skyline if user has more than 5 public repos
-    if (userData?.stats?.publicRepos > 5) {
-        const iframe = document.createElement('iframe');
-        
-        iframe.src = `https://skyline3d.in/${githubUsername}/embed?endDate=${today}&enableZoom=true`;
-        iframe.width = '100%';
-        iframe.height = '100%';
-        iframe.frameBorder = '0';
-        iframe.title = 'GitHub Skyline';
-        iframe.style.display = 'none';
-        
-        // Show skyline only when loaded
-        iframe.onload = () => {
-            requestAnimationFrame(() => {
-                avatarContainer.style.display = 'none';
-                iframe.style.display = 'block';
-                skylineContainer.classList.add('skyline-mode');
-                skylineContainer.classList.remove('loading');
-            });
-        };
-        
-        // Show fallback on error or if loading takes too long
-        iframe.onerror = () => {
-            console.warn('Failed to load GitHub Skyline, falling back to avatar');
-            showFallbackAvatar(skylineContainer, fallbackImage);
-            iframe.remove();
-        };
-
-        // Fallback if loading takes too long
-        setTimeout(() => {
-            if (avatarContainer.classList.contains('loading')) {
-                console.warn('GitHub Skyline load timeout, falling back to avatar');
-                showFallbackAvatar(skylineContainer, fallbackImage);
-                iframe.remove();
-            }
-        }, 10000); // 10 seconds timeout
-        
-        skylineContainer.appendChild(iframe);
-    } else {
-        console.info('User has 5 or fewer repos, showing avatar');
-        showFallbackAvatar(skylineContainer, fallbackImage);
-    }
-};
-
 // Export functions for use in other files
 export {
     rateLimiter,
@@ -216,7 +157,5 @@ export {
     validateGitHubUsername,
     showInputError,
     showRadioError,
-    setLoading,
-    showFallbackAvatar,
-    createSkylineDisplay
+    setLoading
 }; 

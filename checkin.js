@@ -5,8 +5,7 @@ import {
     validateGitHubUsername,
     showInputError,
     showRadioError,
-    setLoading,
-    createSkylineDisplay
+    setLoading
 } from './shared.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -65,13 +64,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         const userName = document.getElementById('766830585').value;
         const firstName = userName.split(' ')[0];
         const githubUsername = document.getElementById('846479285').value;
+        const today = new Date().toISOString().split('T')[0];
         
         content.innerHTML = `
             <div class="thank-you-screen">
-                <div class="skyline-container">
-                    <div class="avatar-container loading">
-                        <img src="${userData.avatar_url}" alt="GitHub Avatar" class="logo-image">
-                    </div>
+                <div class="skyline-container loading">
+                    <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" style="display: none;">
                 </div>
                 <div class="thank-you-message">
                     ${config.messages.checkin_thank_you.replace('{firstName}', firstName)}
@@ -84,15 +82,52 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>
         `;
 
-        // Display skyline or fallback avatar
-        createSkylineDisplay(content, userData, githubUsername);
-    };
+        // Only show skyline if user has repos and recent commits
+        if (userData?.stats?.publicRepos > 0 && userData?.stats?.hasRecentActivity) {
+            const skylineContainer = content.querySelector('.skyline-container');
+            const fallbackImage = skylineContainer.querySelector('img');
+            const iframe = document.createElement('iframe');
+            
+            iframe.src = `https://skyline3d.in/${githubUsername}/embed?endDate=${today}&enableZoom=true`;
+            iframe.width = '100%';
+            iframe.height = '100%';
+            iframe.frameBorder = '0';
+            iframe.title = 'GitHub Skyline';
+            iframe.style.display = 'none';
+            
+            // Show skyline only when loaded
+            iframe.onload = () => {
+                requestAnimationFrame(() => {
+                    skylineContainer.classList.remove('loading');
+                    fallbackImage.style.display = 'none';
+                    iframe.style.display = 'block';
+                });
+            };
+            
+            // Show fallback on error or if loading takes too long
+            iframe.onerror = () => {
+                skylineContainer.classList.remove('loading');
+                fallbackImage.style.display = 'block';
+                iframe.remove();
+            };
 
-    // Helper function to show fallback avatar consistently
-    const showFallbackAvatar = (container, image) => {
-        container.classList.remove('loading');
-        container.classList.add('logo');
-        image.style.display = 'block';
+            // Fallback if loading takes too long
+            setTimeout(() => {
+                if (skylineContainer.classList.contains('loading')) {
+                    skylineContainer.classList.remove('loading');
+                    fallbackImage.style.display = 'block';
+                    iframe.remove();
+                }
+            }, 10000); // 10 seconds timeout
+            
+            skylineContainer.appendChild(iframe);
+        } else {
+            // Show app avatar for users with no repos
+            const skylineContainer = content.querySelector('.skyline-container');
+            const fallbackImage = skylineContainer.querySelector('img');
+            skylineContainer.classList.remove('loading');
+            fallbackImage.style.display = 'block';
+        }
     };
 
     const handleSubmit = async (event) => {

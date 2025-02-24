@@ -446,6 +446,7 @@ textarea:focus {
 
 .thank-you-buttons a {
     flex: 0 1 auto;
+    min-width: min-content;
     background: var(--button-bg);
     color: var(--button-text);
     border: none;
@@ -462,7 +463,6 @@ textarea:focus {
     align-items: center;
     justify-content: center;
     white-space: nowrap;
-    min-width: min-content;
 }
 
 .thank-you-buttons a:hover {

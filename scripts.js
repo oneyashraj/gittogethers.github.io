@@ -470,9 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const handleSubmit = async (event) => {
-        if (event) {
-            event.preventDefault();
-        }
+        event?.preventDefault();
         
         const username = usernameInput.value.trim();
         errorMessage.textContent = '';
@@ -481,11 +479,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!username) {
             errorMessage.textContent = 'Uh oh! Please enter a valid username.';
             usernameInput.classList.add('error');
-            return false;
+            return;
         }
 
         try {
-            setLoading(true);
             userData = await validateGitHubUsername(username);
             
             // Fetch additional GitHub stats
@@ -498,10 +495,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 followers: userData.followers
             };
 
+            setLoading(true);
+
             // Update UI
             logoImage.src = userData.avatar_url;
             const displayName = userData.name || userData.login;
-            heading.innerHTML = `Hello <span class="editable-name">${displayName}</span> 👋`;
+            heading.innerHTML = `Hello<span class="editable-name">${displayName}</span> 👋`;
             headerContent.classList.add('compact');
 
             // Add name edit links
@@ -520,18 +519,6 @@ document.addEventListener('DOMContentLoaded', () => {
             let originalName = displayName;
             editableNameSpan.setAttribute('data-original-name', originalName);
 
-            // Function to toggle name edit links visibility
-            const toggleNameEditLinks = (show) => {
-                nameEditLinks.classList.toggle('hidden', !show);
-            };
-
-            // Update section navigation to handle name edit links visibility
-            const originalShowSection = showSection;
-            showSection = (section) => {
-                originalShowSection(section);
-                toggleNameEditLinks(section === section1);
-            };
-
             const cancelNameEdit = () => {
                 editableNameSpan.textContent = originalName;
                 editableNameSpan.contentEditable = false;
@@ -539,7 +526,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 editNameLink.textContent = 'Edit Name';
             };
 
-            // Add event listeners for name editing
+            const saveNameEdit = () => {
+                const newName = editableNameSpan.textContent.trim();
+                if (newName) {
+                    originalName = newName;
+                    editableNameSpan.contentEditable = false;
+                    editableNameSpan.classList.remove('editing');
+                    editNameLink.textContent = 'Edit Name';
+                    // Update the name in the form and data attribute
+                    document.getElementById('1001119393').value = originalName;
+                    editableNameSpan.setAttribute('data-original-name', originalName);
+                    editableNameSpan.textContent = originalName;
+                } else {
+                    cancelNameEdit();
+                }
+            };
+
+            editableNameSpan.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault(); // Prevent default Enter behavior
+                    if (editNameLink.textContent === 'Save') {
+                        saveNameEdit();
+                    }
+                } else if (e.key === 'Escape') {
+                    cancelNameEdit();
+                }
+            });
+
             editNameLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 if (editNameLink.textContent === 'Edit Name') {
@@ -553,44 +566,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     selection.addRange(range);
                     editNameLink.textContent = 'Save';
                 } else {
-                    const newName = editableNameSpan.textContent.trim();
-                    if (newName) {
-                        originalName = newName;
-                        editableNameSpan.contentEditable = false;
-                        editableNameSpan.classList.remove('editing');
-                        editNameLink.textContent = 'Edit Name';
-                        document.getElementById('1001119393').value = originalName;
-                        editableNameSpan.setAttribute('data-original-name', originalName);
-                        editableNameSpan.textContent = originalName;
-                    } else {
-                        cancelNameEdit();
-                    }
-                }
-            });
-
-            editableNameSpan.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    if (editNameLink.textContent === 'Save') {
-                        const newName = editableNameSpan.textContent.trim();
-                        if (newName) {
-                            originalName = newName;
-                            editableNameSpan.contentEditable = false;
-                            editableNameSpan.classList.remove('editing');
-                            editNameLink.textContent = 'Edit Name';
-                            document.getElementById('1001119393').value = originalName;
-                            editableNameSpan.setAttribute('data-original-name', originalName);
-                            editableNameSpan.textContent = originalName;
-                        } else {
-                            cancelNameEdit();
-                        }
-                    }
-                } else if (e.key === 'Escape') {
-                    cancelNameEdit();
+                    saveNameEdit();
                 }
             });
 
             editableNameSpan.addEventListener('blur', (e) => {
+                // Only cancel if we clicked outside and not on the save button
+                // Use requestAnimationFrame to ensure click events are processed first
                 requestAnimationFrame(() => {
                     const activeElement = document.activeElement;
                     if (editNameLink.textContent === 'Save' && 
@@ -630,12 +612,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add event listener for company name changes
             companyInput.addEventListener('input', updateRoleDesignationLegend);
 
-            // Show form and load cached responses
+            setLoading(false);
             form.style.display = 'block';
             showSection(section1);
-            loadCachedResponses();
 
-            setLoading(false);
+            loadCachedResponses();
             return true;
         } catch (error) {
             console.error('Error:', error);
@@ -733,32 +714,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
         }
-
-        // Only show Skyline if user has repos
-        const showSkyline = userData?.stats?.publicRepos > 0;
-        const visualizationHtml = showSkyline ? `
-            <div class="skyline-container">
-                <iframe
-                    src="https://skyline3d.in/${githubUsername}/embed?endDate=${today}&enableZoom=false"
-                    width="100%"
-                    height="400"
-                    frameborder="0"
-                    title="GitHub Skyline"
-                    style="opacity: 0;"
-                    onload="this.style.opacity='1'; this.parentElement.classList.add('loaded')"
-                    onerror="this.remove(); document.querySelector('.fallback-avatar').classList.add('show')"
-                ></iframe>
-            </div>
-        ` : `
-            <img 
-                src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" 
-                alt="Logo" 
-                class="fallback-avatar show"
-            >
-        `;
         
         content.innerHTML = `
             <div class="thank-you-screen">
+                <div class="skyline-container">
+                    <iframe
+                        src="https://skyline3d.in/${githubUsername}/embed?endDate=${today}&enableZoom=false"
+                        width="100%"
+                        height="400"
+                        frameborder="0"
+                        title="GitHub Skyline"
+                    ></iframe>
+                </div>
                 <div class="thank-you-message">
                     Thank you for registering for GitTogether ${eventName}, ${firstName}!
 
@@ -767,36 +734,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${config.thank_you_message}
                 </div>
                 ${buttonsHtml}
-                ${visualizationHtml}
             </div>
         `;
-    };
-
-    // Add homepage footer links
-    const addHomepageFooter = () => {
-        const footer = document.createElement('div');
-        footer.className = 'homepage-footer';
-        
-        if (config && config.thank_you_buttons) {
-            footer.innerHTML = config.thank_you_buttons.map(button => 
-                `<a href="${button.url}" target="_blank" rel="noopener noreferrer">${button.text}</a>`
-            ).join('');
-            
-            document.body.appendChild(footer);
-
-            // Hide footer when form is displayed
-            const observer = new MutationObserver((mutations) => {
-                mutations.forEach((mutation) => {
-                    if (mutation.target.style.display === 'block') {
-                        footer.style.display = 'none';
-                    } else if (mutation.target.style.display === 'none') {
-                        footer.style.display = 'flex';
-                    }
-                });
-            });
-
-            observer.observe(form, { attributes: true, attributeFilter: ['style'] });
-        }
     };
 
     // Event Listeners
@@ -948,6 +887,5 @@ document.addEventListener('DOMContentLoaded', () => {
         await loadConfig();
         createMosaicBackground();
         populateGitTogetherChoices();
-        addHomepageFooter();
     })();
 });

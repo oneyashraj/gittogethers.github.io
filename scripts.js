@@ -487,8 +487,7 @@ document.addEventListener('DOMContentLoaded', () => {
         usernameInput.classList.remove('error');
         
         if (!username) {
-            errorMessage.textContent = 'Uh oh! Please enter a valid username.';
-            usernameInput.classList.add('error');
+            showInputError('Please enter your GitHub username');
             return;
         }
 
@@ -499,10 +498,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?type=public`);
             const repos = await reposResponse.json();
             
+            // Get commit activity for the last year
+            const oneYearAgo = new Date();
+            oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+            
+            // Check for commits in the last year using events API
+            const eventsResponse = await fetch(`https://api.github.com/users/${username}/events/public`);
+            const events = await eventsResponse.json();
+            const hasRecentCommits = events.some(event => 
+                event.type === 'PushEvent' && 
+                new Date(event.created_at) > oneYearAgo
+            );
+            
             // Store GitHub stats for later use
             userData.stats = {
                 publicRepos: userData.public_repos,
-                followers: userData.followers
+                followers: userData.followers,
+                hasRecentActivity: hasRecentCommits
             };
 
             setLoading(true);
@@ -630,9 +642,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return true;
         } catch (error) {
             console.error('Error:', error);
-            errorMessage.textContent = 'Uh oh! Please enter a valid username.';
-            usernameInput.classList.add('error');
-            setLoading(false);
+            showInputError('Invalid GitHub username');
             return false;
         }
     };
@@ -731,22 +741,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const userName = document.querySelector('.editable-name').textContent.trim();
         const firstName = userName.split(' ')[0];
         const githubUsername = document.getElementById('1252770814').value;
-        const today = new Date().toISOString().split('T')[0];
 
-        let buttonsHtml = '';
-        if (config.thank_you_buttons) {
-            buttonsHtml = `
-                <div class="thank-you-buttons">
-                    ${config.thank_you_buttons.map(button => 
-                        `<a href="${button.url}" target="_blank" rel="noopener noreferrer" title="${button.text}">${button.text}</a>`
-                    ).join('')}
-                </div>
-            `;
-        }
-
-        // Create initial thank you screen without skyline
         content.innerHTML = `
             <div class="thank-you-screen">
+                <div class="skyline-container loading">
+                    <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" style="display: none;">
+                </div>
                 <div class="thank-you-message">
                     Thank you for registering for GitTogether ${eventName}, ${firstName}!
 
@@ -754,59 +754,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     ${config.thank_you_message}
                 </div>
-                ${buttonsHtml}
-                <div class="skyline-container loading">
-                    <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" style="display: none;">
+                <div class="thank-you-buttons">
+                    ${config.thank_you_buttons.map(button => 
+                        `<a href="${button.url}" target="_blank" rel="noopener noreferrer" title="${button.text}">${button.text}</a>`
+                    ).join('')}
                 </div>
             </div>
         `;
 
-        // Only show skyline if user has repos
-        if (userData?.stats?.publicRepos > 0) {
-            const skylineContainer = content.querySelector('.skyline-container');
-            const fallbackImage = skylineContainer.querySelector('img');
-            const iframe = document.createElement('iframe');
-            
-            iframe.src = `https://skyline3d.in/${githubUsername}/embed?endDate=${today}&enableZoom=false`;
-            iframe.width = '100%';
-            iframe.height = '100%';
-            iframe.frameBorder = '0';
-            iframe.title = 'GitHub Skyline';
-            iframe.style.display = 'none';
-            
-            // Show skyline only when loaded
-            iframe.onload = () => {
-                requestAnimationFrame(() => {
-                    skylineContainer.classList.remove('loading');
-                    fallbackImage.style.display = 'none';
-                    iframe.style.display = 'block';
-                });
-            };
-            
-            // Show fallback on error or if loading takes too long
-            iframe.onerror = () => {
-                skylineContainer.classList.remove('loading');
-                fallbackImage.style.display = 'block';
-                iframe.remove();
-            };
-
-            // Fallback if loading takes too long
-            setTimeout(() => {
-                if (skylineContainer.classList.contains('loading')) {
-                    skylineContainer.classList.remove('loading');
-                    fallbackImage.style.display = 'block';
-                    iframe.remove();
-                }
-            }, 10000); // 10 seconds timeout
-            
-            skylineContainer.appendChild(iframe);
-        } else {
-            // Show app avatar for users with no repos
-            const skylineContainer = content.querySelector('.skyline-container');
-            const fallbackImage = skylineContainer.querySelector('img');
-            skylineContainer.classList.remove('loading');
-            fallbackImage.style.display = 'block';
-        }
+        const skylineContainer = content.querySelector('.skyline-container');
+        createSkylineDisplay(skylineContainer, userData, githubUsername);
     };
 
     // Event Listeners
@@ -949,8 +906,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add input event listener to clear error state
     usernameInput.addEventListener('input', () => {
-        errorMessage.textContent = '';
         usernameInput.classList.remove('error');
+        errorMessage.textContent = '';
+    });
+
+    // Add homepage class when form is not visible
+    const container = document.querySelector('.container');
+    if (!document.getElementById('bootstrapForm').style.display || 
+        document.getElementById('bootstrapForm').style.display === 'none') {
+        container.classList.add('homepage');
+    }
+    
+    // Remove homepage class when form becomes visible
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.target.style.display === 'block') {
+                container.classList.remove('homepage');
+            }
+        });
+    });
+    
+    observer.observe(document.getElementById('bootstrapForm'), {
+        attributes: true,
+        attributeFilter: ['style']
     });
 
     // Initialize
@@ -960,4 +938,20 @@ document.addEventListener('DOMContentLoaded', () => {
         populateGitTogetherChoices();
         addHomepageLinks();
     })();
+
+    // Add this new function for handling input errors
+    const showInputError = (message) => {
+        const input = document.getElementById('github-username');
+        const originalPlaceholder = input.placeholder;
+        
+        input.classList.add('error');
+        input.value = '';
+        input.placeholder = message;
+        
+        // Reset the input state after animation
+        setTimeout(() => {
+            input.classList.remove('error');
+            input.placeholder = originalPlaceholder;
+        }, 2000);
+    };
 });

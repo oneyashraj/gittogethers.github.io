@@ -1,3 +1,33 @@
+# Messages and notifications
+messages:
+  no_events: "No GitTogethers are scheduled at the moment. Please check <a href='https://gh.io/meetups'>gh.io/meetups</a> for more information."
+  checkin_thank_you: "Thank you, {firstName}! We're glad you're here!"
+  thank_you_message: |
+    For queries related to GitTogethers, you can reach out to the community leader in your city. For all other queries, you can reach out to <a href="mailto:meetups@github.com">meetups@github.com</a>
+
+# GitTogether event configuration
+gittogethers:
+  description: "Registrations close 2 days before the event."
+  upcoming:
+    - name: "Bengaluru (8th March 2025)"
+      end_time: "2025-03-08T17:00:00+05:30"
+      confirmation_date: "2025-03-06T23:59:00+05:30"
+    - name: "Hyderabad (8th March 2025)"
+      end_time: "2025-03-08T17:00:00+05:30"
+      confirmation_date: "2025-03-06T23:59:00+05:30"
+    - name: "Mumbai (8th March 2025)"
+      end_time: "2025-03-08T17:00:00+05:30"
+      confirmation_date: "2025-03-06T23:59:00+05:30"
+
+# Post-registration action buttons
+thank_you_buttons:
+  - text: "Join WhatsApp Channel for Updates 📢"
+    url: "https://gh.io/meetups/wa"
+  - text: "Apply to be a Speaker ⭐️"
+    url: "https://gh.io/cfs"
+  - text: "Apply for Community Spotlight 💡"
+    url: "https://gh.io/spotlight" 
+
 background_images:
   - https://secure.meetupstatic.com/photos/event/6/7/8/f/highres_525326511.webp
   - https://secure.meetupstatic.com/photos/event/6/7/9/0/highres_525326512.webp
@@ -14,28 +44,3 @@ background_images:
   - https://secure.meetupstatic.com/photos/event/2/a/7/7/highres_525850871.webp
   - https://secure.meetupstatic.com/photos/event/3/d/1/0/highres_525195632.webp
   - https://secure.meetupstatic.com/photos/event/3/c/f/e/highres_525195614.webp
-
-gittogethers:
-  description: "Registrations close 2 days before the event."
-  no_events_message: "No GitTogethers are scheduled at the moment. Please check <a href='https://gh.io/meetups'>gh.io/meetups</a> for more information."
-  upcoming:
-    - name: "Bengaluru (8th March 2025)"
-      end_time: "2025-03-08T17:00:00+05:30"
-      confirmation_date: "2025-03-06T23:59:00+05:30"
-    - name: "Hyderabad (8th March 2025)"
-      end_time: "2025-03-08T17:00:00+05:30"
-      confirmation_date: "2025-03-06T23:59:00+05:30"
-    - name: "Mumbai (8th March 2025)"
-      end_time: "2025-03-08T17:00:00+05:30"
-      confirmation_date: "2025-03-06T23:59:00+05:30"
-
-thank_you_message: |
-  For queries related to GitTogethers, you can reach out to the community leader in your city. For all other queries, you can reach out to <a href="mailto:meetups@github.com">meetups@github.com</a>
-
-thank_you_buttons:
-  - text: "Join WhatsApp Channel for Updates 📢"
-    url: "https://gh.io/meetups/wa"
-  - text: "Apply to be a Speaker ⭐️"
-    url: "https://gh.io/cfs"
-  - text: "Apply for Community Spotlight 💡"
-    url: "https://gh.io/spotlight" 

@@ -1,17 +1,18 @@
-# GitTogethers Registration
+# GitTogethers Registration and Check-in
 
 A modern, responsive web application for handling GitTogethers event registrations.
 
-![image](https://github.com/user-attachments/assets/95e71204-001f-475c-946a-a03073ae69b0)
+![image](https://github.com/user-attachments/assets/33485341-5836-4e2c-8656-3c9381de8175)
 
 ## Key Features ✨
-- 🎨 Modern, responsive design optimized for both desktop and mobile
-- ⚡ Real-time GitHub username validation
-- 📊 Invisible GitHub stats appended to motivation response
-- 🔄 Optimized API calls to avoid rate-limiting
+- 🎨 Modern, responsive design
+- ⚡ GitHub username validation
+- 🔄 Optimized API calls with rate limiting
 - 📱 Mobile-optimized error display with auto-scroll
-- 💾 Smart form response caching (username-specific)
-- 🌟 GitHub Skyline integration with fallback avatar
+- 💾 Form response caching (username-specific)
+- 📊 GitHub Skyline integration with fallback avatar
+- 🌟 CSS Grid support, Flexbox for layouts and CSS custom properties (variables)
+- 👁️ Intersection Observer API for animations
 
 ## User Interface 🖥️
 1. **Homepage** 🏠
@@ -27,6 +28,9 @@ A modern, responsive web application for handling GitTogethers event registratio
    - Country (with "Other" option)
    - Current Role
    - Company/Organization Name
+   - Form responses cached per GitHub username
+   - Cached responses restored only for matching username
+   - Cache cleared on browser data reset
 
 3. **Section 2: Professional Details** 💼 _(Skipped for students)_
    - Role/Designation
@@ -36,62 +40,82 @@ A modern, responsive web application for handling GitTogethers event registratio
 4. **Section 3: Additional Information** ℹ️
    - Motivation for attending
    - Underrepresented group identification (Optional)
+   - GitHub stats (number of repos and followers) appended to form response
 
 5. **Thank You Screen** 🎉
    - Personalized message with first name
    - Event-specific confirmation date
    - Configurable thank you message with HTML support
-   - Side-by-side buttons on desktop (stacked on mobile)
    - GitHub Skyline visualization (fallback to avatar for users with no repos)
    - Smooth fade-in animations for all elements
 
-## Smart Caching 🔄
-- Form responses cached per GitHub username
-- Cached responses restored only for matching username
-- Email field shows "pre-filled" notification when restored
-- GitTogether event selection never cached
-- Cache cleared on browser data reset
+## Code Organization 📁
+The codebase is organized into modular components:
 
-## Configuration ⚙️
-The application uses `config.yml` for configuration:
+### JavaScript Modules 📦
+- `shared.js`: Common utilities and functions
+  - Rate limiting for API calls
+  - Config loading
+  - Background mosaic creation
+  - GitHub username validation
+  - Error handling utilities
+  - Loading state management
 
-### Background Images 🖼️
+- `checkin.js`: Check-in specific functionality
+  - Form handling
+  - Event selection
+  - GitHub profile integration
+  - Name editing
+  - Form submission
+
+### Configuration (config.yml) ⚙️
 ```yaml
+# Background images for mosaic
 background_images:
-  - https://example.com/image1.webp
-  - https://example.com/image2.webp
-  # Add more image URLs as needed
-```
+  - image_url_1
+  - image_url_2
+  # ...
 
-### GitTogether Events 📅
-```yaml
+# Messages and notifications
+messages:
+  no_events: "Message when no events are available"
+  checkin_thank_you: "Check-in confirmation message"
+  thank_you: "Post-registration message"
+
+# GitTogether event configuration
 gittogethers:
-  description: "Text to display below GitTogether event selection question"
-  no_events_message: "Message to show when no events are active"
+  description: "Event registration info"
   upcoming:
-    - name: "City Name (Date)"
-      end_time: "2025-03-08T17:00:00+05:30"  # Indian Standard Time
-      confirmation_date: "2025-03-06T23:59:00+05:30"  # When confirmation emails will be sent
-```
+    - name: "Event Name"
+      end_time: "Event end time"
+      confirmation_date: "When confirmation emails will be sent"
 
-### Thank You Message and Buttons 💌
-```yaml
-thank_you_message: |
-  Your message with <a href="mailto:example@example.com">HTML links</a>
-
+# Post-registration action buttons
 thank_you_buttons:
-  - text: "Button Text 📢"
-    url: "https://example.com"
+  - text: "Button text"
+    url: "Button URL"
 ```
 
 ## Dependencies 📦
-- 📚 jQuery 3.2.1
-- 📝 jQuery Form Plugin 4.2.2
+- 📚 jQuery 3.7.1
+- 📝 jQuery Form Plugin 4.3.0
 - 📄 js-yaml 4.1.0
 - 🔤 Google Fonts (Roboto)
 
 ## Browser Support 🌐
-- 🌟 Modern browsers with CSS Grid support
-- 📱 Flexbox for layouts
-- 🎨 CSS custom properties (variables)
-- 👁️ Intersection Observer API for animations
+- Modern browsers with ES6 module support
+- CSS Grid and Flexbox support
+- Fallbacks for GitHub Skyline visualization
+
+## Development 💻
+1. Clone the repository
+2. No build process required - pure HTML, CSS, and JavaScript
+3. Serve the files using any web server
+4. Update `config.yml` to configure events and messages
+
+## Security 🔒
+- Rate limiting on GitHub API calls
+- Form validation and sanitization
+- No sensitive data stored in localStorage
+- HTTPS required for GitHub API calls
+

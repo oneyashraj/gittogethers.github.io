@@ -93,9 +93,17 @@ header {
 }
 
 .tagline {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    color: #333;
+    text-align: center;
+}
+
+.event-name {
     font-size: 1.2rem;
-    color: var(--accent-color);
-    margin-bottom: 0.5rem;
+    margin: 0.5rem 0;
+    color: #666;
+    text-align: center;
 }
 
 h1 {
@@ -432,58 +440,22 @@ textarea:focus {
 
 .thank-you-buttons {
     display: flex;
-    flex-direction: row;
     gap: 1rem;
-    margin: 2rem auto;
-    max-width: 900px;
-    width: 100%;
-    opacity: 0;
-    animation: fadeIn 0.5s ease forwards;
-    animation-delay: 0.4s;
-    padding: 0 1rem;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
 .thank-you-buttons a {
-    flex: 1;
-    min-width: 0;
-    background: var(--button-bg);
-    color: var(--button-text);
-    border: none;
-    border-radius: 8px;
-    padding: 0.75rem 1.2rem;
-    font-size: 0.95rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    padding: 0.75rem 1.5rem;
+    background-color: #2ea44f;
+    color: white;
     text-decoration: none;
-    text-align: center;
-    height: auto;
-    min-height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    white-space: normal;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    line-height: 1.2;
+    border-radius: 6px;
+    transition: background-color 0.2s;
 }
 
-@media (max-width: 768px) {
-    .thank-you-buttons {
-        flex-direction: column;
-        padding: 0 1rem;
-    }
-
-    .thank-you-buttons a {
-        width: 100%;
-        font-size: 1rem;
-        padding: 0.75rem 1.5rem;
-        height: 48px;
-        white-space: normal;
-        line-height: 1.2;
-        flex: none;
-    }
+.thank-you-buttons a:hover {
+    background-color: #2c974b;
 }
 
 .error-input {
@@ -627,40 +599,39 @@ textarea:focus {
 
 /* Thank you screen styles */
 .thank-you-screen {
-    opacity: 0;
-    animation: fadeIn 0.5s ease forwards;
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
-    padding: 2rem 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+    padding: 2rem;
 }
 
 .thank-you-message {
-    text-align: center;
-    white-space: pre-line;
-    line-height: 1.6;
-    font-size: 1.2rem;
-    max-width: 600px;
-    margin: 0 auto;
-    opacity: 0;
-    animation: fadeIn 0.5s ease forwards;
-    animation-delay: 0.2s;
+    font-size: 1.5rem;
+    margin: 2rem 0;
+    color: #333;
 }
 
 .thank-you-buttons {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: flex;
     gap: 1rem;
-    margin: 1.5rem auto;
-    max-width: 900px;
-    width: 100%;
-    opacity: 0;
-    animation: fadeIn 0.5s ease forwards;
-    animation-delay: 0.4s;
-    padding: 0 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.thank-you-buttons a {
+    padding: 0.75rem 1.5rem;
+    background-color: #2ea44f;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.thank-you-buttons a:hover {
+    background-color: #2c974b;
 }
 
 .skyline-container {

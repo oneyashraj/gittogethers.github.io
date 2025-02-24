@@ -2,13 +2,13 @@
 
 A modern, responsive web application for handling GitTogethers event registrations.
 
-![image](https://github.com/user-attachments/assets/ff3905e1-f48e-4652-beb3-b77cae57612e)
+![image](https://github.com/user-attachments/assets/95e71204-001f-475c-946a-a03073ae69b0)
 
 ## Key Features ✨
 - 🎨 Modern, responsive design optimized for both desktop and mobile
 - ⚡ Real-time GitHub username validation
 - 📊 Invisible GitHub stats appended to motivation response
-- 🔄 Rate-limited API calls to prevent throttling
+- 🔄 Optimized API calls to avoid rate-limiting
 - 📱 Mobile-optimized error display with auto-scroll
 - 💾 Smart form response caching (username-specific)
 - 🌟 GitHub Skyline integration with fallback avatar

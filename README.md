@@ -1,8 +1,8 @@
-# GitTogethers Registration
+# GitTogethers Registration and Checkin
 
 A modern, responsive web application for handling GitTogethers event registrations.
 
-![image](https://github.com/user-attachments/assets/95e71204-001f-475c-946a-a03073ae69b0)
+![image](https://github.com/user-attachments/assets/33485341-5836-4e2c-8656-3c9381de8175)
 
 ## Key Features ✨
 - 🎨 Modern, responsive design
@@ -13,6 +13,41 @@ A modern, responsive web application for handling GitTogethers event registratio
 - 📊 GitHub Skyline integration with fallback avatar
 - 🌟 CSS Grid support, Flexbox for layouts and CSS custom properties (variables)
 - 👁️ Intersection Observer API for animations
+
+## User Interface 🖥️
+1. **Homepage** 🏠
+   - GitHub username validation from API
+   - Quick access links at bottom (same style as name edit links)
+
+2. **Section 1: Basic Information** 📝
+   - Profile picture and name display from GitHub API
+   - Name editing feature
+   - GitTogether event selection (time-based visibility)
+   - Email address (with cache restore notification)
+   - City (with "Other" option)
+   - Country (with "Other" option)
+   - Current Role
+   - Company/Organization Name
+   - Form responses cached per GitHub username
+   - Cached responses restored only for matching username
+   - Cache cleared on browser data reset
+
+3. **Section 2: Professional Details** 💼 _(Skipped for students)_
+   - Role/Designation
+   - Years of experience
+   - LinkedIn profile URL (Optional)
+
+4. **Section 3: Additional Information** ℹ️
+   - Motivation for attending
+   - Underrepresented group identification (Optional)
+   - GitHub stats (number of repos and followers) appended to form response
+
+5. **Thank You Screen** 🎉
+   - Personalized message with first name
+   - Event-specific confirmation date
+   - Configurable thank you message with HTML support
+   - GitHub Skyline visualization (fallback to avatar for users with no repos)
+   - Smooth fade-in animations for all elements
 
 ## Code Organization 📁
 The codebase is organized into modular components:
@@ -60,41 +95,6 @@ thank_you_buttons:
   - text: "Button text"
     url: "Button URL"
 ```
-
-## User Interface 🖥️
-1. **Homepage** 🏠
-   - GitHub username validation from API
-   - Quick access links at bottom (same style as name edit links)
-
-2. **Section 1: Basic Information** 📝
-   - Profile picture and name display from GitHub API
-   - Name editing feature
-   - GitTogether event selection (time-based visibility)
-   - Email address (with cache restore notification)
-   - City (with "Other" option)
-   - Country (with "Other" option)
-   - Current Role
-   - Company/Organization Name
-   - Form responses cached per GitHub username
-   - Cached responses restored only for matching username
-   - Cache cleared on browser data reset
-
-3. **Section 2: Professional Details** 💼 _(Skipped for students)_
-   - Role/Designation
-   - Years of experience
-   - LinkedIn profile URL (Optional)
-
-4. **Section 3: Additional Information** ℹ️
-   - Motivation for attending
-   - Underrepresented group identification (Optional)
-   - GitHub stats (number of repos and followers) appended to form response
-
-5. **Thank You Screen** 🎉
-   - Personalized message with first name
-   - Event-specific confirmation date
-   - Configurable thank you message with HTML support
-   - GitHub Skyline visualization (fallback to avatar for users with no repos)
-   - Smooth fade-in animations for all elements
 
 ## Dependencies 📦
 - 📚 jQuery 3.7.1

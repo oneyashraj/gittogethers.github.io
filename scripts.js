@@ -764,7 +764,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const fallbackImage = skylineContainer.querySelector('img');
             const iframe = document.createElement('iframe');
             
-            iframe.src = `https://skyline3d.in/${githubUsername}/embed?endDate=${today}&enableZoom=false`;
+            iframe.src = `https://skyline3d.in/${githubUsername}/embed?endDate=${today}&enableZoom=true`;
             iframe.width = '100%';
             iframe.height = '100%';
             iframe.frameBorder = '0';

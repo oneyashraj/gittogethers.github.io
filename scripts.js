@@ -741,20 +741,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const userName = document.querySelector('.editable-name').textContent.trim();
         const firstName = userName.split(' ')[0];
         const githubUsername = document.getElementById('1252770814').value;
-        const today = new Date().toISOString().split('T')[0];
 
-        let buttonsHtml = '';
-        if (config.thank_you_buttons) {
-            buttonsHtml = `
-                <div class="thank-you-buttons">
-                    ${config.thank_you_buttons.map(button => 
-                        `<a href="${button.url}" target="_blank" rel="noopener noreferrer" title="${button.text}">${button.text}</a>`
-                    ).join('')}
-                </div>
-            `;
-        }
-
-        // Create initial thank you screen without skyline
         content.innerHTML = `
             <div class="thank-you-screen">
                 <div class="skyline-container loading">
@@ -767,56 +754,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     ${config.thank_you_message}
                 </div>
-                ${buttonsHtml}
+                <div class="thank-you-buttons">
+                    ${config.thank_you_buttons.map(button => 
+                        `<a href="${button.url}" target="_blank" rel="noopener noreferrer" title="${button.text}">${button.text}</a>`
+                    ).join('')}
+                </div>
             </div>
         `;
 
-        // Only show skyline if user has repos and recent commits
-        if (userData?.stats?.publicRepos > 0 && userData?.stats?.hasRecentActivity) {
-            const skylineContainer = content.querySelector('.skyline-container');
-            const fallbackImage = skylineContainer.querySelector('img');
-            const iframe = document.createElement('iframe');
-            
-            iframe.src = `https://skyline3d.in/${githubUsername}/embed?endDate=${today}&enableZoom=true`;
-            iframe.width = '100%';
-            iframe.height = '100%';
-            iframe.frameBorder = '0';
-            iframe.title = 'GitHub Skyline';
-            iframe.style.display = 'none';
-            
-            // Show skyline only when loaded
-            iframe.onload = () => {
-                requestAnimationFrame(() => {
-                    skylineContainer.classList.remove('loading');
-                    fallbackImage.style.display = 'none';
-                    iframe.style.display = 'block';
-                });
-            };
-            
-            // Show fallback on error or if loading takes too long
-            iframe.onerror = () => {
-                skylineContainer.classList.remove('loading');
-                fallbackImage.style.display = 'block';
-                iframe.remove();
-            };
-
-            // Fallback if loading takes too long
-            setTimeout(() => {
-                if (skylineContainer.classList.contains('loading')) {
-                    skylineContainer.classList.remove('loading');
-                    fallbackImage.style.display = 'block';
-                    iframe.remove();
-                }
-            }, 10000); // 10 seconds timeout
-            
-            skylineContainer.appendChild(iframe);
-        } else {
-            // Show app avatar for users with no repos
-            const skylineContainer = content.querySelector('.skyline-container');
-            const fallbackImage = skylineContainer.querySelector('img');
-            skylineContainer.classList.remove('loading');
-            fallbackImage.style.display = 'block';
-        }
+        const skylineContainer = content.querySelector('.skyline-container');
+        createSkylineDisplay(skylineContainer, userData, githubUsername);
     };
 
     // Event Listeners

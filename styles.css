@@ -432,25 +432,38 @@ textarea:focus {
 
 .thank-you-buttons {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 1rem;
-    margin-top: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    width: 100%;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+    animation-delay: 0.4s;
+    padding: 0 1rem;
 }
 
 .thank-you-buttons a {
+    flex: 1;
+    min-width: 0;
     background: var(--button-bg);
     color: var(--button-text);
     border: none;
     border-radius: 8px;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    font-size: clamp(0.8rem, 1.2vw, 0.95rem);
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
     text-align: center;
     height: 48px;
-    line-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .thank-you-buttons a:hover {
@@ -459,18 +472,18 @@ textarea:focus {
 }
 
 @media (max-width: 768px) {
-    .button-group {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .button-group button,
-    .button-group input[type="submit"] {
-        width: 100%;
-    }
-
     .thank-you-buttons {
+        flex-direction: column;
         padding: 0 1rem;
+    }
+
+    .thank-you-buttons a {
+        width: 100%;
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+        height: 48px;
+        white-space: normal;
+        line-height: 1.2;
     }
 }
 
@@ -655,19 +668,20 @@ textarea:focus {
     color: var(--button-text);
     border: none;
     border-radius: 8px;
-    padding: 0.75rem 1.5rem;
-    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+    font-size: clamp(0.8rem, 1.2vw, 0.95rem);
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
     text-align: center;
     height: 48px;
-    line-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    display: block;
 }
 
 .thank-you-buttons a:hover {

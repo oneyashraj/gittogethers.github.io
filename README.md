@@ -1,4 +1,4 @@
-# GitTogethers Registration and Checkin
+# GitTogethers Registration and Check-in
 
 A modern, responsive web application for handling GitTogethers event registrations.
 

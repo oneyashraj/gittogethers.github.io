@@ -19,7 +19,7 @@ background_images:
 messages:
   no_events: "No GitTogethers are scheduled at the moment. Please check <a href='https://gh.io/meetups'>gh.io/meetups</a> for more information."
   checkin_thank_you: "Thank you, {firstName}! We're glad you're here!"
-  thank_you: |
+  thank_you_message: |
     For queries related to GitTogethers, you can reach out to the community leader in your city. For all other queries, you can reach out to <a href="mailto:meetups@github.com">meetups@github.com</a>
 
 # GitTogether event configuration

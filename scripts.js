@@ -771,52 +771,8 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
 
-        // Only show skyline if user has repos and recent commits
-        if (userData?.stats?.publicRepos > 0 && userData?.stats?.hasRecentActivity) {
-            const skylineContainer = content.querySelector('.skyline-container');
-            const fallbackImage = skylineContainer.querySelector('img');
-            const iframe = document.createElement('iframe');
-            
-            iframe.src = `https://skyline3d.in/${githubUsername}/embed?endDate=${today}&enableZoom=true`;
-            iframe.width = '100%';
-            iframe.height = '100%';
-            iframe.frameBorder = '0';
-            iframe.title = 'GitHub Skyline';
-            iframe.style.display = 'none';
-            
-            // Show skyline only when loaded
-            iframe.onload = () => {
-                requestAnimationFrame(() => {
-                    skylineContainer.classList.remove('loading');
-                    fallbackImage.style.display = 'none';
-                    iframe.style.display = 'block';
-                });
-            };
-            
-            // Show fallback on error or if loading takes too long
-            iframe.onerror = () => {
-                skylineContainer.classList.remove('loading');
-                fallbackImage.style.display = 'block';
-                iframe.remove();
-            };
-
-            // Fallback if loading takes too long
-            setTimeout(() => {
-                if (skylineContainer.classList.contains('loading')) {
-                    skylineContainer.classList.remove('loading');
-                    fallbackImage.style.display = 'block';
-                    iframe.remove();
-                }
-            }, 10000); // 10 seconds timeout
-            
-            skylineContainer.appendChild(iframe);
-        } else {
-            // Show app avatar for users with no repos
-            const skylineContainer = content.querySelector('.skyline-container');
-            const fallbackImage = skylineContainer.querySelector('img');
-            skylineContainer.classList.remove('loading');
-            fallbackImage.style.display = 'block';
-        }
+        // Display skyline or fallback avatar
+        createSkylineDisplay(content, userData, githubUsername);
     };
 
     // Event Listeners

@@ -15,9 +15,6 @@ gittogethers:
     - name: "Hyderabad (8th March 2025)"
       end_time: "2025-03-08T17:00:00+05:30"
       confirmation_date: "2025-03-06T23:59:00+05:30"
-    - name: "Mumbai (8th March 2025)"
-      end_time: "2025-03-08T17:00:00+05:30"
-      confirmation_date: "2025-03-06T23:59:00+05:30"
 
 # Post-registration action buttons
 thank_you_buttons:

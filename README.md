@@ -2,7 +2,7 @@
 
 A modern, responsive web application for handling GitTogethers event registrations.
 
-![image](https://github.com/user-attachments/assets/33485341-5836-4e2c-8656-3c9381de8175)
+![image](https://github.com/user-attachments/assets/f57c03ff-3955-4fd2-891c-833106bc4b77)
 
 ![image](https://github.com/user-attachments/assets/417b671a-820c-4ec5-9054-b190b1c31ab7)
 

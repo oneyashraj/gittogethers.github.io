@@ -149,55 +149,6 @@ const setLoading = (button, isLoading) => {
     }
 };
 
-// Add this new function
-const createSkylineDisplay = (container, userData, githubUsername) => {
-    const today = new Date().toISOString().split('T')[0];
-    const fallbackImage = container.querySelector('img');
-    
-    // Only show skyline if user has repos and recent commits
-    if (userData?.stats?.publicRepos > 0 && userData?.stats?.hasRecentActivity) {
-        const iframe = document.createElement('iframe');
-        
-        iframe.src = `https://skyline3d.in/${githubUsername}/embed?endDate=${today}&enableZoom=true`;
-        iframe.width = '100%';
-        iframe.height = '100%';
-        iframe.frameBorder = '0';
-        iframe.title = 'GitHub Skyline';
-        iframe.style.display = 'none';
-        
-        // Show skyline only when loaded
-        iframe.onload = () => {
-            requestAnimationFrame(() => {
-                container.classList.remove('loading');
-                fallbackImage.style.display = 'none';
-                iframe.style.display = 'block';
-            });
-        };
-        
-        // Show fallback on error or if loading takes too long
-        iframe.onerror = () => {
-            container.classList.remove('loading');
-            fallbackImage.style.display = 'block';
-            iframe.remove();
-        };
-
-        // Fallback if loading takes too long
-        setTimeout(() => {
-            if (container.classList.contains('loading')) {
-                container.classList.remove('loading');
-                fallbackImage.style.display = 'block';
-                iframe.remove();
-            }
-        }, 10000); // 10 seconds timeout
-        
-        container.appendChild(iframe);
-    } else {
-        // Show app avatar for users with no repos
-        container.classList.remove('loading');
-        fallbackImage.style.display = 'block';
-    }
-};
-
 // Export functions for use in other files
 export {
     rateLimiter,
@@ -206,6 +157,5 @@ export {
     validateGitHubUsername,
     showInputError,
     showRadioError,
-    setLoading,
-    createSkylineDisplay
-}; 
+    setLoading
+};

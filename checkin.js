@@ -5,8 +5,7 @@ import {
     validateGitHubUsername,
     showInputError,
     showRadioError,
-    setLoading,
-    createSkylineDisplay
+    setLoading
 } from './shared.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -30,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (config && config.gittogethers) {
             let hasActiveEvents = false;
             
-            // Add radio buttons for each event
+            // Add event cards for each event
             if (config.gittogethers.upcoming && config.gittogethers.upcoming.length > 0) {
                 const now = new Date();
                 config.gittogethers.upcoming.forEach(event => {
@@ -39,15 +38,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                     // Only show events that haven't ended
                     if (now <= endTime) {
                         hasActiveEvents = true;
-                        const div = document.createElement('div');
-                        div.className = 'radio';
-                        div.innerHTML = `
-                            <label>
-                                <input type="radio" name="selected_event" value="${event.name}" required>
+                        const card = document.createElement('div');
+                        card.className = 'event-card';
+                        card.setAttribute('data-event', event.name);
+                        card.innerHTML = `
+                            <input type="radio" name="selected_event" value="${event.name}" id="event-${event.name.replace(/\s+/g, '-').toLowerCase()}" class="event-radio" required>
+                            <label for="event-${event.name.replace(/\s+/g, '-').toLowerCase()}" class="event-card-label">
                                 ${event.name}
                             </label>
                         `;
-                        formGroup.appendChild(div);
+                        formGroup.appendChild(card);
                     }
                 });
             }
@@ -64,26 +64,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         const content = document.querySelector('.content');
         const userName = document.getElementById('766830585').value;
         const firstName = userName.split(' ')[0];
-        const githubUsername = document.getElementById('846479285').value;
         
         content.innerHTML = `
             <div class="thank-you-screen">
-                <div class="skyline-container loading">
-                    <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" style="display: none;">
+                <div class="logo">
+                    <img src="https://octodex.github.com/images/yogitocat.png" alt="Logo" class="logo-image thank-you-logo">
                 </div>
                 <div class="thank-you-message">
                     ${config.messages.checkin_thank_you.replace('{firstName}', firstName)}
                 </div>
-                <div class="thank-you-buttons">
-                    ${config.thank_you_buttons.map(button => 
-                        `<a href="${button.url}" target="_blank" rel="noopener noreferrer" title="${button.text}">${button.text}</a>`
-                    ).join('')}
-                </div>
             </div>
         `;
-
-        const skylineContainer = content.querySelector('.skyline-container');
-        createSkylineDisplay(skylineContainer, userData, githubUsername);
     };
 
     const handleSubmit = async (event) => {
@@ -230,19 +221,27 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             if (eventParam && config.gittogethers.upcoming.some(e => e.name === eventParam)) {
                 document.getElementById('2076383007').value = eventParam;
-                // Set event name immediately after GitHub validation
+                // Set event name in tagline
+                document.querySelector('.tagline').textContent = eventParam;
                 document.getElementById('event-name').textContent = eventParam;
                 document.getElementById('event-name').style.display = 'block';
             } else {
                 eventSelection.style.display = 'block';
                 populateGitTogetherChoices();
                 
-                // Add event listener for radio buttons
-                document.querySelectorAll('input[name="selected_event"]').forEach(radio => {
-                    radio.addEventListener('change', () => {
+                // Add event listener for event cards
+                document.querySelectorAll('.event-card').forEach(card => {
+                    const radio = card.querySelector('input[type="radio"]');
+                    card.addEventListener('click', () => {
+                        // Unselect all other cards
+                        document.querySelectorAll('.event-card').forEach(c => c.classList.remove('selected'));
+                        // Select this card
+                        card.classList.add('selected');
+                        // Check the radio button
+                        radio.checked = true;
+                        // Set the form value
                         document.getElementById('2076383007').value = radio.value;
-                        document.getElementById('event-name').textContent = radio.value;
-                        document.getElementById('event-name').style.display = 'block';
+                        // Don't update tagline when selecting an event
                     });
                 });
             }
@@ -302,4 +301,4 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Initialize
     config = await loadConfig();
     await createMosaicBackground(config);
-}); 
+});

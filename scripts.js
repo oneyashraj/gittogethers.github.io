@@ -1,97 +1,16 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Rate limiting implementation
-    const rateLimiter = {
-        lastCall: 0,
-        minInterval: 1000, // 1 second between calls
-        async throttle(fn) {
-            const now = Date.now();
-            const timeToWait = Math.max(0, this.lastCall + this.minInterval - now);
-            
-            if (timeToWait > 0) {
-                await new Promise(resolve => setTimeout(resolve, timeToWait));
-            }
-            
-            try {
-                const result = await fn();
-                this.lastCall = Date.now(); // Update after successful execution
-                return result;
-            } catch (error) {
-                // Don't update lastCall on error to allow immediate retry
-                throw error;
-            }
-        }
-    };
+import {
+    rateLimiter,
+    loadConfig,
+    createMosaicBackground,
+    validateGitHubUsername,
+    showInputError,
+    showRadioError,
+    setLoading
+} from './shared.js';
 
+document.addEventListener('DOMContentLoaded', async () => {
     let config = null;
     let userData = null;
-
-    // Load config
-    const loadConfig = async () => {
-        try {
-            const response = await fetch('config.yml');
-            const yamlText = await response.text();
-            config = jsyaml.load(yamlText);
-            return config;
-        } catch (error) {
-            console.error('Error loading config:', error);
-            return null;
-        }
-    };
-
-    // Create mosaic background
-    const createMosaicBackground = async () => {
-        try {
-            const mosaicContainer = document.createElement('div');
-            mosaicContainer.className = 'background-mosaic';
-            document.body.insertBefore(mosaicContainer, document.body.firstChild);
-
-            // Check localStorage first
-            const cachedImages = localStorage.getItem('mosaicImages');
-            let images;
-            
-            if (cachedImages) {
-                images = JSON.parse(cachedImages);
-            } else {
-                images = config.background_images;
-                localStorage.setItem('mosaicImages', JSON.stringify(images));
-            }
-
-            // Shuffle and select only 9 images
-            const shuffledImages = [...images]
-                .sort(() => Math.random() - 0.5)
-                .slice(0, 9);
-
-            // Load all images first
-            const imageLoadPromises = shuffledImages.map(src => {
-                return new Promise((resolve, reject) => {
-                    const img = new Image();
-                    img.onload = () => resolve(img);
-                    img.onerror = reject;
-                    img.src = src;
-                });
-            });
-
-            // Wait for all images to load
-            const loadedImages = await Promise.all(imageLoadPromises);
-
-            // Create 9 image elements in a grid
-            loadedImages.forEach((img, i) => {
-                const newImg = document.createElement('img');
-                newImg.src = img.src;
-                newImg.className = 'mosaic-image';
-                newImg.alt = '';
-                mosaicContainer.appendChild(newImg);
-            });
-
-            // Show the mosaic after everything is ready
-            requestAnimationFrame(() => {
-                mosaicContainer.classList.add('initialized');
-            });
-
-        } catch (error) {
-            console.error('Error loading background images:', error);
-        }
-    };
 
     const usernameInput = document.getElementById('github-username');
     const proceedButton = document.getElementById('proceed-button');
@@ -112,6 +31,64 @@ document.addEventListener('DOMContentLoaded', () => {
     const section2 = document.getElementById('section2');
     const section3 = document.getElementById('section3');
 
+    // Error handling helper for config values
+    const getConfigValue = (path) => {
+        try {
+            const parts = path.split('.');
+            let value = config;
+            for (const part of parts) {
+                value = value?.[part];
+            }
+            return value ?? '';
+        } catch (error) {
+            console.error(`Error accessing config path: ${path}`, error);
+            return '';
+        }
+    };
+
+    const populateGitTogetherChoices = () => {
+        const fieldset = document.querySelector('legend[for="1521228078"]').parentElement;
+        const formGroup = fieldset.querySelector('.form-group');
+        
+        formGroup.innerHTML = '';
+        
+        if (config?.gittogethers) {
+            let hasActiveEvents = false;
+            
+            if (config.gittogethers.upcoming?.length > 0) {
+                const now = new Date();
+                config.gittogethers.upcoming.forEach(event => {
+                    const endTime = new Date(event.end_time);
+                    
+                    if (now <= endTime) {
+                        hasActiveEvents = true;
+                        const div = document.createElement('div');
+                        div.className = 'radio';
+                        div.innerHTML = `
+                            <label>
+                                <input type="radio" name="entry.1334197574" value="${event.name}" required>
+                                ${event.name}
+                            </label>
+                        `;
+                        formGroup.appendChild(div);
+                    }
+                });
+            }
+
+            if (hasActiveEvents && config.gittogethers.description) {
+                const helpBlock = document.createElement('p');
+                helpBlock.className = 'help-block';
+                helpBlock.textContent = config.gittogethers.description;
+                formGroup.insertBefore(helpBlock, formGroup.firstChild);
+            } else if (!hasActiveEvents) {
+                const content = document.querySelector('.content');
+                const noEventsMessage = getConfigValue('messages.no_events');
+                content.innerHTML = `<div class="thank-you-message">${noEventsMessage}</div>`;
+                form.style.display = 'none';
+            }
+        }
+    };
+
     const setLoading = (isLoading) => {
         if (isLoading) {
             proceedButton.textContent = 'Pushing to production..';
@@ -122,23 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
             proceedButton.style.opacity = '1';
             proceedButton.disabled = false;
         }
-    };
-
-    const validateGitHubUsername = async (username) => {
-        // Basic validation before API call
-        if (!/^[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}$/.test(username)) {
-            throw new Error('Invalid username format');
-        }
-        
-        return rateLimiter.throttle(async () => {
-            const response = await fetch(`https://api.github.com/users/${username}`);
-            if (response.status === 404) {
-                throw new Error('Username not found');
-            } else if (!response.ok) {
-                throw new Error('GitHub API error');
-            }
-            return response.json();
-        });
     };
 
     const validateEmail = (email, input) => {
@@ -167,63 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const validateLinkedInUrl = (url) => {
         return url === '' || /^https:\/\/(www\.)?linkedin\.com\/.*$/.test(url);
-    };
-
-    const populateGitTogetherChoices = () => {
-        const fieldset = document.querySelector('legend[for="1521228078"]').parentElement;
-        const formGroup = fieldset.querySelector('.form-group');
-        
-        // Clear existing content
-        formGroup.innerHTML = '';
-        
-        if (config && config.gittogethers) {
-            let hasActiveEvents = false;
-            
-            // Add radio buttons for each event
-            if (config.gittogethers.upcoming && config.gittogethers.upcoming.length > 0) {
-                const now = new Date();
-                config.gittogethers.upcoming.forEach(event => {
-                    const endTime = new Date(event.end_time);
-                    
-                    // Only show events that haven't ended
-                    if (now <= endTime) {
-                        hasActiveEvents = true;
-                        const div = document.createElement('div');
-                        div.className = 'radio';
-                        div.innerHTML = `
-                            <label>
-                                <input type="radio" name="entry.1334197574" value="${event.name}" required>
-                                ${event.name}
-                            </label>
-                        `;
-                        formGroup.appendChild(div);
-                    }
-                });
-            }
-
-            // Show description or no events message
-            if (hasActiveEvents && config.gittogethers.description) {
-                const helpBlock = document.createElement('p');
-                helpBlock.className = 'help-block';
-                helpBlock.textContent = config.gittogethers.description;
-                formGroup.insertBefore(helpBlock, formGroup.firstChild);
-            } else if (!hasActiveEvents) {
-                const content = document.querySelector('.content');
-                content.innerHTML = `<div class="thank-you-message">${config.gittogethers.no_events_message}</div>`;
-                form.style.display = 'none';
-            }
-        } else {
-            // Fallback for local development
-            const div = document.createElement('div');
-            div.className = 'radio';
-            div.innerHTML = `
-                <label>
-                    <input type="radio" name="entry.1334197574" value="Test Event" required>
-                    Test Event
-                </label>
-            `;
-            formGroup.appendChild(div);
-        }
     };
 
     const showSection = (section) => {
@@ -487,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
         usernameInput.classList.remove('error');
         
         if (!username) {
-            showInputError('Please enter your GitHub username');
+            showInputError(usernameInput, 'Please enter your GitHub username');
             return;
         }
 
@@ -642,7 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return true;
         } catch (error) {
             console.error('Error:', error);
-            showInputError('Invalid GitHub username');
+            showInputError(usernameInput, 'Invalid GitHub username');
             return false;
         }
     };
@@ -726,44 +629,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const showThankYouMessage = () => {
         const content = document.querySelector('.content');
         const selectedEvent = document.querySelector('input[name="entry.1334197574"]:checked');
-        const eventName = selectedEvent.value;
-        const event = config.gittogethers.upcoming.find(e => e.name === eventName);
-        const confirmationDate = new Date(event.confirmation_date);
-        const formattedDate = confirmationDate.toLocaleString('en-US', {
+        const eventName = selectedEvent?.value || '';
+        const event = config?.gittogethers?.upcoming?.find(e => e.name === eventName);
+        const confirmationDate = event ? new Date(event.confirmation_date) : null;
+        const formattedDate = confirmationDate ? confirmationDate.toLocaleString('en-US', {
             hour: 'numeric',
             minute: 'numeric',
             hour12: true,
             day: 'numeric',
             month: 'long',
             year: 'numeric'
-        }).replace(' at', '').replace(',', '');
+        }).replace(' at', '').replace(',', '') : '';
         
-        const userName = document.querySelector('.editable-name').textContent.trim();
+        const userName = document.querySelector('.editable-name')?.textContent.trim() || '';
         const firstName = userName.split(' ')[0];
-        const githubUsername = document.getElementById('1252770814').value;
+
+        const thankYouMessage = getConfigValue('messages.thank_you_message');
+        const thankYouButtons = getConfigValue('thank_you_buttons') || [];
 
         content.innerHTML = `
             <div class="thank-you-screen">
-                <div class="skyline-container loading">
-                    <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" style="display: none;">
+                <div class="logo">
+                    <img src="https://octodex.github.com/images/yogitocat.png" alt="Logo" class="logo-image thank-you-logo">
                 </div>
                 <div class="thank-you-message">
                     Thank you for registering for GitTogether ${eventName}, ${firstName}!
-
-                    If you're selected, we'll send you a confirmation email for this meetup by ${formattedDate}.
-
-                    ${config.thank_you_message}
+                    ${formattedDate ? `\n\nIf you're selected, we'll send you a confirmation email for this meetup by ${formattedDate}.` : ''}
+                    ${thankYouMessage ? `\n\n${thankYouMessage}` : ''}
                 </div>
-                <div class="thank-you-buttons">
-                    ${config.thank_you_buttons.map(button => 
-                        `<a href="${button.url}" target="_blank" rel="noopener noreferrer" title="${button.text}">${button.text}</a>`
-                    ).join('')}
-                </div>
+                ${thankYouButtons.length > 0 ? `
+                    <div class="thank-you-buttons">
+                        ${thankYouButtons.map(button => 
+                            `<a href="${button.url}" target="_blank" rel="noopener noreferrer" title="${button.text}">${button.text}</a>`
+                        ).join('')}
+                    </div>
+                ` : ''}
             </div>
         `;
-
-        const skylineContainer = content.querySelector('.skyline-container');
-        createSkylineDisplay(skylineContainer, userData, githubUsername);
     };
 
     // Event Listeners
@@ -932,26 +834,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Initialize
-    (async () => {
-        await loadConfig();
-        createMosaicBackground();
+    try {
+        config = await loadConfig();
+        if (!config) {
+            throw new Error('Failed to load configuration');
+        }
+        await createMosaicBackground(config);
         populateGitTogetherChoices();
         addHomepageLinks();
-    })();
-
-    // Add this new function for handling input errors
-    const showInputError = (message) => {
-        const input = document.getElementById('github-username');
-        const originalPlaceholder = input.placeholder;
-        
-        input.classList.add('error');
-        input.value = '';
-        input.placeholder = message;
-        
-        // Reset the input state after animation
-        setTimeout(() => {
-            input.classList.remove('error');
-            input.placeholder = originalPlaceholder;
-        }, 2000);
-    };
+    } catch (error) {
+        console.error('Initialization error:', error);
+        const content = document.querySelector('.content');
+        content.innerHTML = `<div class="thank-you-message">Sorry, we're having trouble loading the application. Please try again later.</div>`;
+    }
 });

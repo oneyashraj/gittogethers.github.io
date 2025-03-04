@@ -1,4 +1,3 @@
-# Messages and notifications
 messages:
   no_events: "No GitTogethers are scheduled at the moment. Please check <a href='https://gh.io/meetups'>gh.io/meetups</a> for more information."
   checkin_thank_you: "Thank you, {firstName}! We're glad you're here!"

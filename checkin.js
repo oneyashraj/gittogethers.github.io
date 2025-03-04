@@ -5,8 +5,7 @@ import {
     validateGitHubUsername,
     showInputError,
     showRadioError,
-    setLoading,
-    createSkylineDisplay
+    setLoading
 } from './shared.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -64,12 +63,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         const content = document.querySelector('.content');
         const userName = document.getElementById('766830585').value;
         const firstName = userName.split(' ')[0];
-        const githubUsername = document.getElementById('846479285').value;
         
         content.innerHTML = `
             <div class="thank-you-screen">
-                <div class="skyline-container loading">
-                    <img src="https://avatars.githubusercontent.com/u/98106734?s=200&v=4" alt="Logo" style="display: none;">
+                <div class="logo">
+                    <img src="${logoImage.src}" alt="Logo" class="logo-image">
                 </div>
                 <div class="thank-you-message">
                     ${config.messages.checkin_thank_you.replace('{firstName}', firstName)}
@@ -81,9 +79,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </div>
             </div>
         `;
-
-        const skylineContainer = content.querySelector('.skyline-container');
-        createSkylineDisplay(skylineContainer, userData, githubUsername);
     };
 
     const handleSubmit = async (event) => {
@@ -302,4 +297,4 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Initialize
     config = await loadConfig();
     await createMosaicBackground(config);
-}); 
+});

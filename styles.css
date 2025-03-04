@@ -433,56 +433,61 @@ textarea:focus {
 .thank-you-buttons {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap: 1.5rem;
     margin: 2rem auto;
-    max-width: 900px;
+    max-width: 1200px;
     width: 100%;
     opacity: 0;
     animation: fadeIn 0.5s ease forwards;
     animation-delay: 0.4s;
-    padding: 0 1rem;
+    padding: 0 2rem;
     justify-content: center;
+    flex-wrap: nowrap;
 }
 
 .thank-you-buttons a {
-    flex: 1;
-    min-width: 0;
+    flex: 0 1 auto;
+    min-width: fit-content;
     background: var(--button-bg);
     color: var(--button-text);
-    border: none;
+    border: 2px solid var(--button-text);
     border-radius: 8px;
-    padding: 0.75rem 1.2rem;
+    padding: 0.75rem 1.5rem;
     font-size: 0.95rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
     text-align: center;
-    height: auto;
-    min-height: 48px;
-    display: flex;
+    white-space: nowrap;
+    height: 48px;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    white-space: normal;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    line-height: 1.2;
+    margin: 0 0.5rem;
+}
+
+.thank-you-buttons a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(88, 202, 195, 0.3);
 }
 
 @media (max-width: 768px) {
     .thank-you-buttons {
         flex-direction: column;
         padding: 0 1rem;
+        gap: 1rem;
     }
 
     .thank-you-buttons a {
-        width: 100%;
-        font-size: 1rem;
-        padding: 0.75rem 1.5rem;
-        height: 48px;
-        white-space: normal;
-        line-height: 1.2;
         flex: none;
+        width: 100%;
+        white-space: normal;
+        height: auto;
+        min-height: 48px;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        margin: 0;
     }
 }
 

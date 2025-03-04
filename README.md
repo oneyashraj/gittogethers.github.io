@@ -12,7 +12,6 @@ A modern, responsive web application for handling GitTogethers event registratio
 - 🔄 Optimized API calls with rate limiting
 - 📱 Mobile-optimized error display with auto-scroll
 - 💾 Form response caching (username-specific)
-- 📊 GitHub Skyline integration with fallback avatar
 - 🌟 CSS Grid support, Flexbox for layouts and CSS custom properties (variables)
 - 👁️ Intersection Observer API for animations
 
@@ -48,7 +47,6 @@ A modern, responsive web application for handling GitTogethers event registratio
    - Personalized message with first name
    - Event-specific confirmation date
    - Configurable thank you message with HTML support
-   - GitHub Skyline visualization (fallback to avatar for users with no repos)
    - Smooth fade-in animations for all elements
 
 ## Code Organization 📁

@@ -451,7 +451,7 @@ textarea:focus {
     color: var(--button-text);
     border: 2px solid var(--button-text);
     border-radius: 8px;
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem 2.5rem;
     font-size: 0.95rem;
     font-weight: 500;
     cursor: pointer;
@@ -484,7 +484,7 @@ textarea:focus {
         white-space: normal;
         height: auto;
         min-height: 48px;
-        padding: 0.75rem 1rem;
+        padding: 0.75rem 2rem;
         font-size: 1rem;
         margin: 0;
     }
@@ -913,7 +913,7 @@ textarea:focus {
 /* Event card styles */
 .event-card {
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     cursor: pointer;
     position: relative;
     transition: all 0.3s ease;
@@ -942,26 +942,47 @@ textarea:focus {
 .event-card:hover .event-card-label {
     background-color: rgba(255, 255, 255, 0.15);
     border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .event-card.selected .event-card-label {
-    background-color: rgba(88, 202, 195, 0.2);
+    background-color: rgba(88, 202, 195, 0.3);
     border-color: var(--accent-color);
+    border-width: 3px;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(88, 202, 195, 0.4);
 }
 
 #event-selection {
-    margin: 1.5rem 0;
+    margin: 2rem 0;
 }
 
 #event-selection .form-group {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
     max-width: 500px;
     margin: 0 auto;
 }
 
 #event-selection legend {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     text-align: center;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+}
+
+/* Update header styles when user is logged in */
+.header-content.compact .logo-image {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+/* Specific styles for checkin.html */
+.checkin-page .header-content.compact .logo-image {
+    width: 140px;
+    height: 140px;
 }

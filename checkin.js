@@ -73,11 +73,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <div class="thank-you-message">
                     ${config.messages.checkin_thank_you.replace('{firstName}', firstName)}
                 </div>
-                <div class="thank-you-buttons">
-                    ${config.thank_you_buttons.map(button => 
-                        `<a href="${button.url}" target="_blank" rel="noopener noreferrer" title="${button.text}">${button.text}</a>`
-                    ).join('')}
-                </div>
             </div>
         `;
     };

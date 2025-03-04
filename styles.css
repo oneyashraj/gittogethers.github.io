@@ -426,8 +426,21 @@ textarea:focus {
     text-decoration: underline;
 }
 
+.thank-you-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
 .thank-you-screen .logo {
     margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
 }
 
 .thank-you-buttons {
@@ -901,6 +914,9 @@ textarea:focus {
     height: 280px;
     background-color: white;
     padding: 10px;
+    border-radius: 50%;
+    object-fit: contain;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {
@@ -913,7 +929,7 @@ textarea:focus {
 /* Event card styles */
 .event-card {
     width: 100%;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     cursor: pointer;
     position: relative;
     transition: all 0.3s ease;
@@ -942,7 +958,6 @@ textarea:focus {
 .event-card:hover .event-card-label {
     background-color: rgba(255, 255, 255, 0.15);
     border-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -950,7 +965,6 @@ textarea:focus {
     background-color: rgba(88, 202, 195, 0.3);
     border-color: var(--accent-color);
     border-width: 3px;
-    transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(88, 202, 195, 0.4);
 }
 
@@ -961,7 +975,7 @@ textarea:focus {
 #event-selection .form-group {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
     max-width: 500px;
     margin: 0 auto;
 }

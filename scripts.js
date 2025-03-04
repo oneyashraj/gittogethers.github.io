@@ -390,7 +390,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         usernameInput.classList.remove('error');
         
         if (!username) {
-            showInputError('Please enter your GitHub username');
+            showInputError(usernameInput, 'Please enter your GitHub username');
             return;
         }
 
@@ -545,7 +545,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             return true;
         } catch (error) {
             console.error('Error:', error);
-            showInputError('Invalid GitHub username');
+            showInputError(usernameInput, 'Invalid GitHub username');
             return false;
         }
     };
@@ -650,7 +650,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         content.innerHTML = `
             <div class="thank-you-screen">
                 <div class="logo">
-                    <img src="${logoImage.src}" alt="Logo" class="logo-image">
+                    <img src="https://octodex.github.com/images/yogitocat.png" alt="Logo" class="logo-image thank-you-logo">
                 </div>
                 <div class="thank-you-message">
                     Thank you for registering for GitTogether ${eventName}, ${firstName}!

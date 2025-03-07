@@ -22,6 +22,33 @@ document.addEventListener('DOMContentLoaded', async () => {
     const checkinSection = document.getElementById('checkin-section');
     const eventSelection = document.getElementById('event-selection');
 
+    // Helper function to extract date from event name 
+    // E.g., "Bengaluru (8th March 2025)" -> 2025-03-08
+    const extractEventDate = (eventName) => {
+        try {
+            const dateMatch = eventName.match(/\((\d+)(?:st|nd|rd|th)\s+([A-Za-z]+)\s+(\d{4})\)/);
+            if (!dateMatch) return null;
+            
+            const day = parseInt(dateMatch[1]);
+            const month = dateMatch[2];
+            const year = parseInt(dateMatch[3]);
+            
+            const monthNames = [
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+            ];
+            
+            const monthIndex = monthNames.findIndex(m => month.toLowerCase() === m.toLowerCase());
+            if (monthIndex === -1) return null;
+            
+            const eventDate = new Date(Date.UTC(year, monthIndex, day, 18, 29, 59)); // 11:59:59 PM IST in UTC
+            return eventDate;
+        } catch (error) {
+            console.error("Error extracting date from event name", error);
+            return null;
+        }
+    };
+
     const populateGitTogetherChoices = () => {
         const formGroup = document.querySelector('#event-selection .form-group');
         formGroup.innerHTML = '';
@@ -32,11 +59,21 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Add event cards for each event
             if (config.gittogethers.upcoming && config.gittogethers.upcoming.length > 0) {
                 const now = new Date();
+                console.log("Current date:", now.toISOString());
+                
                 config.gittogethers.upcoming.forEach(event => {
-                    const endTime = new Date(event.end_time);
+                    // Extract the event date from the event name
+                    const eventDate = extractEventDate(event.name);
                     
-                    // Only show events that haven't ended
-                    if (now <= endTime) {
+                    if (!eventDate) {
+                        console.error(`Failed to extract date from event name: ${event.name}`);
+                        return;
+                    }
+                    
+                    console.log(`Event: ${event.name}, Event Date: ${eventDate.toISOString()}, Comparison: ${now <= eventDate ? 'ACTIVE' : 'EXPIRED'}`);
+                    
+                    // Only show events if it's still the event day (until 11:59 PM IST)
+                    if (now <= eventDate) {
                         hasActiveEvents = true;
                         const card = document.createElement('div');
                         card.className = 'event-card';

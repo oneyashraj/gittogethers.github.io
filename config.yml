@@ -9,10 +9,10 @@ gittogethers:
   description: "Registrations close 2 days before the event."
   upcoming:
     - name: "Bengaluru (8th March 2025)"
-      end_time: "2025-03-08T17:00:00+05:30"
+      end_time: "2025-03-06T17:00:00+05:30"
       confirmation_date: "2025-03-06T23:59:00+05:30"
     - name: "Hyderabad (8th March 2025)"
-      end_time: "2025-03-08T17:00:00+05:30"
+      end_time: "2025-03-06T17:00:00+05:30"
       confirmation_date: "2025-03-06T23:59:00+05:30"
     - name: "Delhi NCR (22nd March 2025)"
       end_time: "2025-03-20T17:00:00+05:30"

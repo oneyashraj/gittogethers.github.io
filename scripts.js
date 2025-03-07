@@ -58,9 +58,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (config.gittogethers.upcoming?.length > 0) {
                 const now = new Date();
                 config.gittogethers.upcoming.forEach(event => {
+                    // For registration, strictly use the end_time to filter events
                     const endTime = new Date(event.end_time);
                     
-                    if (now <= endTime) {
+                    // Only show events that haven't reached their end_time yet
+                    if (now < endTime) {
                         hasActiveEvents = true;
                         const div = document.createElement('div');
                         div.className = 'radio';

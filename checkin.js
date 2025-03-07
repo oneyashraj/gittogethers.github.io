@@ -33,10 +33,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (config.gittogethers.upcoming && config.gittogethers.upcoming.length > 0) {
                 const now = new Date();
                 config.gittogethers.upcoming.forEach(event => {
+                    // Extract the event date from event name or end_time
                     const endTime = new Date(event.end_time);
                     
-                    // Only show events that haven't ended
-                    if (now <= endTime) {
+                    // For check-in, allow until 11:59 PM IST on the event day
+                    const eventDate = new Date(endTime);
+                    // Set time to 11:59:59 PM IST (UTC+5:30)
+                    eventDate.setUTCHours(18, 29, 59); // 11:59:59 PM IST in UTC is 18:29:59
+                    
+                    // Only show events if it's still the event day (until 11:59 PM IST)
+                    if (now <= eventDate) {
                         hasActiveEvents = true;
                         const card = document.createElement('div');
                         card.className = 'event-card';

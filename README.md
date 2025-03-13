@@ -45,9 +45,18 @@ A modern, responsive web application for handling GitTogethers event registratio
 
 5. **Thank You Screen** 🎉
    - Personalized message with first name
-   - Event-specific confirmation date
+   - Event-specific confirmation time
    - Configurable thank you message with HTML support
    - Smooth fade-in animations for all elements
+
+## Event Handling System 📋
+- Events are loaded from `data/events.json`
+- Each event contains basic details like title, dateTime, description, and venue
+- The system calculates important date information programmatically:
+  - **End Time**: Registration ends at 5 PM IST 2 days before the event
+  - **Confirmation Time**: Confirmation emails sent by 11:59 PM IST 2 days before the event
+- **Check-in page**: Events are only visible on the actual event day
+- **Registration page**: Events are visible until the registration end time
 
 ## Code Organization 📁
 The codebase is organized into modular components:
@@ -55,45 +64,43 @@ The codebase is organized into modular components:
 ### JavaScript Modules 📦
 - `shared.js`: Common utilities and functions
   - Rate limiting for API calls
-  - Config loading
+  - Config loading from data directory
+  - Events loading from JSON file
   - Background mosaic creation
   - GitHub username validation
   - Error handling utilities
   - Loading state management
 
-- `checkin.js`: Check-in specific functionality
+- `scripts.js`: Registration functionality
   - Form handling
   - Event selection
   - GitHub profile integration
-  - Name editing
+  - Name editing with duplicate prevention
+  - Form submission
+  
+- `checkin.js`: Check-in specific functionality
+  - Same-day event visibility logic
+  - GitHub profile integration
+  - Name editing with duplicate prevention
   - Form submission
 
-### Configuration (config.yml) ⚙️
+### Configuration (data/config.yml) ⚙️
 ```yaml
-# Background images for mosaic
-background_images:
-  - image_url_1
-  - image_url_2
-  # ...
-
 # Messages and notifications
 messages:
-  no_events: "Message when no events are available"
   checkin_thank_you: "Check-in confirmation message"
-  thank_you: "Post-registration message"
-
-# GitTogether event configuration
-gittogethers:
-  description: "Event registration info"
-  upcoming:
-    - name: "Event Name"
-      end_time: "Event end time"
-      confirmation_date: "When confirmation emails will be sent"
+  thank_you_message: "Post-registration message with HTML support"
 
 # Post-registration action buttons
 thank_you_buttons:
   - text: "Button text"
     url: "Button URL"
+
+# Background images for mosaic
+background_images:
+  - image_url_1
+  - image_url_2
+  # ...
 ```
 
 ## Dependencies 📦
@@ -111,11 +118,6 @@ thank_you_buttons:
 1. Clone the repository
 2. No build process required - pure HTML, CSS, and JavaScript
 3. Serve the files using any web server
-4. Update `config.yml` to configure events and messages
-
-## Security 🔒
-- Rate limiting on GitHub API calls
-- Form validation and sanitization
-- No sensitive data stored in localStorage
-- HTTPS required for GitHub API calls
+4. Update `data/config.yml` to configure messages and buttons
+5. Update `data/events.json` to manage upcoming events
 

@@ -1,6 +1,7 @@
 import {
     rateLimiter,
     loadConfig,
+    loadEvents,
     createMosaicBackground,
     validateGitHubUsername,
     showInputError,
@@ -10,6 +11,7 @@ import {
 
 document.addEventListener('DOMContentLoaded', async () => {
     let config = null;
+    let events = null;
     let userData = null;
 
     const usernameInput = document.getElementById('github-username');
@@ -22,76 +24,42 @@ document.addEventListener('DOMContentLoaded', async () => {
     const checkinSection = document.getElementById('checkin-section');
     const eventSelection = document.getElementById('event-selection');
 
-    // Helper function to extract date from event name 
-    // E.g., "Bengaluru (8th March 2025)" -> 2025-03-08
-    const extractEventDate = (eventName) => {
-        try {
-            const dateMatch = eventName.match(/\((\d+)(?:st|nd|rd|th)\s+([A-Za-z]+)\s+(\d{4})\)/);
-            if (!dateMatch) return null;
-            
-            const day = parseInt(dateMatch[1]);
-            const month = dateMatch[2];
-            const year = parseInt(dateMatch[3]);
-            
-            const monthNames = [
-                "January", "February", "March", "April", "May", "June",
-                "July", "August", "September", "October", "November", "December"
-            ];
-            
-            const monthIndex = monthNames.findIndex(m => month.toLowerCase() === m.toLowerCase());
-            if (monthIndex === -1) return null;
-            
-            const eventDate = new Date(Date.UTC(year, monthIndex, day, 18, 29, 59)); // 11:59:59 PM IST in UTC
-            return eventDate;
-        } catch (error) {
-            console.error("Error extracting date from event name", error);
-            return null;
-        }
-    };
-
     const populateGitTogetherChoices = () => {
         const formGroup = document.querySelector('#event-selection .form-group');
         formGroup.innerHTML = '';
         
-        if (config && config.gittogethers) {
+        if (events && events.length > 0) {
             let hasActiveEvents = false;
             
             // Add event cards for each event
-            if (config.gittogethers.upcoming && config.gittogethers.upcoming.length > 0) {
-                const now = new Date();
-                console.log("Current date:", now.toISOString());
+            const now = new Date();
+            console.log("Current date:", now.toISOString());
+            
+            events.forEach(event => {
+                const eventDate = new Date(event.originalEvent.dateTime);
+                const isSameDay = now.getDate() === eventDate.getDate() && 
+                                 now.getMonth() === eventDate.getMonth() && 
+                                 now.getFullYear() === eventDate.getFullYear();
                 
-                config.gittogethers.upcoming.forEach(event => {
-                    // Extract the event date from the event name
-                    const eventDate = extractEventDate(event.name);
-                    
-                    if (!eventDate) {
-                        console.error(`Failed to extract date from event name: ${event.name}`);
-                        return;
-                    }
-                    
-                    console.log(`Event: ${event.name}, Event Date: ${eventDate.toISOString()}, Comparison: ${now <= eventDate ? 'ACTIVE' : 'EXPIRED'}`);
-                    
-                    // Only show events if it's still the event day (until 11:59 PM IST)
-                    if (now <= eventDate) {
-                        hasActiveEvents = true;
-                        const card = document.createElement('div');
-                        card.className = 'event-card';
-                        card.setAttribute('data-event', event.name);
-                        card.innerHTML = `
-                            <input type="radio" name="selected_event" value="${event.name}" id="event-${event.name.replace(/\s+/g, '-').toLowerCase()}" class="event-radio" required>
-                            <label for="event-${event.name.replace(/\s+/g, '-').toLowerCase()}" class="event-card-label">
-                                ${event.name}
-                            </label>
-                        `;
-                        formGroup.appendChild(card);
-                    }
-                });
-            }
+                // For check-in page, only show events if it's the event day
+                if (isSameDay) {
+                    hasActiveEvents = true;
+                    const card = document.createElement('div');
+                    card.className = 'event-card';
+                    card.setAttribute('data-event', event.name);
+                    card.innerHTML = `
+                        <input type="radio" name="selected_event" value="${event.name}" id="event-${event.name.replace(/\s+/g, '-').toLowerCase()}" class="event-radio" required>
+                        <label for="event-${event.name.replace(/\s+/g, '-').toLowerCase()}" class="event-card-label">
+                            ${event.name}
+                        </label>
+                    `;
+                    formGroup.appendChild(card);
+                }
+            });
 
             if (!hasActiveEvents) {
                 const content = document.querySelector('.content');
-                content.innerHTML = `<div class="thank-you-message">${config.messages.no_events}</div>`;
+                content.innerHTML = `<div class="thank-you-message">No GitTogethers are scheduled at the moment. Please check <a href='https://gh.io/meetups'>gh.io/meetups</a> for more information.</div>`;
                 document.getElementById('checkin-section').style.display = 'none';
             }
         }
@@ -158,6 +126,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             const displayName = userData.name || userData.login;
             heading.innerHTML = `Hello<span class="editable-name">${displayName}</span> 👋`;
             headerContent.classList.add('compact');
+
+            // Remove any existing name edit links to prevent duplicates
+            const existingNameEditLinks = document.querySelector('.name-edit-links');
+            if (existingNameEditLinks) {
+                existingNameEditLinks.remove();
+            }
 
             // Add name edit links
             const nameEditLinks = document.createElement('div');
@@ -256,8 +230,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             const urlParams = new URLSearchParams(window.location.search);
             const eventParam = urlParams.get('event');
             
-            if (eventParam && config.gittogethers.upcoming.some(e => e.name === eventParam)) {
-                document.getElementById('2076383007').value = eventParam;
+            if (eventParam) {
+                eventName = eventParam;
+                document.getElementById('2076383007').value = eventName;
                 // Set event name in tagline
                 document.querySelector('.tagline').textContent = eventParam;
                 document.getElementById('event-name').textContent = eventParam;
@@ -337,5 +312,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Initialize
     config = await loadConfig();
+    events = await loadEvents();
     await createMosaicBackground(config);
 });

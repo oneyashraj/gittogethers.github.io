@@ -24,13 +24,64 @@ const rateLimiter = {
 // Load config
 const loadConfig = async () => {
     try {
-        const response = await fetch('config.yml');
+        const response = await fetch('data/config.yml');
         const yamlText = await response.text();
         return jsyaml.load(yamlText);
     } catch (error) {
         console.error('Error loading config:', error);
         return null;
     }
+};
+
+// Load events from events.json
+const loadEvents = async () => {
+    try {
+        const response = await fetch('data/events.json');
+        const events = await response.json();
+        
+        // Process events to add end_time and confirmation_time
+        return events.map(event => {
+            const eventDate = new Date(event.dateTime);
+            const eventName = `${event.title.replace('GitTogether ', '')} (${eventDate.getDate() + getSuffix(eventDate.getDate())} ${getMonthName(eventDate.getMonth())} ${eventDate.getFullYear()})`;
+            
+            // Calculate end_time: 5 PM IST 2 days before the event day
+            const endTime = new Date(eventDate);
+            endTime.setDate(eventDate.getDate() - 2);
+            endTime.setHours(17, 0, 0, 0); // 5:00 PM
+            
+            // Calculate confirmation_time: 11:59 PM IST 2 days before the event
+            const confirmationTime = new Date(eventDate);
+            confirmationTime.setDate(eventDate.getDate() - 2);
+            confirmationTime.setHours(23, 59, 0, 0); // 11:59 PM
+            
+            return {
+                name: eventName,
+                end_time: endTime.toISOString(),
+                confirmation_time: confirmationTime.toISOString(),
+                originalEvent: event
+            };
+        });
+    } catch (error) {
+        console.error('Error loading events:', error);
+        return [];
+    }
+};
+
+// Helper functions for date formatting
+const getSuffix = (day) => {
+    if (day > 3 && day < 21) return 'th';
+    switch (day % 10) {
+        case 1: return 'st';
+        case 2: return 'nd';
+        case 3: return 'rd';
+        default: return 'th';
+    }
+};
+
+const getMonthName = (month) => {
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                   'July', 'August', 'September', 'October', 'November', 'December'];
+    return months[month];
 };
 
 // Create mosaic background
@@ -153,6 +204,7 @@ const setLoading = (button, isLoading) => {
 export {
     rateLimiter,
     loadConfig,
+    loadEvents,
     createMosaicBackground,
     validateGitHubUsername,
     showInputError,

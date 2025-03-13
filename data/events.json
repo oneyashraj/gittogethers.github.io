@@ -1,0 +1,38 @@
+[
+  {
+    "id": "306485599",
+    "title": "GitTogether Delhi NCR",
+    "dateTime": "2025-03-22T10:30+05:30",
+    "description": "IMPORTANT: **Meetup RSVP is not considered as registration.** Please register at **[gittogethers.github.io](http://gittogethers.github.io/)** by **12 PM IST on Thursday 20th March**. Confirmed participants will receive an email by the end of the same day. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nJoin us for this half-day meetup packed with insights, inspiration, and networking! Sharpen your tech skills and discover incredible open-source projects. What to expect:\n\n* **Tech Sessions**: Dive into the latest open-source technologies with talks by experienced developers. Expand your knowledge and toolkit!\n* **Community Spotlight**: Discover a hidden gem! One lucky participant gets to showcase a cool open-source project they've built. Could it be you?\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n* 10:30 AM - 11:00 AM: **Registration and Networking**\n* 11:00 AM - 11:20 AM: **Welcome Note**\n11:20 AM - 11:50 AM: **AI Governance - An Indan lens** by [Vibhav Mithal](https://www.linkedin.com/in/vibhav-mithal-9199b416/), Associate Research Fellow at Centre for Responsible AI IIT Madras\n* 11:50 AM - 12:20 PM: **Automating ML Pipelines using GitHub Actions** by [Kirti ](https://www.linkedin.com/in/kirti-ramrakhyani-4295b9105/overlay/about-this-profile/)[Ramrakhyani](https://www.linkedin.com/in/kirti-ramrakhyani-4295b9105/)**,** Lead ML Engineer at UKG\n* 12:20 PM - 12:40 PM: Break & networking\n* 12:40 PM - 1:00 PM: **Community Spotlight -** [Chirag Aggarwal](https://www.linkedin.com/in/chiragagg5k/), Engineering Intern at Appwrite\n* 1:00 PM - 1:30 PM: **Session 3 - (Speaker from LambdaTest)**\n* 1:30 PM to 2:30 PM: **Quiz, Networking and Event Closing**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Date**: 22nd March 2025, Saturday, 10:30 am to 2:30 pm\n**Venue: LambdaTest Noida**\n**Registration Link:** https://gittogethers.github.io/\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security?\n\nWe're calling for developers to submit their session proposals for upcoming GitTogether events! [Submit your proposal here](https://gh.io/cfs).\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for the spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/525373271/676x380.webp",
+    "venue": {
+      "name": "LambdaTest Noida",
+      "address": "2nd Floor, KLJ, TOWER-A, Noida One, Rasoolpur Nawada, Industrial Area, Sector 62, Noida, Uttar Pradesh 201309",
+      "city": "Noida",
+      "postalCode": "meetup121",
+      "country": "in",
+      "lat": 28.623615,
+      "lng": 77.36662
+    },
+    "groupUrlname": "gittogether-delhi",
+    "link": "https://www.meetup.com/gittogether-delhi/events/306485599/"
+  },
+  {
+    "id": "306569732",
+    "title": "GitTogether Mumbai",
+    "dateTime": "2025-03-22T14:00+05:30",
+    "description": "Join us for a dynamic afternoon full of learning and networking at GitTogether Mumbai where we cover a wide range of topics, latest trends in technology and open-source software development 💡\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security?\nWe're calling for developers to submit their session proposals for upcoming GitTogether events! [Submit your proposal here](https://gh.io/cfs).\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for the spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nThis edition will also feature a **hands-on workshop** designed to help you master GitHub Copilot 🚀 Participants are required to bring their laptops with Visual Studio Code installed.\n\n**Proposed AGENDA**\n\n* **Welcome Note** (5 mins)\n* **Session 1** (30 minutes) [CALL FOR SESSIONS](https://gh.io/cfs)!\n* **Session 2** (30 minutes)\n* **Community Spotlight** (15 minutes) [Showcase your OSS Projects](https://gh.io/spotlight)\n* **GitHub Copilot Workshop** (60+ mins)\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Date**: 22nd March 2025, Saturday, 10:30 am to 2:30 pm\n\n**Venue:** Microsoft, Mumbai\n\nBy 15th March 2025, the agenda will be announced and registrations will be opened up.",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/526617555/676x380.webp",
+    "venue": {
+      "name": "Microsoft Corporation India Private Limited",
+      "address": "Central Salsette Tramway Road",
+      "city": "Mumbai",
+      "postalCode": "400098",
+      "country": "in",
+      "lat": 19.069242,
+      "lng": 72.86164
+    },
+    "groupUrlname": "gittogether-mumbai",
+    "link": "https://www.meetup.com/gittogether-mumbai/events/306569732/"
+  }
+]

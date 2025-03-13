@@ -1,6 +1,7 @@
 import {
     rateLimiter,
     loadConfig,
+    loadEvents,
     createMosaicBackground,
     validateGitHubUsername,
     showInputError,
@@ -10,6 +11,7 @@ import {
 
 document.addEventListener('DOMContentLoaded', async () => {
     let config = null;
+    let events = null;
     let userData = null;
 
     const usernameInput = document.getElementById('github-username');
@@ -52,13 +54,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         formGroup.innerHTML = '';
         
-        if (config?.gittogethers) {
+        if (events) {
             let hasActiveEvents = false;
             
-            if (config.gittogethers.upcoming?.length > 0) {
+            if (events.length > 0) {
                 const now = new Date();
-                config.gittogethers.upcoming.forEach(event => {
-                    // For registration, strictly use the end_time to filter events
+                events.forEach(event => {
+                    // For registration, use the end_time to filter events
                     const endTime = new Date(event.end_time);
                     
                     // Only show events that haven't reached their end_time yet
@@ -77,15 +79,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                 });
             }
 
-            if (hasActiveEvents && config.gittogethers.description) {
+            if (hasActiveEvents) {
                 const helpBlock = document.createElement('p');
                 helpBlock.className = 'help-block';
-                helpBlock.textContent = config.gittogethers.description;
+                helpBlock.textContent = "Registrations close 2 days before the event.";
                 formGroup.insertBefore(helpBlock, formGroup.firstChild);
             } else if (!hasActiveEvents) {
                 const content = document.querySelector('.content');
-                const noEventsMessage = getConfigValue('messages.no_events');
-                content.innerHTML = `<div class="thank-you-message">${noEventsMessage}</div>`;
+                content.innerHTML = `<div class="thank-you-message">No GitTogethers are scheduled at the moment. Please check <a href='https://gh.io/meetups'>gh.io/meetups</a> for more information.</div>`;
                 form.style.display = 'none';
             }
         }
@@ -430,6 +431,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             heading.innerHTML = `Hello<span class="editable-name">${displayName}</span> 👋`;
             headerContent.classList.add('compact');
 
+            // Remove any existing name edit links to prevent duplicates
+            const existingNameEditLinks = document.querySelector('.name-edit-links');
+            if (existingNameEditLinks) {
+                existingNameEditLinks.remove();
+            }
+
             // Add name edit links
             const nameEditLinks = document.createElement('div');
             nameEditLinks.className = 'name-edit-links';
@@ -632,9 +639,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         const content = document.querySelector('.content');
         const selectedEvent = document.querySelector('input[name="entry.1334197574"]:checked');
         const eventName = selectedEvent?.value || '';
-        const event = config?.gittogethers?.upcoming?.find(e => e.name === eventName);
-        const confirmationDate = event ? new Date(event.confirmation_date) : null;
-        const formattedDate = confirmationDate ? confirmationDate.toLocaleString('en-US', {
+        const event = events?.find(e => e.name === eventName);
+        const confirmationTime = event ? new Date(event.confirmation_time) : null;
+        const formattedDate = confirmationTime ? confirmationTime.toLocaleString('en-US', {
             hour: 'numeric',
             minute: 'numeric',
             hour12: true,
@@ -838,6 +845,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Initialize
     try {
         config = await loadConfig();
+        events = await loadEvents();
         if (!config) {
             throw new Error('Failed to load configuration');
         }

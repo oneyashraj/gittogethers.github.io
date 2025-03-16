@@ -34,5 +34,23 @@
     },
     "groupUrlname": "gittogether-mumbai",
     "link": "https://www.meetup.com/gittogether-mumbai/events/306569732/"
+  },
+  {
+    "id": "306748793",
+    "title": "GitTogether Hyderabad",
+    "dateTime": "2025-04-12T09:30+05:30",
+    "description": "**Meetup RSVP is not considered as registration.** Registrations for the event are now closed. Emails have been sent to confirmed participants. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nJoin us for this half-day meetup packed with insights, inspiration, and networking! Sharpen your tech skills and discover incredible open-source projects. What to expect:\n\n* **Tech Sessions**: Dive into the latest open-source technologies with talks by experienced developers. Expand your knowledge and toolkit!\n* **Community Spotlight**: Discover a hidden gem! One lucky participant gets to showcase a cool open-source project they've built. Could it be you?\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Agenda**\n\n* 9:30 AM to 10:00 AM: **Registration and Networking**\n* 10:00 AM to 10:10 AM: **git init (Welcome Note)**\n* 10:10 AM to 10:40 AM: **Speaker 1 (**[Submit for Speaker](https://gh.io/cfs)**)**\n* 10:40 AM to 11:10 AM: **Speaker 2 (**[Submit for Speaker](https://gh.io/cfs)**)**\n* 11:10 AM to 11:30 AM: **Break and Networking**\n* 11:30 AM to 12:00 PM: **Community** **Spotlight (**[Submit for Spotlight](https://gh.io/spotlight)**)**\n* 12:00 PM to 12:45 PM: **Speaker 3 (**[Submit for Speaker](https://gh.io/cfs)**)**\n* 12:45 PM to 1:00 PM: **git merge (Closing Note)**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Date**: Saturday 12th April, 2025\n\n**Time**: 9:30 AM to 1:00 PM IST\n\n**Venue**: TBD\n\nFor any queries, please contact [Tanmaiyee Vadloori](https://github.com/Tanmaiyee-Vadloori), Community Volunteer at GitTogether Hyderabad or write to us at meetups@github.com\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security?\n\nWe're calling for developers to submit their session proposals for upcoming GitTogether events! [Submit your proposal here](https://gh.io/cfs).\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/526803881/676x380.webp",
+    "venue": {
+      "name": "Microsoft Building 3",
+      "address": "",
+      "city": "Hyderabad",
+      "postalCode": "500032",
+      "country": "in",
+      "lat": 17.429216,
+      "lng": 78.34112
+    },
+    "groupUrlname": "gittogether-hyderabad",
+    "link": "https://www.meetup.com/gittogether-hyderabad/events/306748793/"
   }
 ]

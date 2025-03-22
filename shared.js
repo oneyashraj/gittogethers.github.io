@@ -1,4 +1,5 @@
-// Rate limiting implementation
+// Implements rate limiting for API calls to avoid hitting rate limits
+// Ensures minimum 1 second gap between consecutive calls
 const rateLimiter = {
     lastCall: 0,
     minInterval: 1000, // 1 second between calls
@@ -21,7 +22,8 @@ const rateLimiter = {
     }
 };
 
-// Load config
+// Load configuration from YAML file
+// Contains UI messages, button configurations and background image URLs
 const loadConfig = async () => {
     try {
         const response = await fetch('data/config.yml');
@@ -33,7 +35,9 @@ const loadConfig = async () => {
     }
 };
 
-// Load events from events.json
+// Load and process events from JSON file
+// Adds calculated fields like end_time and confirmation_time
+// Returns array of event objects with name, times and original event data
 const loadEvents = async () => {
     try {
         const response = await fetch('data/events.json');
@@ -67,7 +71,7 @@ const loadEvents = async () => {
     }
 };
 
-// Helper functions for date formatting
+// Helper functions for event date formatting
 const getSuffix = (day) => {
     if (day > 3 && day < 21) return 'th';
     switch (day % 10) {
@@ -84,7 +88,8 @@ const getMonthName = (month) => {
     return months[month];
 };
 
-// Create mosaic background
+// Creates animated background mosaic from config-defined images
+// Uses localStorage to cache image data for better performance
 const createMosaicBackground = async (config) => {
     try {
         const mosaicContainer = document.createElement('div');
@@ -139,7 +144,8 @@ const createMosaicBackground = async (config) => {
     }
 };
 
-// GitHub username validation
+// Validates GitHub username format and existence via GitHub API
+// Returns user data if valid, throws error otherwise
 const validateGitHubUsername = async (username) => {
     // Basic validation before API call
     if (!/^[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}$/.test(username)) {
@@ -157,7 +163,8 @@ const validateGitHubUsername = async (username) => {
     });
 };
 
-// Error handling functions
+// Display error state for input fields with error message
+// Auto-resets after animation completes
 const showInputError = (input, message) => {
     const originalPlaceholder = input.placeholder;
     
@@ -172,6 +179,8 @@ const showInputError = (input, message) => {
     }, 2000);
 };
 
+// Display error state for radio button groups
+// Auto-scrolls to error on mobile devices
 const showRadioError = (container, message) => {
     let errorDiv = container.querySelector('.radio-error-message');
     if (!errorDiv) {
@@ -187,7 +196,7 @@ const showRadioError = (container, message) => {
     }
 };
 
-// Loading state management
+// Toggle button loading state with visual feedback
 const setLoading = (button, isLoading) => {
     if (isLoading) {
         button.textContent = 'Pushing to production..';
@@ -200,13 +209,13 @@ const setLoading = (button, isLoading) => {
     }
 };
 
-// Export functions for use in other files
+// Export utility functions for use in other modules
 export {
     rateLimiter,
     loadConfig,
     loadEvents,
     createMosaicBackground,
-    validateGitHubUsername,
+    validateGitHubUsername, 
     showInputError,
     showRadioError,
     setLoading

@@ -1,3 +1,4 @@
+// Import utility functions from shared module
 import {
     rateLimiter,
     loadConfig,
@@ -9,11 +10,14 @@ import {
     setLoading
 } from './shared.js';
 
+// Initialize the registration page functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', async () => {
+    // State variables for managing form data and user information
     let config = null;
     let events = null;
     let userData = null;
 
+    // DOM element references
     const usernameInput = document.getElementById('github-username');
     const proceedButton = document.getElementById('proceed-button');
     const errorMessage = document.getElementById('error-message');
@@ -33,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const section2 = document.getElementById('section2');
     const section3 = document.getElementById('section3');
 
-    // Error handling helper for config values
+    // Helper function to safely access nested config values
     const getConfigValue = (path) => {
         try {
             const parts = path.split('.');
@@ -48,6 +52,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     };
 
+    // Populate event choices in registration form
+    // Only shows events that haven't reached their registration deadline
     const populateGitTogetherChoices = () => {
         const fieldset = document.querySelector('legend[for="1521228078"]').parentElement;
         const formGroup = fieldset.querySelector('.form-group');
@@ -104,6 +110,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     };
 
+    // Form validation functions
     const validateEmail = (email, input) => {
         // Clear any existing error state
         input.classList.remove('error-input');
@@ -132,6 +139,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         return url === '' || /^https:\/\/(www\.)?linkedin\.com\/.*$/.test(url);
     };
 
+    // Form section navigation and validation
     const showSection = (section) => {
         section1.style.display = 'none';
         section2.style.display = 'none';
@@ -139,6 +147,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         section.style.display = 'block';
     };
 
+    // Error handling for form inputs
     const showError = (element, message) => {
         element.classList.add('error-input');
         element.placeholder = message;
@@ -178,6 +187,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     };
 
+    // Form section-specific validation
     const validateSection1 = () => {
         let isValid = true;
         const emailInput = document.getElementById('1294570093');
@@ -275,6 +285,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         return isValid;
     };
 
+    // Update role designation field based on company name
     const updateRoleDesignationLegend = () => {
         const companyInput = document.getElementById('1174706497');
         const companyName = companyInput.value.trim();
@@ -282,11 +293,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         roleDesignationLegend.textContent = companyName ? `Role/Designation at ${companyName}` : 'Role/Designation';
     };
 
-    // Cache form responses
+    // Form response caching functionality
+    // Caches user responses per GitHub username for better UX
     const cacheKey = 'gittogethers_form_cache';
     const usernameCacheKey = 'gittogethers_username';
     
     const cacheableFields = {
+        // Map of form field IDs to cache keys
         'entry.1294570093': 'email',  // Email Address
         'entry.1547278427': 'city',   // City
         'entry.2043018353': 'country', // Country
@@ -385,6 +398,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     };
 
+    // Handle GitHub username submission and form initialization
     const handleSubmit = async (event) => {
         event?.preventDefault();
         
@@ -559,6 +573,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     };
 
+    // Form submission handler with GitHub stats integration
     const submitForm = () => {
         if (!validateSection3()) {
             return;
@@ -616,6 +631,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         cacheFormResponses();
     };
 
+    // Add quick access links to homepage
     const addHomepageLinks = () => {
         if (!config?.thank_you_buttons) return;
         
@@ -635,6 +651,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelector('.form-container').insertAdjacentElement('afterend', links);
     };
 
+    // Display thank you message after successful registration
     const showThankYouMessage = () => {
         const content = document.querySelector('.content');
         const selectedEvent = document.querySelector('input[name="entry.1334197574"]:checked');
@@ -677,7 +694,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         `;
     };
 
-    // Event Listeners
+    // Event listeners for form interactivity
+    // Radio button "Other" option handling
     document.querySelectorAll('input[name$=".other_option_response"]').forEach(input => {
         input.addEventListener('focus', () => {
             const radioName = input.name.replace('.other_option_response', '');
@@ -686,6 +704,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
 
+    // Section navigation button handlers
     proceedButton.addEventListener('click', handleSubmit);
     usernameInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
@@ -755,6 +774,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
+    // Form submission and validation
     form.addEventListener('submit', function (event) {
         event.preventDefault();
         submitForm();
@@ -821,14 +841,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         errorMessage.textContent = '';
     });
 
-    // Add homepage class when form is not visible
+    // Add responsive behavior for homepage layout
     const container = document.querySelector('.container');
     if (!document.getElementById('bootstrapForm').style.display || 
         document.getElementById('bootstrapForm').style.display === 'none') {
         container.classList.add('homepage');
     }
     
-    // Remove homepage class when form becomes visible
+    // Watch for form visibility changes
     const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
             if (mutation.target.style.display === 'block') {
@@ -842,7 +862,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         attributeFilter: ['style']
     });
 
-    // Initialize
+    // Initialize page
+    // Load configuration, events and setup UI
     try {
         config = await loadConfig();
         events = await loadEvents();

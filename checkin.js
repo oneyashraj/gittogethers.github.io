@@ -1,3 +1,4 @@
+// Import utility functions from shared module
 import {
     rateLimiter,
     loadConfig,
@@ -9,11 +10,15 @@ import {
     setLoading
 } from './shared.js';
 
+// Initialize the check-in page functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', async () => {
+    // State variables for configuration, events and user data
     let config = null;
     let events = null;
     let userData = null;
+    let eventName = null;
 
+    // DOM element references
     const usernameInput = document.getElementById('github-username');
     const proceedButton = document.getElementById('proceed-button');
     const errorMessage = document.getElementById('error-message');
@@ -24,6 +29,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const checkinSection = document.getElementById('checkin-section');
     const eventSelection = document.getElementById('event-selection');
 
+    // Populate available events for check-in
+    // Only shows events scheduled for current day
     const populateGitTogetherChoices = () => {
         const formGroup = document.querySelector('#event-selection .form-group');
         formGroup.innerHTML = '';
@@ -65,6 +72,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     };
 
+    // Display check-in confirmation screen with custom message
     const showThankYouMessage = () => {
         const content = document.querySelector('.content');
         const userName = document.getElementById('766830585').value;
@@ -82,6 +90,54 @@ document.addEventListener('DOMContentLoaded', async () => {
         `;
     };
 
+    // Validate event selection before form submission
+    // Returns true if valid selection or if selection not required
+    const validateEventSelection = () => {
+        if (eventSelection.style.display !== 'none') {
+            const selectedEvent = document.querySelector('input[name="selected_event"]:checked');
+            if (!selectedEvent) {
+                const formGroup = document.querySelector('#event-selection .form-group');
+                showRadioError(formGroup, 'Please select an event');
+                return false;
+            }
+            return true;
+        }
+        return true; // If event selection is hidden, validation passes
+    };
+
+    // Handle form submission
+    // Validates GitHub username and event selection before submitting
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Block submission if GitHub username hasn't been validated
+        if (!userData) {
+            showInputError(usernameInput, 'Please enter your GitHub username first');
+            usernameInput.focus();
+            return;
+        }
+        
+        // Validate event selection
+        if (!validateEventSelection()) {
+            return;
+        }
+
+        // Submit form using jQuery Form plugin
+        $('#bootstrapForm').ajaxSubmit({
+            url: form.action,
+            type: 'POST',
+            dataType: 'xml',
+            success: function(response) {
+                showThankYouMessage();
+            },
+            error: function() {
+                showThankYouMessage();
+            }
+        });
+    });
+
+    // Handle GitHub username submission and initial setup
+    // Validates username, fetches user data, and sets up UI
     const handleSubmit = async (event) => {
         event?.preventDefault();
         
@@ -223,6 +279,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             document.getElementById('846479285').value = userData.login;
             document.getElementById('766830585').value = displayName;
 
+            // Remove form submit handler since it's now handled globally
+            form.removeEventListener('submit', handleSubmit);
+
             // Show check-in section
             checkinSection.style.display = 'block';
 
@@ -258,34 +317,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 });
             }
 
-            // Add form submit handler
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                // Validate event selection if needed
-                if (eventSelection.style.display !== 'none') {
-                    const selectedEvent = document.querySelector('input[name="selected_event"]:checked');
-                    if (!selectedEvent) {
-                        const formGroup = document.querySelector('#event-selection .form-group');
-                        showRadioError(formGroup, 'Please select an event');
-                        return;
-                    }
-                }
-
-                // Submit form
-                $('#bootstrapForm').ajaxSubmit({
-                    url: form.action,
-                    type: 'POST',
-                    dataType: 'xml',
-                    success: function(response) {
-                        showThankYouMessage();
-                    },
-                    error: function() {
-                        showThankYouMessage();
-                    }
-                });
-            });
-
             return true;
         } catch (error) {
             console.error('Error:', error);
@@ -296,13 +327,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     };
 
-    // Add input event listener to clear error state
+    // Event Listeners
+    // Clear error states on input
     usernameInput.addEventListener('input', () => {
         usernameInput.classList.remove('error');
         errorMessage.textContent = '';
     });
 
-    // Event Listeners
+    // Handle username submission via button click or Enter key
     proceedButton.addEventListener('click', handleSubmit);
     usernameInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
@@ -310,7 +342,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    // Initialize
+    // Initialize page
+    // Load configuration, events and setup background
     config = await loadConfig();
     events = await loadEvents();
     await createMosaicBackground(config);

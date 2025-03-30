@@ -1,23 +1,5 @@
 [
   {
-    "id": "306335341",
-    "title": "CI/CD de Microservicios con GitHub Actions para Entornos MultiCloud",
-    "dateTime": "2025-03-29T09:00-05:00",
-    "description": "¡Hola, increíble comunidad de Medellín! 🌟\n\nNos complace anunciar un emocionante taller organizado por la comunidad de GitHub que no querrás perderte. 🎉\n\nEn este taller práctico, los participantes aprenderán a implementar flujos Cl/CD con GitHub Actions para microservicios en la nube, aplicando buenas prácticas para optimizar eficiencia, seguridad y fiabilidad.\n\n**TEMAS CLAVE:**\n\n\\- GitHub Actions: Creación y gestión de workflows optimizados para integración continua y despliegue MultiCloud\\.\n\\- Workflows End\\-to\\-End: Desarrollo de pipelines completos con pruebas\\, validaciones y despliegues en Azure y AWS\\.\n\\- Seguridad: Uso de secretos y variables de entorno en GitHub para conexiones seguras\\.\n\\- Resolución de errores: Técnicas para diagnosticar y solucionar fallos en los pipelines\\.\n\n**AGENDA**\n\n\\* 8:45 a.m. - Registro\n\n\\* 9:00 a.m. - Hablaremos de nuestra comunidad de GitHub Medellín.\n\n\\* 9:15 a.m. - CI/CD de Microservicios con GitHub Actions para Entornos MultiCloud\n\n\\* 10:15 a.m. - Break\n\n\\* 10:30 a.m. - Continuacion del taller CI/CD de Microservicios con GitHub Actions para Entornos MultiCloud\n\n\\* 11:30 a.m. - Networking & rifas\n\n**Requerimientos**\n\n* **Cuenta AWS gratuita**\n* **Cuenta Azure gratuita**\n* **Cuenta GitHub**\n* **Laptop con buena carga de energia**\n\n**Ubicación**\n\nUniversidad pontifica Bolivaria - Aula 504 del bloque 9\n\n¡No se pierdan esta oportunidad única de conectar con la comunidad, aprender y divertirse! 🌟 ¡Los esperamos con los brazos abiertos! 🤗",
-    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/526381511/676x380.webp",
-    "venue": {
-      "name": "UPB",
-      "address": "Circular 1ª 70-01, barrio Laureles",
-      "city": "Medellín",
-      "postalCode": "meetup3",
-      "country": "CO",
-      "lat": 6.242341,
-      "lng": -75.58936
-    },
-    "groupUrlname": "gittogether-medellin",
-    "link": "https://www.meetup.com/gittogether-medellin/events/306335341/"
-  },
-  {
     "id": "306748793",
     "title": "GitTogether Hyderabad",
     "dateTime": "2025-04-12T09:30+05:30",

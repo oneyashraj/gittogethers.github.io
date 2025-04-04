@@ -16,5 +16,23 @@
     },
     "groupUrlname": "gittogether-hyderabad",
     "link": "https://www.meetup.com/gittogether-hyderabad/events/306748793/"
+  },
+  {
+    "id": "307110818",
+    "title": "GitTogether Bengaluru",
+    "dateTime": "2025-04-19T09:30+05:30",
+    "description": "IMPORTANT: **Meetup RSVP is not considered as registration.** Please register at **[gittogethers.github.io](http://gittogethers.github.io/)** by **12 PM IST on 17th April**. Confirmed participants will receive an email by the end of the same day. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nJoin us for this **hands-on workshop** packed with insights, inspiration, and networking! Sharpen your tech skills and discover incredible open-source projects.\n\nThis time, we're diving into hands-on coding with a special focus on leveraging GitHub Copilot as your code assistance tool. Whether you're a beginner or a seasoned developer, this is your chance to explore innovative ways to enhance your development process.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Agenda**\n\n* 9:30 AM to 10:00 AM: **Registration and Networking**\n* 10:00 AM to 10:10 AM: **Welcome Note**\n* 10:10 AM to 10:40 AM: **Intro to GitHub Copilot**\n* 10:40 AM to 12:05 AM: **Hands-on** **Workshop**\n* 12:05 AM to 12:30 PM: **Quiz, Networking and Event Closing**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Date**: Saturday 19th April 2025\n\n**Time**: 9:30 AM to 12:30 PM IST\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security?\nWe're calling for developers to submit their session proposals for upcoming GitTogether events! [Submit your proposal here](https://gh.io/cfs).\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527162575/676x380.webp",
+    "venue": {
+      "name": "Microsoft Corporation (India) Pvt Ltd",
+      "address": "Prestige Ferns Galaxy, First Floor, Sy No. 7/1, 7/2 & 8/1A,, Outer Ring Road Ambalipura Village, Hobli, Varthur,",
+      "city": "Bengaluru",
+      "postalCode": "",
+      "country": "in",
+      "lat": 12.92211,
+      "lng": 77.66877
+    },
+    "groupUrlname": "gittogether-bengaluru",
+    "link": "https://www.meetup.com/gittogether-bengaluru/events/307110818/"
   }
 ]

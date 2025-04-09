@@ -28,6 +28,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     const heading = document.querySelector('h1');
     const checkinSection = document.getElementById('checkin-section');
     const eventSelection = document.getElementById('event-selection');
+    const formContainer = document.querySelector('.form-container');
+    
+    // Function to check if there are events happening today
+    const checkForTodayEvents = () => {
+        if (events && events.length > 0) {
+            const now = new Date();
+            // Check if any event is happening today
+            return events.some(event => {
+                const eventDate = new Date(event.originalEvent.dateTime);
+                return now.getDate() === eventDate.getDate() && 
+                       now.getMonth() === eventDate.getMonth() && 
+                       now.getFullYear() === eventDate.getFullYear();
+            });
+        }
+        return false;
+    };
+    
+    // Show no events message
+    const showNoEventsMessage = () => {
+        const content = document.querySelector('.content');
+        content.innerHTML = `<div class="thank-you-message">No GitTogethers are happening today. Please check <a href='https://gh.io/meetups'>gh.io/meetups</a> for more information.</div>`;
+        formContainer.style.display = 'none';
+    };
 
     // Populate available events for check-in
     // Only shows events scheduled for current day
@@ -65,8 +88,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
 
             if (!hasActiveEvents) {
-                const content = document.querySelector('.content');
-                content.innerHTML = `<div class="thank-you-message">No GitTogethers are scheduled at the moment. Please check <a href='https://gh.io/meetups'>gh.io/meetups</a> for more information.</div>`;
+                showNoEventsMessage();
                 document.getElementById('checkin-section').style.display = 'none';
             }
         }
@@ -298,6 +320,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 document.getElementById('event-name').style.display = 'block';
             } else {
                 eventSelection.style.display = 'block';
+                
+                // Display only today's events
                 populateGitTogetherChoices();
                 
                 // Add event listener for event cards
@@ -343,8 +367,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     // Initialize page
-    // Load configuration, events and setup background
+    // Load configuration and events first
     config = await loadConfig();
     events = await loadEvents();
+    
+    // Hide the form container immediately if no events
+    if (!checkForTodayEvents()) {
+        // Hide form elements before any rendering happens
+        formContainer.style.display = 'none';
+        showNoEventsMessage();
+    }
+    
+    // Setup background after checking events
     await createMosaicBackground(config);
 });

@@ -65,23 +65,64 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             if (events.length > 0) {
                 const now = new Date();
-                events.forEach(event => {
-                    // For registration, use the end_time to filter events
+                
+                // Filter events that haven't reached their end_time yet
+                const availableEvents = events.filter(event => {
                     const endTime = new Date(event.end_time);
+                    return now < endTime;
+                });
+
+                // First sort all events by date (closest first)
+                availableEvents.sort((a, b) => {
+                    const dateA = new Date(a.originalEvent.dateTime);
+                    const dateB = new Date(b.originalEvent.dateTime);
+                    return dateA - dateB;
+                });
+                
+                // Then filter to only keep the closest event for each city
+                const cityMap = new Map(); // Map to store closest event for each city
+                
+                availableEvents.forEach(event => {
+                    const cityName = event.originalEvent.title.replace('GitTogether ', '');
                     
-                    // Only show events that haven't reached their end_time yet
-                    if (now < endTime) {
-                        hasActiveEvents = true;
-                        const div = document.createElement('div');
-                        div.className = 'radio';
-                        div.innerHTML = `
-                            <label>
-                                <input type="radio" name="entry.1334197574" value="${event.name}" required>
-                                ${event.name}
-                            </label>
-                        `;
-                        formGroup.appendChild(div);
+                    // If this city isn't in our map yet, or this event is earlier than the one we have, update it
+                    if (!cityMap.has(cityName)) {
+                        cityMap.set(cityName, event);
                     }
+                });
+                
+                // Convert back to array and re-sort (now with one event per city)
+                const filteredEvents = Array.from(cityMap.values());
+                
+                // Sort by date first, then city name if same date
+                filteredEvents.sort((a, b) => {
+                    const dateA = new Date(a.originalEvent.dateTime);
+                    const dateB = new Date(b.originalEvent.dateTime);
+                    
+                    // First sort by date
+                    if (dateA.getTime() !== dateB.getTime()) {
+                        return dateA - dateB;
+                    }
+                    
+                    // If same date, sort by city name alphabetically
+                    const cityA = a.originalEvent.title.replace('GitTogether ', '');
+                    const cityB = b.originalEvent.title.replace('GitTogether ', '');
+                    return cityA.localeCompare(cityB);
+                });
+                
+                // Display the sorted events (one per city)
+                hasActiveEvents = filteredEvents.length > 0;
+                
+                filteredEvents.forEach(event => {
+                    const div = document.createElement('div');
+                    div.className = 'radio';
+                    div.innerHTML = `
+                        <label>
+                            <input type="radio" name="entry.1334197574" value="${event.name}" required>
+                            ${event.name}
+                        </label>
+                    `;
+                    formGroup.appendChild(div);
                 });
             }
 

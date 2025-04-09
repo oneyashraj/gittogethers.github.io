@@ -29,17 +29,7 @@
     "eventType": "PHYSICAL",
     "groupUrlname": "gittogether-hyderabad",
     "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527226862/676x380.webp",
-    "link": "https://www.meetup.com/gittogether-hyderabad/events/306748793/",
-    "venue": {
-      "name": "EPAM India",
-      "address": "Salarpuria Sattva Knowledge City, 12th Floor, Unit 2, Hitech City",
-      "city": "Hyderabad",
-      "country": "in",
-      "lat": 17.432207,
-      "lon": 78.38127,
-      "state": "",
-      "postalCode": ""
-    }
+    "link": "https://www.meetup.com/gittogether-hyderabad/events/306748793/"
   },
   {
     "id": "307110818",
@@ -71,17 +61,7 @@
     "eventType": "PHYSICAL",
     "groupUrlname": "gittogether-bengaluru",
     "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527162575/676x380.webp",
-    "link": "https://www.meetup.com/gittogether-bengaluru/events/307110818/",
-    "venue": {
-      "name": "Microsoft Corporation (India) Pvt Ltd",
-      "address": "Prestige Ferns Galaxy, First Floor, Sy No. 7/1, 7/2 & 8/1A,, Outer Ring Road Ambalipura Village, Hobli, Varthur,",
-      "city": "Bengaluru",
-      "country": "in",
-      "lat": 12.92211,
-      "lon": 77.66877,
-      "state": "ks",
-      "postalCode": ""
-    }
+    "link": "https://www.meetup.com/gittogether-bengaluru/events/307110818/"
   },
   {
     "id": "307190609",
@@ -113,56 +93,39 @@
     "eventType": "PHYSICAL",
     "groupUrlname": "gittogether-hyderabad",
     "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527261276/676x380.webp",
-    "link": "https://www.meetup.com/gittogether-hyderabad/events/307190609/",
-    "venue": {
-      "name": "Hyderabad, India",
-      "address": "Hyderabad, India",
-      "city": "Hyderabad",
-      "country": "in",
-      "lat": 17.385044,
-      "lon": 78.486671,
-      "state": "",
-      "postalCode": ""
-    }
+    "link": "https://www.meetup.com/gittogether-hyderabad/events/307190609/"
   },
   {
     "id": "307190830",
     "title": "GitTogether Bengaluru",
-    "dateTime": "2025-05-24T09:30:00+05:30",
-    "description": "IMPORTANT: **Meetup RSVP is not considered as registration.** Please register at **[gittogethers.github.io](http://gittogethers.github.io/)** by **12 PM IST on 22nd May**. Confirmed participants will receive an email by the end of the same day. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nJoin us for this half-day meetup packed with insights, inspiration, and networking! Sharpen your tech skills and discover incredible open-source projects.\n\nWhat to expect:\n\n* **Tech Sessions**: Dive into the latest open-source technologies with talks by experienced developers. Expand your knowledge and toolkit!\n* **Community Spotlight**: Discover a hidden gem! One lucky participant gets to showcase a cool open-source project they've built. Could it be you?\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Agenda**\n\n* 9:30 AM to 10:00 AM: **Registration and Networking**\n* 10:00 AM to 10:10 AM: **git init (Welcome Note)**\n* 10:10 AM to 10:40 AM: **Session 1** ([Call for Sessions](gh.io/cfs))\n* 10:40 AM to 11:10 AM: **Session 2**\n* 11:10 AM to 11:30 AM: **Break and Networking**\n* 11:30 AM to 12:00 PM: **Community** **Spotlight** ([Submit for Spotlight](https://gh.io/spotlight))\n* 12:00 PM to 12:45 PM: **Session 3**\n* 12:45 PM to 1:00 PM: **git merge (Closing Note)**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Date**: Saturday 24th May, 2025\n\n**Time**: 9:30 AM to 1:00 PM IST\n\n**Venue**: [New Relic](https://maps.app.goo.gl/qBvsrZYkpjce3zeb8), Signature, Pyramid Ln, Embassy Golf Links Business Park, Challaghatta, Bengaluru, Karnataka 560071\n\nFor any queries, please write to us at [meetups@github.com](http://meetups@github.com/)\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security? [Submit your proposal here](https://gh.io/cfs) for upcoming GitTogether events!\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
+    "dateTime": "2025-05-17T09:30:00+05:30",
+    "description": "IMPORTANT: **Meetup RSVP is not considered as registration.** Please register at **[gittogethers.github.io](http://gittogethers.github.io/)** by **12 PM IST on 15th May**. Confirmed participants will receive an email by the end of the same day. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nJoin us for this half-day meetup packed with insights, inspiration, and networking! Sharpen your tech skills and discover incredible open-source projects.\n\nWhat to expect:\n\n* **Tech Sessions**: Dive into the latest open-source technologies with talks by experienced developers. Expand your knowledge and toolkit!\n* **Community Spotlight**: Discover a hidden gem! One lucky participant gets to showcase a cool open-source project they've built. Could it be you?\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Agenda**\n\n* 9:30 AM to 10:00 AM: **Registration and Networking**\n* 10:00 AM to 10:10 AM: **git init (Welcome Note)**\n* 10:10 AM to 10:40 AM: **Session 1** ([Call for Sessions](gh.io/cfs))\n* 10:40 AM to 11:10 AM: **Session 2**\n* 11:10 AM to 11:30 AM: **Break and Networking**\n* 11:30 AM to 12:00 PM: **Community** **Spotlight** ([Submit for Spotlight](https://gh.io/spotlight))\n* 12:00 PM to 12:45 PM: **Session 3**\n* 12:45 PM to 1:00 PM: **git merge (Closing Note)**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Date**: Saturday 17th May, 2025\n\n**Time**: 9:30 AM to 1:00 PM IST\n\n**Venue**: To Be Announced\n\nFor any queries, please write to us at [meetups@github.com](http://meetups@github.com/)\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security? [Submit your proposal here](https://gh.io/cfs) for upcoming GitTogether events!\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
     "eventUrl": "https://www.meetup.com/gittogether-bengaluru/events/307190830/",
-    "featuredEventPhoto": null,
+    "featuredEventPhoto": {
+      "id": "527262903",
+      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+    },
     "group": {
       "name": "GitTogether Bengaluru",
       "urlname": "gittogether-bengaluru"
     },
     "venues": [
       {
-        "id": "28029019",
-        "name": "New Relic",
-        "address": "Signature, Pyramid Ln, Embassy Golf Links Business Park, Challaghatta",
+        "id": "28029064",
+        "name": "To Be Announced",
+        "address": "Bengaluru",
         "city": "Bengaluru",
         "state": "",
         "country": "in",
         "postalCode": "meetup605110",
-        "lat": 12.949534,
-        "lon": 77.64372
+        "lat": 12.971599,
+        "lon": 77.59457
       }
     ],
     "eventType": "PHYSICAL",
     "groupUrlname": "gittogether-bengaluru",
-    "imageUrl": null,
-    "link": "https://www.meetup.com/gittogether-bengaluru/events/307190830/",
-    "venue": {
-      "name": "New Relic",
-      "address": "Signature, Pyramid Ln, Embassy Golf Links Business Park, Challaghatta",
-      "city": "Bengaluru",
-      "country": "in",
-      "lat": 12.949534,
-      "lon": 77.64372,
-      "state": "",
-      "postalCode": "meetup605110"
-    }
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527262903/676x380.webp",
+    "link": "https://www.meetup.com/gittogether-bengaluru/events/307190830/"
   },
   {
     "id": "307190867",
@@ -175,12 +138,23 @@
       "name": "GitTogether Mumbai",
       "urlname": "gittogether-mumbai"
     },
-    "venues": [],
+    "venues": [
+      {
+        "id": "28029067",
+        "name": "To Be Announced",
+        "address": "Mumbai",
+        "city": "Mumbai",
+        "state": "",
+        "country": "in",
+        "postalCode": "meetup1",
+        "lat": 19.075983,
+        "lon": 72.877655
+      }
+    ],
     "eventType": "PHYSICAL",
     "groupUrlname": "gittogether-mumbai",
     "imageUrl": null,
-    "link": "https://www.meetup.com/gittogether-mumbai/events/307190867/",
-    "venue": null
+    "link": "https://www.meetup.com/gittogether-mumbai/events/307190867/"
   },
   {
     "id": "307190878",
@@ -193,12 +167,23 @@
       "name": "GitTogether Mumbai",
       "urlname": "gittogether-mumbai"
     },
-    "venues": [],
+    "venues": [
+      {
+        "id": "28029068",
+        "name": "To Be Announced",
+        "address": "Mumbai",
+        "city": "Mumbai",
+        "state": "",
+        "country": "in",
+        "postalCode": "meetup1",
+        "lat": 19.075983,
+        "lon": 72.877655
+      }
+    ],
     "eventType": "PHYSICAL",
     "groupUrlname": "gittogether-mumbai",
     "imageUrl": null,
-    "link": "https://www.meetup.com/gittogether-mumbai/events/307190878/",
-    "venue": null
+    "link": "https://www.meetup.com/gittogether-mumbai/events/307190878/"
   },
   {
     "id": "307190906",
@@ -215,7 +200,6 @@
     "eventType": "PHYSICAL",
     "groupUrlname": "gittogether-delhi",
     "imageUrl": null,
-    "link": "https://www.meetup.com/gittogether-delhi/events/307190906/",
-    "venue": null
+    "link": "https://www.meetup.com/gittogether-delhi/events/307190906/"
   }
 ]

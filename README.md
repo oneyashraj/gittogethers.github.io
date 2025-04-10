@@ -14,11 +14,16 @@ A modern, responsive web application for handling GitTogethers event registratio
 - 💾 Form response caching (username-specific)
 - 🌟 CSS Grid support, Flexbox for layouts and CSS custom properties (variables)
 - 👁️ Intersection Observer API for animations
+- 📅 Smart event sorting with chronological display
+- 📍 City-based filtering showing only one event per location
+- 📱 iOS-optimized form elements
 
 ## User Interface 🖥️
 1. **Homepage** 🏠
    - GitHub username validation from API
    - Quick access links at bottom (same style as name edit links)
+   - Smart event ordering (chronological with alphabetical sorting for same-day events)
+   - One event per city display to prevent redundancy
 
 2. **Section 1: Basic Information** 📝
    - Profile picture and name display from GitHub API
@@ -49,6 +54,12 @@ A modern, responsive web application for handling GitTogethers event registratio
    - Configurable thank you message with HTML support
    - Smooth fade-in animations for all elements
 
+6. **Check-in Page** 🎟️
+   - Early verification of daily events to prevent unnecessary GitHub validation
+   - Clear messaging when no events are happening on the current day
+   - Mobile-optimized event selection cards
+   - User-friendly iOS form elements
+
 ## Event Handling System 📋
 - Events are loaded from `data/events.json`
 - Each event contains basic details like title, dateTime, description, and venue
@@ -56,7 +67,11 @@ A modern, responsive web application for handling GitTogethers event registratio
   - **End Time**: Registration ends at 5 PM IST 2 days before the event
   - **Confirmation Time**: Confirmation emails sent by 11:59 PM IST 2 days before the event
 - **Check-in page**: Events are only visible on the actual event day
-- **Registration page**: Events are visible until the registration end time
+- **Registration page**: 
+  - Events are visible until the registration end time
+  - Events are sorted chronologically with closest events first
+  - Same-day events are sorted alphabetically by city
+  - Only one event per city is displayed (the closest upcoming one)
 
 ## Code Organization 📁
 The codebase is organized into modular components:

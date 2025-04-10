@@ -287,10 +287,14 @@ legend {
 
 .form-group {
     margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Reduced from 0.75rem to decrease padding between cards */
 }
 
 .radio {
     margin-bottom: 0.5rem;
+    display: none; /* Hide original radio buttons as we'll use event-card styling */
 }
 
 .radio label {
@@ -304,6 +308,58 @@ legend {
     width: auto;
     margin-right: 0.5rem;
     cursor: pointer;
+}
+
+/* Fix for oversized radio buttons on iOS only */
+@supports (-webkit-touch-callout: none) {
+    .radio input[type="radio"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border: 2px solid var(--accent-color);
+        border-radius: 50%;
+        outline: none;
+        position: relative;
+        background: rgba(255, 255, 255, 0.1);
+        margin-right: 0.5rem;
+    }
+
+    .radio input[type="radio"]:checked {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .radio input[type="radio"]:checked:after {
+        content: '';
+        width: 8px;
+        height: 8px;
+        background: var(--accent-color);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+    }
+}
+
+/* Improve radio button touch targets on mobile */
+@media (max-width: 768px) {
+    .radio label {
+        padding: 0.5rem 0;
+    }
+    
+    @supports (-webkit-touch-callout: none) {
+        .radio input[type="radio"] {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .radio input[type="radio"]:checked:after {
+            width: 10px;
+            height: 10px;
+        }
+    }
 }
 
 input[type="text"],
@@ -929,10 +985,11 @@ textarea:focus {
 /* Event card styles */
 .event-card {
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem; /* Reduced padding between cards */
     cursor: pointer;
     position: relative;
     transition: all 0.3s ease;
+    min-height: 48px; /* Ensure consistent height for all cards */
 }
 
 .event-card .event-radio {
@@ -940,10 +997,13 @@ textarea:focus {
     opacity: 0;
     width: 0;
     height: 0;
+    pointer-events: none;
 }
 
 .event-card-label {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     padding: 0.75rem 1.5rem;
     background-color: rgba(255, 255, 255, 0.1);
@@ -953,6 +1013,7 @@ textarea:focus {
     font-weight: 500;
     text-align: center;
     transition: all 0.3s ease;
+    min-height: 48px;
 }
 
 .event-card:hover .event-card-label {
@@ -964,39 +1025,55 @@ textarea:focus {
 .event-card.selected .event-card-label {
     background-color: rgba(88, 202, 195, 0.3);
     border-color: var(--accent-color);
-    border-width: 3px;
     box-shadow: 0 4px 15px rgba(88, 202, 195, 0.4);
 }
 
-#event-selection {
-    margin: 2rem 0;
+/* New cleaner "Other" option handling */
+.event-card.other-option.selected .event-card-label {
+    display: none;
 }
 
-#event-selection .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    max-width: 500px;
-    margin: 0 auto;
+.other-input {
+    display: none;
 }
 
-#event-selection legend {
-    margin-bottom: 1.5rem;
-    text-align: center;
-    font-size: 1.2rem;
-    color: var(--accent-color);
+.event-card.other-option.selected .other-input {
+    display: block;
 }
 
-/* Update header styles when user is logged in */
-.header-content.compact .logo-image {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    border: 2px solid white;
+.event-card .other-input input[type="text"] {
+    width: 100%;
+    min-height: 48px;
+    padding: 0.75rem 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+    color: var(--text-color);
+    font-size: 1rem;
+    text-align: left;
+    box-shadow: 0 4px 15px rgba(88, 202, 195, 0.4);
+}
+
+.event-card .other-input input[type="text"]:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
 }
 
 /* Specific styles for checkin.html */
 .checkin-page .header-content.compact .logo-image {
     width: 140px;
     height: 140px;
+}
+
+/* Other input field inside event cards */
+.event-card .other-input {
+    margin-top: 0.5rem;
+    padding: 0 0.5rem;
+}
+
+.event-card .other-input input[type="text"] {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: var(--accent-color);
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
 }

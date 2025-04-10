@@ -114,15 +114,31 @@ document.addEventListener('DOMContentLoaded', async () => {
                 hasActiveEvents = filteredEvents.length > 0;
                 
                 filteredEvents.forEach(event => {
-                    const div = document.createElement('div');
-                    div.className = 'radio';
-                    div.innerHTML = `
-                        <label>
-                            <input type="radio" name="entry.1334197574" value="${event.name}" required>
+                    // Create event card instead of standard radio
+                    const card = document.createElement('div');
+                    card.className = 'event-card';
+                    card.setAttribute('data-event', event.name);
+                    const cardId = `event-${event.name.replace(/\s+/g, '-').toLowerCase()}`;
+                    card.innerHTML = `
+                        <input type="radio" name="entry.1334197574" value="${event.name}" id="${cardId}" class="event-radio" required>
+                        <label for="${cardId}" class="event-card-label">
                             ${event.name}
                         </label>
                     `;
-                    formGroup.appendChild(div);
+                    formGroup.appendChild(card);
+                });
+
+                // Add event listener for event cards
+                document.querySelectorAll('.event-card').forEach(card => {
+                    const radio = card.querySelector('input[type="radio"]');
+                    card.addEventListener('click', () => {
+                        // Unselect all other cards
+                        document.querySelectorAll('.event-card').forEach(c => c.classList.remove('selected'));
+                        // Select this card
+                        card.classList.add('selected');
+                        // Check the radio button
+                        radio.checked = true;
+                    });
                 });
             }
 
@@ -137,6 +153,146 @@ document.addEventListener('DOMContentLoaded', async () => {
                 form.style.display = 'none';
             }
         }
+    };
+
+    // Convert all radio groups to card style
+    const convertRadioGroupsToCards = () => {
+        // Get all radio groups except for the event selection which is handled separately
+        const radioGroups = document.querySelectorAll('.form-group');
+        
+        radioGroups.forEach(group => {
+            // Skip if this is the event selection group or doesn't contain radio buttons
+            const radios = group.querySelectorAll('input[type="radio"]');
+            if (!radios.length || group.closest('fieldset')?.querySelector('legend[for="1521228078"]')) {
+                return;
+            }
+
+            // Store all radio elements and their labels
+            const radioElements = [];
+            
+            radios.forEach(radio => {
+                const label = radio.closest('label');
+                if (!label) return;
+                
+                const radioContainer = radio.closest('.radio');
+                if (!radioContainer) return;
+                
+                const inputText = label.textContent.trim();
+                const inputValue = radio.value;
+                const inputName = radio.name;
+                const isOther = inputValue === '__other_option__';
+                const otherInput = isOther ? radioContainer.querySelector('input[type="text"]') : null;
+                
+                radioElements.push({
+                    radio,
+                    label,
+                    container: radioContainer,
+                    inputText,
+                    inputValue,
+                    inputName,
+                    isOther,
+                    otherInput
+                });
+            });
+            
+            // Remove all radio elements from the form group
+            radioElements.forEach(el => el.container.remove());
+            
+            // Add new card style elements
+            radioElements.forEach(el => {
+                const card = document.createElement('div');
+                card.className = 'event-card';
+                
+                if (el.isOther) {
+                    // Mark as other option for easier styling
+                    card.classList.add('other-option');
+                    
+                    const otherClone = el.otherInput.cloneNode(true);
+                    const cardId = `${el.inputName.replace(/\./g, '-')}-other`;
+                    
+                    // Create the card with the Other option
+                    card.innerHTML = `
+                        <input type="radio" name="${el.inputName}" value="${el.inputValue}" id="${cardId}" class="event-radio">
+                        <label for="${cardId}" class="event-card-label">Other</label>
+                    `;
+                    
+                    // Create the other input container
+                    const otherContainer = document.createElement('div');
+                    otherContainer.className = 'other-input';
+                    otherClone.placeholder = 'Please specify...';
+                    otherClone.classList.add('form-control'); // Apply standard form styling
+                    
+                    // Add the input to the container
+                    otherContainer.appendChild(otherClone);
+                    card.appendChild(otherContainer);
+                    
+                    // Handle click on the card
+                    card.addEventListener('click', (event) => {
+                        // Don't handle if already clicked on the input field
+                        if (event.target === otherClone) return;
+                        
+                        // Unselect all other cards
+                        document.querySelectorAll(`.event-card[data-name="${el.inputName}"]`).forEach(c => {
+                            c.classList.remove('selected');
+                        });
+                        
+                        // Select this card
+                        card.classList.add('selected');
+                        
+                        // Check the radio button
+                        card.querySelector('input[type="radio"]').checked = true;
+                        
+                        // Focus the input field immediately
+                        setTimeout(() => otherClone.focus(), 10);
+                    });
+                    
+                    // Handle focus on the input field
+                    otherClone.addEventListener('focus', () => {
+                        // Unselect all other cards
+                        document.querySelectorAll(`.event-card[data-name="${el.inputName}"]`).forEach(c => {
+                            c.classList.remove('selected');
+                        });
+                        
+                        // Select this card
+                        card.classList.add('selected');
+                        
+                        // Check the radio button
+                        card.querySelector('input[type="radio"]').checked = true;
+                    });
+                    
+                } else {
+                    // Regular card (not "Other") 
+                    const cardId = `${el.inputValue.replace(/\s+/g, '-').toLowerCase()}-${Math.floor(Math.random() * 1000)}`;
+                    card.innerHTML = `
+                        <input type="radio" name="${el.inputName}" value="${el.inputValue}" id="${cardId}" class="event-radio">
+                        <label for="${cardId}" class="event-card-label">
+                            ${el.inputText}
+                        </label>
+                    `;
+                }
+                
+                // Set data attribute for grouping
+                card.setAttribute('data-name', el.inputName);
+                
+                // Add click handler for regular cards
+                if (!el.isOther) {
+                    card.addEventListener('click', () => {
+                        // Unselect all cards in this group
+                        document.querySelectorAll(`.event-card[data-name="${el.inputName}"]`).forEach(c => {
+                            c.classList.remove('selected');
+                        });
+                        
+                        // Select this card
+                        card.classList.add('selected');
+                        
+                        // Check the radio
+                        card.querySelector('input[type="radio"]').checked = true;
+                    });
+                }
+                
+                group.appendChild(card);
+            });
+        });
     };
 
     const setLoading = (isLoading) => {
@@ -604,7 +760,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             setLoading(false);
             form.style.display = 'block';
             showSection(section1);
-
+            convertRadioGroupsToCards(); // Convert all radio groups to cards after form is shown
+            
             loadCachedResponses();
             return true;
         } catch (error) {

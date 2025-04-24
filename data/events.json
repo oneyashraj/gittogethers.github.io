@@ -1,5 +1,133 @@
 [
   {
+    "id": "306948674",
+    "title": "GitTogether CDMX - Season of AI",
+    "dateTime": "2025-05-02T18:00:00-06:00",
+    "description": "¡Hola **comunidad**!\nNos emociona informarles que el próximo evento se hará en colaboración con **Microsoft Learn Student Ambassadors** y será realizado en las oficinas de **NU México**.\n\n**Agenda**:\n\n* 5:45 p.m. - Entrada al evento\n* 6:00 p.m. - Inicio del evento\n* 7:35 p.m. - Networking\n* 8:30 p.m. - Cierre del evento\n\n**Asiste presencialmente**\nEn esta ocasión, contaremos con el apoyo principal de **Microsoft, Microsoft Learn Student Ambassadors, Plain Sight** y **NU México** para realizar este evento en sus oficinas.\n\n¡Habrá muchas sorpresas!\n\nPara este evento, **les recomendamos llevar sus computadoras** para que puedan practicar lo que verán en la sesión.\n\n**Fecha límite de registro:** *Lunes 28 de Abril.*\n\n📢 **Este evento es abierto a todas y todos**.\nPuedes invitar a tu escuela, comunidad, amistades y familia.\n¡TE ESPERAMOS!\n\n**IMPORTANTE:**\n\\- Para poder acceder al evento y por cuestiones de seguridad debes de **presentar tu Identificación oficial** (INE, Pasaporte) y el correo con el que te registraste a este Meet Up.",
+    "eventUrl": "https://www.meetup.com/gittogether-cdmx/events/306948674/",
+    "featuredEventPhoto": {
+      "id": "527506648",
+      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+    },
+    "group": {
+      "name": "GitTogether CDMX",
+      "urlname": "gittogether-cdmx"
+    },
+    "venues": [
+      {
+        "id": "27863787",
+        "name": "NU México",
+        "address": "Periférico Blvrd Manuel Ávila Camacho 201-Piso 9 Polanco, Polanco I Secc, Miguel Hidalgo 11510 Ciudad de México, CDMX Mexico",
+        "city": "Ciudad de México",
+        "state": "",
+        "country": "mx",
+        "postalCode": "",
+        "lat": 19.436666,
+        "lon": -99.212715
+      }
+    ],
+    "eventType": "PHYSICAL",
+    "groupUrlname": "gittogether-cdmx",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527506648/676x380.webp",
+    "link": "https://www.meetup.com/gittogether-cdmx/events/306948674/"
+  },
+  {
+    "id": "307113457",
+    "title": "Open Source Friday Brasil, com Vinicius Moura & Azure DevOps Management Reports",
+    "dateTime": "2025-04-25T13:00:00-03:00",
+    "description": "Na edição do dia 25 de abril, nosso convidado é **Vinicius Moura**, que vai apresentar o projeto **Azure DevOps Management Reports** — uma solução Open Source para extração e visualização de dados do Azure DevOps.\n\nO projeto utiliza **Azure DevOps CLI**, **REST API** e **PowerShell** para coletar dados e armazená-los no **Azure SQL**, que depois são transformados em relatórios ricos e personalizados no **Power BI**. Uma iniciativa incrível para quem busca mais visibilidade e gestão eficiente em seus pipelines e times de desenvolvimento.\n\nVamos conversar sobre como o projeto funciona, os desafios de mantê-lo e como qualquer pessoa da comunidade pode contribuir!\n\n📊 Se você curte DevOps, automação ou visualização de dados, essa conversa é pra você!\n\n💬 E claro, o chat está sempre aberto para perguntas e comentários ao vivo.",
+    "eventUrl": "https://www.meetup.com/gittogether-brasil/events/307113457/",
+    "featuredEventPhoto": {
+      "id": "527164225",
+      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+    },
+    "group": {
+      "name": "GitTogether Brasil",
+      "urlname": "gittogether-brasil"
+    },
+    "venues": [
+      {
+        "id": "26906060",
+        "name": "Online event",
+        "address": "",
+        "city": "",
+        "state": "",
+        "country": "",
+        "postalCode": "",
+        "lat": -8.521147,
+        "lon": 179.1962
+      }
+    ],
+    "eventType": "ONLINE",
+    "groupUrlname": "gittogether-brasil",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527164225/676x380.webp",
+    "link": "https://www.meetup.com/gittogether-brasil/events/307113457/"
+  },
+  {
+    "id": "307113457",
+    "title": "Open Source Friday Brasil, com Vinicius Moura & Azure DevOps Management Reports",
+    "dateTime": "2025-04-25T13:00:00-03:00",
+    "description": "Na edição do dia 25 de abril, nosso convidado é **Vinicius Moura**, que vai apresentar o projeto **Azure DevOps Management Reports** — uma solução Open Source para extração e visualização de dados do Azure DevOps.\n\nO projeto utiliza **Azure DevOps CLI**, **REST API** e **PowerShell** para coletar dados e armazená-los no **Azure SQL**, que depois são transformados em relatórios ricos e personalizados no **Power BI**. Uma iniciativa incrível para quem busca mais visibilidade e gestão eficiente em seus pipelines e times de desenvolvimento.\n\nVamos conversar sobre como o projeto funciona, os desafios de mantê-lo e como qualquer pessoa da comunidade pode contribuir!\n\n📊 Se você curte DevOps, automação ou visualização de dados, essa conversa é pra você!\n\n💬 E claro, o chat está sempre aberto para perguntas e comentários ao vivo.",
+    "eventUrl": "https://www.meetup.com/gittogether-brasil/events/307113457/",
+    "featuredEventPhoto": {
+      "id": "527164225",
+      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+    },
+    "group": {
+      "name": "GitTogether Brasil",
+      "urlname": "gittogether-brasil"
+    },
+    "venues": [
+      {
+        "id": "26906060",
+        "name": "Online event",
+        "address": "",
+        "city": "",
+        "state": "",
+        "country": "",
+        "postalCode": "",
+        "lat": -8.521147,
+        "lon": 179.1962
+      }
+    ],
+    "eventType": "ONLINE",
+    "groupUrlname": "gittogether-brasil",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527164225/676x380.webp",
+    "link": "https://www.meetup.com/gittogether-brasil/events/307113457/"
+  },
+  {
+    "id": "307113457",
+    "title": "Open Source Friday Brasil, com Vinicius Moura & Azure DevOps Management Reports",
+    "dateTime": "2025-04-25T13:00:00-03:00",
+    "description": "Na edição do dia 25 de abril, nosso convidado é **Vinicius Moura**, que vai apresentar o projeto **Azure DevOps Management Reports** — uma solução Open Source para extração e visualização de dados do Azure DevOps.\n\nO projeto utiliza **Azure DevOps CLI**, **REST API** e **PowerShell** para coletar dados e armazená-los no **Azure SQL**, que depois são transformados em relatórios ricos e personalizados no **Power BI**. Uma iniciativa incrível para quem busca mais visibilidade e gestão eficiente em seus pipelines e times de desenvolvimento.\n\nVamos conversar sobre como o projeto funciona, os desafios de mantê-lo e como qualquer pessoa da comunidade pode contribuir!\n\n📊 Se você curte DevOps, automação ou visualização de dados, essa conversa é pra você!\n\n💬 E claro, o chat está sempre aberto para perguntas e comentários ao vivo.",
+    "eventUrl": "https://www.meetup.com/gittogether-brasil/events/307113457/",
+    "featuredEventPhoto": {
+      "id": "527164225",
+      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+    },
+    "group": {
+      "name": "GitTogether Brasil",
+      "urlname": "gittogether-brasil"
+    },
+    "venues": [
+      {
+        "id": "26906060",
+        "name": "Online event",
+        "address": "",
+        "city": "",
+        "state": "",
+        "country": "",
+        "postalCode": "",
+        "lat": -8.521147,
+        "lon": 179.1962
+      }
+    ],
+    "eventType": "ONLINE",
+    "groupUrlname": "gittogether-brasil",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527164225/676x380.webp",
+    "link": "https://www.meetup.com/gittogether-brasil/events/307113457/"
+  },
+  {
     "id": "307190609",
     "title": "GitTogether Hyderabad",
     "dateTime": "2025-05-24T09:30:00+05:30",

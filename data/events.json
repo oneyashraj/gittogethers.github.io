@@ -169,5 +169,37 @@
     "groupUrlname": "gittogether-delhi",
     "imageUrl": null,
     "link": "https://www.meetup.com/gittogether-delhi/events/307459778/"
+  },
+  {
+    "id": "307529519",
+    "title": "Open Source Brasil com Leticia 'Levxyca' Leonardo",
+    "dateTime": "2025-05-09T13:00:00-03:00",
+    "description": "🎥 **Open Source Friday Brasil – edição Esquentas TDC**\n\nVamos receber **Leticia 'levxyca' Leonardo**, mantenedora do projeto **Diciotech**, um dicionário tech online e colaborativo, construído com **HTML**, **SASS** e **JavaScript**, totalmente **Open Source**.\n\nA missão do projeto é ajudar pessoas de todos os níveis a entenderem termos e conceitos relacionados à tecnologia de forma clara e simples.\n\nAlém de falar sobre o projeto e sobre Open Source, essa live será também um **esquenta especial para o TDC Floripa**! 🌟\nTanto a nossa convidada quanto a host estarão presencialmente no evento, e vamos aproveitar para compartilhar um pouco da expectativa, trocar ideias e nos conectar com a comunidade!\n\nVem aprender, contribuir e se preparar para o TDC Floripa com a gente! 💚",
+    "eventUrl": "https://www.meetup.com/gittogether-brasil/events/307529519/",
+    "featuredEventPhoto": {
+      "id": "527644220",
+      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+    },
+    "group": {
+      "name": "GitTogether Brasil",
+      "urlname": "gittogether-brasil"
+    },
+    "venues": [
+      {
+        "id": "26906060",
+        "name": "Online event",
+        "address": "",
+        "city": "",
+        "state": "",
+        "country": "",
+        "postalCode": "",
+        "lat": -8.521147,
+        "lon": 179.1962
+      }
+    ],
+    "eventType": "ONLINE",
+    "groupUrlname": "gittogether-brasil",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527644220/676x380.webp",
+    "link": "https://www.meetup.com/gittogether-brasil/events/307529519/"
   }
 ]

@@ -1,41 +1,9 @@
 [
   {
-    "id": "306948674",
-    "title": "GitTogether CDMX - Season of AI",
-    "dateTime": "2025-05-02T18:00:00-06:00",
-    "description": "¡Hola **comunidad**!\nNos emociona informarles que el próximo evento se hará en colaboración con **Microsoft Learn Student Ambassadors** y será realizado en las oficinas de **NU México**.\n\n**Agenda**:\n\n* 5:45 p.m. - Entrada al evento\n* 6:00 p.m. - Inicio del evento\n* 7:35 p.m. - Networking\n* 8:30 p.m. - Cierre del evento\n\n**Asiste presencialmente**\nEn esta ocasión, contaremos con el apoyo principal de **Microsoft, Microsoft Learn Student Ambassadors, Plain Sight** y **NU México** para realizar este evento en sus oficinas.\n\n¡Habrá muchas sorpresas!\n\nPara este evento, **les recomendamos llevar sus computadoras** para que puedan practicar lo que verán en la sesión.\n\n**Fecha límite de registro:** *Lunes 28 de Abril.*\n\n📢 **Este evento es abierto a todas y todos**.\nPuedes invitar a tu escuela, comunidad, amistades y familia.\n¡TE ESPERAMOS!\n\n**IMPORTANTE:**\n\\- Para poder acceder al evento y por cuestiones de seguridad debes de **presentar tu Identificación oficial** (INE, Pasaporte) y el correo con el que te registraste a este Meet Up.",
-    "eventUrl": "https://www.meetup.com/gittogether-cdmx/events/306948674/",
-    "featuredEventPhoto": {
-      "id": "527506648",
-      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
-    },
-    "group": {
-      "name": "GitTogether CDMX",
-      "urlname": "gittogether-cdmx"
-    },
-    "venues": [
-      {
-        "id": "27863787",
-        "name": "NU México",
-        "address": "Periférico Blvrd Manuel Ávila Camacho 201-Piso 9 Polanco, Polanco I Secc, Miguel Hidalgo 11510 Ciudad de México, CDMX Mexico",
-        "city": "Ciudad de México",
-        "state": "",
-        "country": "mx",
-        "postalCode": "",
-        "lat": 19.436666,
-        "lon": -99.212715
-      }
-    ],
-    "eventType": "PHYSICAL",
-    "groupUrlname": "gittogether-cdmx",
-    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527506648/676x380.webp",
-    "link": "https://www.meetup.com/gittogether-cdmx/events/306948674/"
-  },
-  {
     "id": "307190609",
     "title": "GitTogether Hyderabad",
     "dateTime": "2025-05-24T09:30:00+05:30",
-    "description": "IMPORTANT: **Meetup RSVP is not considered as registration.** Please register at **[gittogethers.github.io](http://gittogethers.github.io/)** by **12 PM IST on 22rd May**. Confirmed participants will receive an email by the end of the same day. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n**Theme: AI Agents and the MCP (Model Context Protocol) Paradigm**\n\nJoin us for this half-day meetup packed with insights, inspiration, and networking! Sharpen your tech skills and discover incredible open-source projects. What to expect:\n\n* **Tech Sessions**: Dive into the latest open-source technologies with talks by experienced developers. Expand your knowledge and toolkit!\n* **Community Spotlight**: Discover a hidden gem! One lucky participant gets to showcase a cool open-source project they've built. Could it be you?\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Agenda**\n\n* 9:30 AM to 10:00 AM: **Registration and Networking**\n* 10:00 AM to 10:10 AM: **git init (Welcome Note)**\n* 10:10 AM to 10:40 AM: **Speaker 1 (**[Speaker Submission](https://gh.io/cfs)**)**\n* 10:40 AM to 11:10 AM: **Speaker 2 (**[Speaker Submission](https://gh.io/cfs)**)**\n* 11:10 AM to 11:30 AM: **Break and Networking**\n* 11:30 AM to 12:00 PM: **Community** **Spotlight (**[Submit for Spotlight](https://gh.io/spotlight)**)**\n* 12:00 PM to 12:45 PM: **Speaker 3 (**[Speaker Submission](https://gh.io/cfs)**)**\n* 12:45 PM to 1:00 PM: **git merge (Closing Note)**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Date**: Saturday 24th May, 2025\n\n**Time**: 9:30 AM to 1:00 PM IST\n\n**Venue**: TBD\n\nFor any queries, please contact [Tanmaiyee Vadloori](https://github.com/Tanmaiyee-Vadloori), Community Volunteer at GitTogether Hyderabad or write to us at meetups@github.com\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security?\n\nWe're calling for developers to submit their session proposals for upcoming GitTogether events! [Submit your proposal here](https://gh.io/cfs).\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
+    "description": "IMPORTANT: **Meetup RSVP is not considered as registration.** Please register at **[gittogethers.github.io](http://gittogethers.github.io/)** by **12 PM IST on 22nd May**. Confirmed participants will receive an email by the end of the same day. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Theme: AI Agents and the MCP (Model Context Protocol) Paradigm**\n\nJoin us for this half-day meetup packed with insights, inspiration, and networking! Sharpen your tech skills and discover incredible open-source projects. What to expect:\n\n* **Tech Sessions**: Dive into the latest open-source technologies with talks by experienced developers. Expand your knowledge and toolkit!\n* **Community Spotlight**: Discover a hidden gem! One lucky participant gets to showcase a cool open-source project they've built. Could it be you?\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Agenda**\n\n* 9:30 AM to 10:00 AM: **Registration and Networking**\n* 10:00 AM to 10:10 AM: **git init (Welcome Note)**\n* 10:10 AM to 10:40 AM: **Demystifying AI Agents: A Beginners Guide by** [Prathap Chandra](https://github.com/Prathap-Chandra)\n* 10:40 AM to 11:10 AM: **AI Agents with APIs: Create a Multi-Tool Assistant** **by** [Venkat Jogi](https://www.linkedin.com/in/venkatrj/)\n* 11:10 AM to 11:30 AM: **Break and Networking**\n* 11:30 AM to 12:00 PM: **Community** **Spotlight (**[Submit for Spotlight](https://gh.io/spotlight)**)**\n* 12:00 PM to 12:45 PM: **When Copilot Codes Who Audits? A Guide to Safe AI Adoption by** [Sai Bhavan Narayan](https://github.com/saiinfy)\n* 12:45 PM to 1:00 PM: **git merge (Closing Note)**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Date**: Saturday 24th May, 2025\n\n**Time**: 9:30 AM to 1:00 PM IST\n\n**Venue**: [Tech Mahindra Learning World, Jubilee Enclave, Hitech City, Hyderabad, Telangana](https://maps.app.goo.gl/g7Ggf9gcVsu3zmuv8), Gate No-3, TMLW-Ganga, Yamuna, Sarasvati conference room 1st floor\n\nFor any queries, please contact [Tanmaiyee Vadloori](https://github.com/Tanmaiyee-Vadloori), Community Volunteer at GitTogether Hyderabad or write to us at meetups@github.com\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security?\n\nWe're calling for developers to submit their session proposals for upcoming GitTogether events! [Submit your proposal here](https://gh.io/cfs).\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
     "eventUrl": "https://www.meetup.com/gittogether-hyderabad/events/307190609/",
     "featuredEventPhoto": {
       "id": "527435020",
@@ -47,15 +15,15 @@
     },
     "venues": [
       {
-        "id": "24852415",
-        "name": "Hyderabad, India",
-        "address": "Hyderabad, India",
+        "id": "28061355",
+        "name": "Tech Mahindra Learning World",
+        "address": "Tower - I & II, Plot No 22 to 34, Jubilee Enclave, HITEC City, Madhapur, Hyderabad, Telangana 500081",
         "city": "Hyderabad",
         "state": "",
         "country": "in",
-        "postalCode": "",
-        "lat": 17.385044,
-        "lon": 78.486671
+        "postalCode": "meetup7",
+        "lat": 17.452024,
+        "lon": 78.37427
       }
     ],
     "eventType": "PHYSICAL",
@@ -146,11 +114,14 @@
   },
   {
     "id": "307459778",
-    "title": "From Idea to Impact: GitTogether Product Meetup",
-    "dateTime": "2025-05-17T15:00:00+05:30",
-    "description": "**GitTogether Delhi NCR, in collaboration with GitHub for Startups, is bringing the magic of collaboration to Product Managers!**\n\nJoin us for an exclusive, invite-only evening to empower product managers with the latest AI agentic workflows and product tools to streamline prototyping, enhance team collaboration, and deliver exceptional products faster.\n\n**Watch this space for more details coming soon!!**\nNo need to waitlist on meetup.com, registrations opening soon.\n\nReach out to [@vipulgupta2048](https://linkedin.com/in/vipulgupta2048) if you are looking to speak, present, or attend the gathering. Sharing details shortly.",
+    "title": "GitTogether Delhi NCR: GitHub Copilot for Product Managers",
+    "dateTime": "2025-05-17T14:00:00+05:30",
+    "description": "**Register for the event:** [https://lu.ma/ty6u5nz0](https://lu.ma/ty6u5nz0)\n\n​[GitHub](http://startups.github.com/) invites startup Product Managers to an exclusive, invite-only session focused on unlocking the power of AI and agentic workflows to accelerate product development.\n\n​This half-day event features real-world insights from experienced product leaders, a dynamic panel discussion, and a hands-on workshop introducing agentic workflows with GitHub Copilot.\n\n​No coding background needed — just a drive to innovate and build smarter.\n\n**Registrations are open:** [https://lu.ma/ty6u5nz0](https://lu.ma/ty6u5nz0)\n\n***\n\n**What You’ll Experience:**\n\n* ​**Panel Discussion:** Hear from startup Product Managers who are using AI to transform product workflows.\n* ​**Hands-On Workshop:** Learn how to use agentic AI tools to streamline prototyping, collaboration, and execution.\n* ​**AMA with Experts:** Ask your questions and get actionable advice from seasoned product leaders.\n\n***\n\n​**Who Should Attend:**\n\n* ​Product Managers at Startups\n* ​Startup Founders involved in product development\n* ​Aspiring PMs and Product Enthusiasts\n\n​**Limited seats available — RSVP now to reserve your spot:** [https://lu.ma/ty6u5nz0](https://lu.ma/ty6u5nz0)\n\nWaitlisting on Meetup will not be considered valid registration for the meetup. Register for the event on [https://lu.ma/ty6u5nz0](https://lu.ma/ty6u5nz0)\n\nReach out to [@vipulgupta2048 ](https://linkedin.com/in/vipulgupta2048)if you have any questions, are looking to speak, or volunteer for the event.",
     "eventUrl": "https://www.meetup.com/gittogether-delhi/events/307459778/",
-    "featuredEventPhoto": null,
+    "featuredEventPhoto": {
+      "id": "527670193",
+      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+    },
     "group": {
       "name": "GitTogether Delhi",
       "urlname": "gittogether-delhi"
@@ -170,40 +141,8 @@
     ],
     "eventType": "PHYSICAL",
     "groupUrlname": "gittogether-delhi",
-    "imageUrl": null,
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527670193/676x380.webp",
     "link": "https://www.meetup.com/gittogether-delhi/events/307459778/"
-  },
-  {
-    "id": "307529519",
-    "title": "Open Source Brasil com Leticia 'Levxyca' Leonardo",
-    "dateTime": "2025-05-09T13:00:00-03:00",
-    "description": "🎥 **Open Source Friday Brasil – edição Esquentas TDC**\n\nVamos receber **Leticia 'levxyca' Leonardo**, mantenedora do projeto **Diciotech**, um dicionário tech online e colaborativo, construído com **HTML**, **SASS** e **JavaScript**, totalmente **Open Source**.\n\nA missão do projeto é ajudar pessoas de todos os níveis a entenderem termos e conceitos relacionados à tecnologia de forma clara e simples.\n\nAlém de falar sobre o projeto e sobre Open Source, essa live será também um **esquenta especial para o TDC Floripa**! 🌟\nTanto a nossa convidada quanto a host estarão presencialmente no evento, e vamos aproveitar para compartilhar um pouco da expectativa, trocar ideias e nos conectar com a comunidade!\n\nVem aprender, contribuir e se preparar para o TDC Floripa com a gente! 💚",
-    "eventUrl": "https://www.meetup.com/gittogether-brasil/events/307529519/",
-    "featuredEventPhoto": {
-      "id": "527644220",
-      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
-    },
-    "group": {
-      "name": "GitTogether Brasil",
-      "urlname": "gittogether-brasil"
-    },
-    "venues": [
-      {
-        "id": "26906060",
-        "name": "Online event",
-        "address": "",
-        "city": "",
-        "state": "",
-        "country": "",
-        "postalCode": "",
-        "lat": -8.521147,
-        "lon": 179.1962
-      }
-    ],
-    "eventType": "ONLINE",
-    "groupUrlname": "gittogether-brasil",
-    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527644220/676x380.webp",
-    "link": "https://www.meetup.com/gittogether-brasil/events/307529519/"
   },
   {
     "id": "307544122",
@@ -264,5 +203,133 @@
     "groupUrlname": "gittogether-delhi",
     "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527659435/676x380.webp",
     "link": "https://www.meetup.com/gittogether-delhi/events/307544295/"
+  },
+  {
+    "id": "307564063",
+    "title": "GitTogether Hyderabad",
+    "dateTime": "2025-06-14T09:30:00+05:30",
+    "description": "IMPORTANT: **Meetup RSVP is not considered as registration.** Please register at **[gittogethers.github.io](http://gittogethers.github.io/)** by **12 PM IST on 12th June**. Confirmed participants will receive an email by the end of the same day. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nJoin us for this half-day meetup packed with insights, inspiration, and networking! Sharpen your tech skills and discover incredible open-source projects. What to expect:\n\n* **Tech Sessions**: Dive into the latest open-source technologies with talks by experienced developers. Expand your knowledge and toolkit!\n* **Community Spotlight**: Discover a hidden gem! One lucky participant gets to showcase a cool open-source project they've built. Could it be you?\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Agenda**\n\n* 9:30 AM to 10:00 AM: **Registration and Networking**\n* 10:00 AM to 10:10 AM: **git init (Welcome Note)**\n* 10:10 AM to 10:40 AM: **Speaker 1 (**[Speaker Submission](https://gh.io/cfs)**)**\n* 10:40 AM to 11:10 AM: **Speaker 2 (**[Speaker Submission](https://gh.io/cfs)**)**\n* 11:10 AM to 11:30 AM: **Break and Networking**\n* 11:30 AM to 12:00 PM: **Community** **Spotlight (**[Submit for Spotlight](https://gh.io/spotlight)**)**\n* 12:00 PM to 12:45 PM: **Speaker 3 (**[Speaker Submission](https://gh.io/cfs)**)**\n* 12:45 PM to 1:00 PM: **git merge (Closing Note)**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Date**: Saturday 14th June, 2025\n\n**Time**: 9:30 AM to 1:00 PM IST\n\n**Venue**: TBD\n\nFor any queries, please contact [Tanmaiyee Vadloori](https://github.com/Tanmaiyee-Vadloori), Community Volunteer at GitTogether Hyderabad or write to us at meetups@github.com\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security?\n\nWe're calling for developers to submit their session proposals for upcoming GitTogether events! [Submit your proposal here](https://gh.io/cfs).\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
+    "eventUrl": "https://www.meetup.com/gittogether-hyderabad/events/307564063/",
+    "featuredEventPhoto": {
+      "id": "527676519",
+      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+    },
+    "group": {
+      "name": "GitTogether Hyderabad",
+      "urlname": "gittogether-hyderabad"
+    },
+    "venues": [
+      {
+        "id": "24852415",
+        "name": "Hyderabad, India",
+        "address": "Hyderabad, India",
+        "city": "Hyderabad",
+        "state": "",
+        "country": "in",
+        "postalCode": "",
+        "lat": 17.385044,
+        "lon": 78.486671
+      }
+    ],
+    "eventType": "PHYSICAL",
+    "groupUrlname": "gittogether-hyderabad",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527676519/676x380.webp",
+    "link": "https://www.meetup.com/gittogether-hyderabad/events/307564063/"
+  },
+  {
+    "id": "307564080",
+    "title": "GitTogether Hyderabad",
+    "dateTime": "2025-07-19T09:30:00+05:30",
+    "description": "IMPORTANT: **Meetup RSVP is not considered as registration.** Please register at **[gittogethers.github.io](http://gittogethers.github.io/)** by **12 PM IST on 17th July**. Confirmed participants will receive an email by the end of the same day. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nJoin us for this half-day meetup packed with insights, inspiration, and networking! Sharpen your tech skills and discover incredible open-source projects. What to expect:\n\n* **Tech Sessions**: Dive into the latest open-source technologies with talks by experienced developers. Expand your knowledge and toolkit!\n* **Community Spotlight**: Discover a hidden gem! One lucky participant gets to showcase a cool open-source project they've built. Could it be you?\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Agenda**\n\n* 9:30 AM to 10:00 AM: **Registration and Networking**\n* 10:00 AM to 10:10 AM: **git init (Welcome Note)**\n* 10:10 AM to 10:40 AM: **Speaker 1 (**[Speaker Submission](https://gh.io/cfs)**)**\n* 10:40 AM to 11:10 AM: **Speaker 2 (**[Speaker Submission](https://gh.io/cfs)**)**\n* 11:10 AM to 11:30 AM: **Break and Networking**\n* 11:30 AM to 12:00 PM: **Community** **Spotlight (**[Submit for Spotlight](https://gh.io/spotlight)**)**\n* 12:00 PM to 12:45 PM: **Speaker 3 (**[Speaker Submission](https://gh.io/cfs)**)**\n* 12:45 PM to 1:00 PM: **git merge (Closing Note)**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Date**: Saturday 19th July, 2025\n\n**Time**: 9:30 AM to 1:00 PM IST\n\n**Venue**: TBD\n\nFor any queries, please contact [Tanmaiyee Vadloori](https://github.com/Tanmaiyee-Vadloori), Community Volunteer at GitTogether Hyderabad or write to us at meetups@github.com\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security?\n\nWe're calling for developers to submit their session proposals for upcoming GitTogether events! [Submit your proposal here](https://gh.io/cfs).\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
+    "eventUrl": "https://www.meetup.com/gittogether-hyderabad/events/307564080/",
+    "featuredEventPhoto": {
+      "id": "527676526",
+      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+    },
+    "group": {
+      "name": "GitTogether Hyderabad",
+      "urlname": "gittogether-hyderabad"
+    },
+    "venues": [
+      {
+        "id": "24852415",
+        "name": "Hyderabad, India",
+        "address": "Hyderabad, India",
+        "city": "Hyderabad",
+        "state": "",
+        "country": "in",
+        "postalCode": "",
+        "lat": 17.385044,
+        "lon": 78.486671
+      }
+    ],
+    "eventType": "PHYSICAL",
+    "groupUrlname": "gittogether-hyderabad",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527676526/676x380.webp",
+    "link": "https://www.meetup.com/gittogether-hyderabad/events/307564080/"
+  },
+  {
+    "id": "307759226",
+    "title": "GitTogether Fortaleza - Maio",
+    "dateTime": "2025-05-17T09:00:00-03:00",
+    "description": "**GitTogether Fortaleza — Maio 2025**\n**Data:** 17/05/2025\n**Local:** o evento será PRESENCIAL no espaço da Faculdade CDL.\n\n**Palestras:**\n**09h00 às 09:20:** Abertura\n**09h20 às 10h00:** Primeira palestra — *Server-Sent Events: porque às vezes o servidor só quer desabafar* por *Alex Sousa*\n**10h00 às 10h40:** Coffee Break\n**10h40 às 11h20:** Segunda palestra — *Do Código ao Suporte: Como o atendimento molda a experiência do Usuário* por *Gabriela Rodrigues*.\n**11h20 às 12h00:** Terceira palestra — *O Código que se escreve sozinho* por Cledson Leite\n\n**Mini bio dos pessoas palestrantes:**\n**— NOME:** *Alex Sousa*\nDesenvolvedor Java com paixão por tecnologia e cultura geek. No tempo livre, me dedico a games, livros, animes, mangás e séries. Gosto de compartilhar ideias e aprender sempre.\n\n**— NOME:** *Gabriela Rodrigues*\nDesenvolvedora Full Stack Jr e Suporte Cloud. Apaixonada por tecnologia, compartilhando minha jornada de transição de carreira e aprendizados na área.\n\n**— NOME:** Cledson Leite\nPossuo mais de 7 anos de experiência no desenvolvimento de software fullstack, com especialização em JavaScript e TypeScript.\n\nTenho ampla expertise em frameworks e tecnologias como Node.js, NestJS, Express, TypeORM, Prisma, React.js e Next.js, entre outros.\n\nAtualmente, atuo como professor temporário no projeto Geração Tech, ministrado pela Digital College. Além disso, já apresentei palestras sobre Testes Automatizados, Clean Code e SOLID, bem como sobre arquiteturas em camadas, tanto no frontend (MVC, MVP e MVVM) quanto no backend (MVC, Onion, Hexagonal e Clean Architecture).",
+    "eventUrl": "https://www.meetup.com/gittogether-brasil/events/307759226/",
+    "featuredEventPhoto": {
+      "id": "527876497",
+      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+    },
+    "group": {
+      "name": "GitTogether Brasil",
+      "urlname": "gittogether-brasil"
+    },
+    "venues": [
+      {
+        "id": "28062137",
+        "name": "Faculdade CDL",
+        "address": "Rua Vinte e Cinco de Março, 780 - Centro, Fortaleza - CE, 60060-120",
+        "city": "Fortaleza",
+        "state": "",
+        "country": "br",
+        "postalCode": "meetup5",
+        "lat": -3.730941,
+        "lon": -38.523144
+      }
+    ],
+    "eventType": "PHYSICAL",
+    "groupUrlname": "gittogether-brasil",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527876497/676x380.webp",
+    "link": "https://www.meetup.com/gittogether-brasil/events/307759226/"
+  },
+  {
+    "id": "307760086",
+    "title": "GitTogether São Paulo - JUNHO/2025",
+    "dateTime": "2025-06-27T19:00:00-03:00",
+    "description": "**⚠️ ATENÇÃO: VOCÊ DEVE SE INSCREVER UNICAMENTE [CLICANDO NESTE FORM](https://docs.google.com/forms/d/e/1FAIpQLSeaiP82qLovJqf-aQiXahp0bitItH4pvzSlQFoXxEHe9iMsHA/viewform?usp=sharing)**\n**A INSCRIÇÃO NO MEETUP NÃO CONTA COMO INSCRIÇÃO. APENAS NO LINK DO FORMS. ⚠️**\n\nTodas as informações do evento também estão no formulário. As inscrições se encerram 20/junio/2025 às 18h00.\nApós isso, não será mais possível alterar a lista.\n\n**Palestras:**\n**Sidecar Architecture: Separando Responsabilidades sem Quebrar a Cabeça** by [Damiana Costa](https://www.linkedin.com/in/damianacosta/)***:*** *O padrão arquitetural sidecar se tornou um aliado poderoso em arquiteturas distribuídas modernas, especialmente quando precisamos desacoplar responsabilidades como observabilidade, segurança, comunicação e resiliência dos serviços principais. Nesta talk, vamos explorar o que é a arquitetura sidecar, por que ela surgiu, onde ela realmente brilha — e onde complica mais do que ajuda.*\n\n19h45 - 20h15:\n**GC Internals: Anatomia de um Garbage Collector Moderno by** [Renê Cardozo](https://www.linkedin.com/in/reneepc/): *Você sabe o que acontece com a memória quando você deixa de usá-la? Nessa talk discutiremos o diferentes métodos de garbage collection e como funcionam por debaixo dos panos, com uma lupa especial sobre o incrivelmente performático GC do Go.*",
+    "eventUrl": "https://www.meetup.com/gittogether-brasil/events/307760086/",
+    "featuredEventPhoto": {
+      "id": "527878127",
+      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+    },
+    "group": {
+      "name": "GitTogether Brasil",
+      "urlname": "gittogether-brasil"
+    },
+    "venues": [
+      {
+        "id": "24910132",
+        "name": "Mercado Livre",
+        "address": "Av. das Nações Unidas, 3007 - Bonfim de Osasco",
+        "city": "Osasco",
+        "state": "",
+        "country": "br",
+        "postalCode": "",
+        "lat": -23.524065,
+        "lon": -46.760563
+      }
+    ],
+    "eventType": "PHYSICAL",
+    "groupUrlname": "gittogether-brasil",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527878127/676x380.webp",
+    "link": "https://www.meetup.com/gittogether-brasil/events/307760086/"
   }
 ]

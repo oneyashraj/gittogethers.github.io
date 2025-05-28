@@ -67,15 +67,15 @@
     },
     "venues": [
       {
-        "id": "28023705",
-        "name": "Microsoft Office, Gurugram",
-        "address": "8th floor, Building B Commercial Site, DLF Down Town, Block 5, DLF City Phase 3 Rd, Ambience Island, Sector 25 A, Sector 24, Gur",
-        "city": "Gurugram",
+        "id": "27838393",
+        "name": "Microsoft Corporation India Pvt. Ltd.",
+        "address": "Sovereign Capital Gate, Floor – 3, 4 & 6, F.C. 12 Sector 16A, Noida, Uttar Pradesh, India - 201301",
+        "city": "Noida",
         "state": "",
         "country": "in",
-        "postalCode": "",
-        "lat": 28.503622,
-        "lon": 77.09518
+        "postalCode": "meetup121",
+        "lat": 28.56812,
+        "lon": 77.3162
       }
     ],
     "eventType": "PHYSICAL",
@@ -267,5 +267,37 @@
     "groupUrlname": "gittogether-mumbai",
     "imageUrl": null,
     "link": "https://www.meetup.com/gittogether-mumbai/events/307912328/"
+  },
+  {
+    "id": "308105928",
+    "title": "Calculando con el compilador: Comp time vs Run time en Rust",
+    "dateTime": "2025-05-28T17:00:00-06:00",
+    "description": "Únete al experto en Rust [Miguel Raz](https://github.com/miguelraz) para una presentación reveladora sobre 'Calculando con el compilador: Comp time vs Run time en Rust'. Esta sesión explora cómo el potente compilador de Rust permite a los desarrolladores trasladar cálculos del tiempo de ejecución al tiempo de compilación, mejorando el rendimiento y la seguridad. Aprende técnicas prácticas para aprovechar el sistema de tipos de Rust y las características de evaluación constante para detectar errores antes y optimizar tu código. Perfecto para programadores intermedios de Rust que buscan profundizar en su comprensión de las capacidades únicas del lenguaje.",
+    "eventUrl": "https://www.meetup.com/gittogether-latam/events/308105928/",
+    "featuredEventPhoto": {
+      "id": "527232991",
+      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+    },
+    "group": {
+      "name": "GitTogether LATAM",
+      "urlname": "gittogether-latam"
+    },
+    "venues": [
+      {
+        "id": "26906060",
+        "name": "Online event",
+        "address": "",
+        "city": "",
+        "state": "",
+        "country": "",
+        "postalCode": "",
+        "lat": -8.521147,
+        "lon": 179.1962
+      }
+    ],
+    "eventType": "ONLINE",
+    "groupUrlname": "gittogether-latam",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527232991/676x380.webp",
+    "link": "https://www.meetup.com/gittogether-latam/events/308105928/"
   }
 ]

@@ -2,13 +2,10 @@
   {
     "id": "307190867",
     "title": "GitTogether Mumbai",
-    "dateTime": "2025-05-31T09:30:00+05:30",
-    "description": "IMPORTANT: **Meetup RSVP is not considered as registration.** Please register at **[gittogethers.github.io](http://gittogethers.github.io/)** by **12 PM IST on 29th May**. Confirmed participants will receive an email by the end of the same day. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nJoin us for this half-day meetup packed with insights, inspiration, and networking! Sharpen your tech skills and discover incredible open-source projects.\n\nWhat to expect:\n\n* **Tech Sessions**: Dive into the latest open-source technologies with talks by experienced developers. Expand your knowledge and toolkit!\n* **Community Spotlight**: Discover a hidden gem! One lucky participant gets to showcase a cool open-source project they've built. Could it be you?\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Agenda**\n\n* 9:30 AM to 10:00 AM: **Registration and Networking**\n* 10:00 AM to 10:10 AM: **git init (Welcome Note)**\n* 10:10 AM to 10:40 AM: **Session 1** ([Call for Sessions](gh.io/cfs))\n* 10:40 AM to 11:10 AM: **Session 2**\n* 11:10 AM to 11:30 AM: **Break and Networking**\n* 11:30 AM to 12:00 PM: **Community** **Spotlight** ([Submit for Spotlight](https://gh.io/spotlight))\n* 12:00 PM to 12:45 PM: **Session 3**\n* 12:45 PM to 1:00 PM: **git merge (Closing Note)**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Date**: Saturday 31st May, 2025\n\n**Time**: 9:30 AM to 1:00 PM IST\n\n**Venue**: To Be Announced\n\nFor any queries, please write to us at [meetups@github.com](http://meetups@github.com/)\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security? [Submit your proposal here](https://gh.io/cfs) for upcoming GitTogether events!\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
+    "dateTime": "2025-06-21T09:30:00+05:30",
+    "description": "IMPORTANT: **Meetup RSVP is not considered as registration.** Please register at **[gittogethers.github.io](http://gittogethers.github.io/)** by **12 PM IST on 19th June**. Confirmed participants will receive an email by the end of the same day. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nJoin us for this half-day meetup packed with insights, inspiration, and networking! Sharpen your tech skills and discover incredible open-source projects.\n\nWhat to expect:\n\n* **Tech Sessions**: Dive into the latest open-source technologies with talks by experienced developers. Expand your knowledge and toolkit!\n* **Community Spotlight**: Discover a hidden gem! One lucky participant gets to showcase a cool open-source project they've built. Could it be you?\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Agenda**\n\n* 9:30 AM to 10:00 AM: **Registration and Networking**\n* 10:00 AM to 10:10 AM: **git init (Welcome Note)**\n* 10:10 AM to 10:40 AM: **Session 1** ([Call for Sessions](gh.io/cfs))\n* 10:40 AM to 11:10 AM: **Session 2**\n* 11:10 AM to 11:30 AM: **Break and Networking**\n* 11:30 AM to 12:00 PM: **Community** **Spotlight** ([Submit for Spotlight](https://gh.io/spotlight))\n* 12:00 PM to 12:45 PM: **Session 3**\n* 12:45 PM to 1:00 PM: **git merge (Closing Note)**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Date**: Saturday 21st June, 2025\n\n**Time**: 9:30 AM to 1:00 PM IST\n\n**Venue**: To Be Announced\n\nFor any queries, please write to us at [meetups@github.com](http://meetups@github.com/)\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security? [Submit your proposal here](https://gh.io/cfs) for upcoming GitTogether events!\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
     "eventUrl": "https://www.meetup.com/gittogether-mumbai/events/307190867/",
-    "featuredEventPhoto": {
-      "id": "528086470",
-      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
-    },
+    "featuredEventPhoto": null,
     "group": {
       "name": "GitTogether Mumbai",
       "urlname": "gittogether-mumbai"
@@ -28,7 +25,7 @@
     ],
     "eventType": "PHYSICAL",
     "groupUrlname": "gittogether-mumbai",
-    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/528086470/676x380.webp",
+    "imageUrl": null,
     "link": "https://www.meetup.com/gittogether-mumbai/events/307190867/"
   },
   {
@@ -87,7 +84,7 @@
     "id": "307544122",
     "title": "GitTogether Bengaluru",
     "dateTime": "2025-07-19T09:30:00+05:30",
-    "description": "IMPORTANT: **Meetup RSVP is not considered as registration.** Please register at **[gittogethers.github.io](http://gittogethers.github.io/)** by **12 PM IST on 17th July**. Confirmed participants will receive an email by the end of the same day. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nJoin us for this half-day meetup packed with insights, inspiration, and networking! Sharpen your tech skills and discover incredible open-source projects.\n\nWhat to expect:\n\n* **Tech Sessions**: Dive into the latest open-source technologies with talks by experienced developers. Expand your knowledge and toolkit!\n* **Community Spotlight**: Discover a hidden gem! One lucky participant gets to showcase a cool open-source project they've built. Could it be you?\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Agenda**\n\n* 9:30 AM to 10:00 AM: **Registration and Networking**\n* 10:00 AM to 10:10 AM: **git init (Welcome Note)**\n* 10:10 AM to 10:40 AM: **Session 1** ([Call for Sessions](gh.io/cfs))\n* 10:40 AM to 11:10 AM: **Session 2**\n* 11:10 AM to 11:30 AM: **Break and Networking**\n* 11:30 AM to 12:00 PM: **Community** **Spotlight** ([Submit for Spotlight](https://gh.io/spotlight))\n* 12:00 PM to 12:45 PM: **Session 3**\n* 12:45 PM to 1:00 PM: **git merge (Closing Note)**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Date**: Saturday 19th July, 2025\n\n**Time**: 9:30 AM to 1:00 PM IST\n\n**Venue**: To Be Announced\n\nFor any queries, please write to us at [meetups@github.com](http://meetups@github.com/)\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security? [Submit your proposal here](https://gh.io/cfs) for upcoming GitTogether events!\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
+    "description": "IMPORTANT: **Meetup RSVP is not considered as registration.** Please register at **[gittogethers.github.io](http://gittogethers.github.io/)** by **12 PM IST on 17th July**. Confirmed participants will receive an email by the end of the same day. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nJoin us for this half-day meetup packed with insights, inspiration, and networking! Sharpen your tech skills and discover incredible open-source projects.\n\nWhat to expect:\n\n* **Tech Sessions**: Dive into the latest open-source technologies with talks by experienced developers. Expand your knowledge and toolkit!\n* **Community Spotlight**: Discover a hidden gem! One lucky participant gets to showcase a cool open-source project they've built. Could it be you?\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Agenda**\n\n* 9:30 AM to 10:00 AM: **Registration and Networking**\n* 10:00 AM to 10:10 AM: **git init (Welcome Note)**\n* 10:10 AM to 10:40 AM: **Session 1** ([Call for Sessions](gh.io/cfs))\n* 10:40 AM to 11:10 AM: **Session 2**\n* 11:10 AM to 11:30 AM: **Break and Networking**\n* 11:30 AM to 12:00 PM: **Community** **Spotlight** ([Submit for Spotlight](https://gh.io/spotlight))\n* 12:00 PM to 12:45 PM: **Session 3**\n* 12:45 PM to 1:00 PM: **git merge (Closing Note)**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Date**: Saturday 19th July, 2025\n\n**Time**: 9:30 AM to 1:00 PM IST\n\n**Venue**: [New Relic One India Pvt Ltd](https://maps.app.goo.gl/hTmLdcE3Rsw9wJRk8), Signature, Pyramid Ln, Embassy Golf Links Business Park, Challaghatta, Bengaluru, Karnataka 560071\n\nFor any queries, please write to us at [meetups@github.com](http://meetups@github.com/)\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security? [Submit your proposal here](https://gh.io/cfs) for upcoming GitTogether events!\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
     "eventUrl": "https://www.meetup.com/gittogether-bengaluru/events/307544122/",
     "featuredEventPhoto": {
       "id": "527659355",
@@ -97,7 +94,19 @@
       "name": "GitTogether Bengaluru",
       "urlname": "gittogether-bengaluru"
     },
-    "venues": [],
+    "venues": [
+      {
+        "id": "28029019",
+        "name": "New Relic",
+        "address": "Signature, Pyramid Ln, Embassy Golf Links Business Park, Challaghatta",
+        "city": "Bengaluru",
+        "state": "",
+        "country": "in",
+        "postalCode": "meetup605110",
+        "lat": 12.949534,
+        "lon": 77.64372
+      }
+    ],
     "eventType": "PHYSICAL",
     "groupUrlname": "gittogether-bengaluru",
     "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527659355/676x380.webp",
@@ -107,7 +116,7 @@
     "id": "307544138",
     "title": "GitTogether Bengaluru",
     "dateTime": "2025-06-28T09:30:00+05:30",
-    "description": "IMPORTANT: **Meetup RSVP is not considered as registration.** Please register at **[gittogethers.github.io](http://gittogethers.github.io/)** by **12 PM IST on 26th June**. Confirmed participants will receive an email by the end of the same day. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nJoin us for this half-day meetup packed with insights, inspiration, and networking! Sharpen your tech skills and discover incredible open-source projects.\n\nWhat to expect:\n\n* **Tech Sessions**: Dive into the latest open-source technologies with talks by experienced developers. Expand your knowledge and toolkit!\n* **Community Spotlight**: Discover a hidden gem! One lucky participant gets to showcase a cool open-source project they've built. Could it be you?\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Agenda**\n\n* 9:30 AM to 10:00 AM: **Registration and Networking**\n* 10:00 AM to 10:10 AM: **git init (Welcome Note)**\n* 10:10 AM to 10:40 AM: **Session 1** ([Call for Sessions](gh.io/cfs))\n* 10:40 AM to 11:10 AM: **Session 2**\n* 11:10 AM to 11:30 AM: **Break and Networking**\n* 11:30 AM to 12:00 PM: **Community** **Spotlight** ([Submit for Spotlight](https://gh.io/spotlight))\n* 12:00 PM to 12:45 PM: **Session 3**\n* 12:45 PM to 1:00 PM: **git merge (Closing Note)**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Date**: Saturday 28th June, 2025\n\n**Time**: 9:30 AM to 1:00 PM IST\n\n**Venue**: To Be Announced\n\nFor any queries, please write to us at [meetups@github.com](http://meetups@github.com/)\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security? [Submit your proposal here](https://gh.io/cfs) for upcoming GitTogether events!\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
+    "description": "IMPORTANT: **Meetup RSVP is not considered as registration.** Please register at **[gittogethers.github.io](http://gittogethers.github.io/)** by **12 PM IST on 26th June**. Confirmed participants will receive an email by the end of the same day. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nJoin us for this half-day meetup packed with insights, inspiration, and networking! Sharpen your tech skills and discover incredible open-source projects.\n\nWhat to expect:\n\n* **Tech Sessions**: Dive into the latest open-source technologies with talks by experienced developers. Expand your knowledge and toolkit!\n* **Community Spotlight**: Discover a hidden gem! One lucky participant gets to showcase a cool open-source project they've built. Could it be you?\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Agenda**\n\n* 9:30 AM to 10:00 AM: **Registration and Networking**\n* 10:00 AM to 10:10 AM: **git init (Welcome Note)**\n* 10:10 AM to 10:40 AM: **Session 1** ([Call for Sessions](gh.io/cfs))\n* 10:40 AM to 11:10 AM: **Session 2**\n* 11:10 AM to 11:30 AM: **Break and Networking**\n* 11:30 AM to 12:00 PM: **Community** **Spotlight** ([Submit for Spotlight](https://gh.io/spotlight))\n* 12:00 PM to 12:45 PM: **Session 3**\n* 12:45 PM to 1:00 PM: **git merge (Closing Note)**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Date**: Saturday 28th June, 2025\n\n**Time**: 9:30 AM to 1:00 PM IST\n\n**Venue**: [Amadeus Software Labs India Pvt Ltd](https://maps.app.goo.gl/RSvpdUxAWomGKQT99), 6, Etamin B Block, Prestige Tech Park Internal Rd, Kadubeesanahalli, Marathahalli, Bengaluru, Karnataka 560103\n\nFor any queries, please write to us at [meetups@github.com](http://meetups@github.com/)\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security? [Submit your proposal here](https://gh.io/cfs) for upcoming GitTogether events!\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
     "eventUrl": "https://www.meetup.com/gittogether-bengaluru/events/307544138/",
     "featuredEventPhoto": {
       "id": "527659343",
@@ -117,7 +126,19 @@
       "name": "GitTogether Bengaluru",
       "urlname": "gittogether-bengaluru"
     },
-    "venues": [],
+    "venues": [
+      {
+        "id": "27957191",
+        "name": "Amadeus Software Labs India Pvt Ltd",
+        "address": "6, Etamin B Block, Prestige Tech Park Internal Rd, Kadubeesanahalli",
+        "city": "Bengaluru",
+        "state": "",
+        "country": "in",
+        "postalCode": "meetup605110",
+        "lat": 12.943699,
+        "lon": 77.69103
+      }
+    ],
     "eventType": "PHYSICAL",
     "groupUrlname": "gittogether-bengaluru",
     "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527659343/676x380.webp",
@@ -211,7 +232,7 @@
     "id": "307760086",
     "title": "GitTogether São Paulo - JUNHO/2025",
     "dateTime": "2025-06-27T19:00:00-03:00",
-    "description": "**⚠️ ATENÇÃO: VOCÊ DEVE SE INSCREVER UNICAMENTE [CLICANDO NESTE FORM](https://docs.google.com/forms/d/e/1FAIpQLSeaiP82qLovJqf-aQiXahp0bitItH4pvzSlQFoXxEHe9iMsHA/viewform?usp=sharing)**\n**A INSCRIÇÃO NO MEETUP NÃO CONTA COMO INSCRIÇÃO. APENAS NO LINK DO FORMS. ⚠️**\n\nTodas as informações do evento também estão no formulário. As inscrições se encerram 20/junio/2025 às 18h00.\nApós isso, não será mais possível alterar a lista.\n\n**Palestras:**\n**Sidecar Architecture: Separando Responsabilidades sem Quebrar a Cabeça** by [Damiana Costa](https://www.linkedin.com/in/damianacosta/)***:*** *O padrão arquitetural sidecar se tornou um aliado poderoso em arquiteturas distribuídas modernas, especialmente quando precisamos desacoplar responsabilidades como observabilidade, segurança, comunicação e resiliência dos serviços principais. Nesta talk, vamos explorar o que é a arquitetura sidecar, por que ela surgiu, onde ela realmente brilha — e onde complica mais do que ajuda.*\n\n19h45 - 20h15:\n**GC Internals: Anatomia de um Garbage Collector Moderno by** [Renê Cardozo](https://www.linkedin.com/in/reneepc/): *Você sabe o que acontece com a memória quando você deixa de usá-la? Nessa talk discutiremos o diferentes métodos de garbage collection e como funcionam por debaixo dos panos, com uma lupa especial sobre o incrivelmente performático GC do Go.*",
+    "description": "**⚠️ ATENÇÃO: VOCÊ DEVE SE INSCREVER UNICAMENTE [CLICANDO NESTE FORM](https://docs.google.com/forms/d/e/1FAIpQLSeaiP82qLovJqf-aQiXahp0bitItH4pvzSlQFoXxEHe9iMsHA/viewform?usp=sharing)**\n**A INSCRIÇÃO NO MEETUP NÃO CONTA COMO INSCRIÇÃO. APENAS NO LINK DO FORMS. ⚠️**\n\nTodas as informações do evento também estão no formulário. As inscrições se encerram 20/junio/2025 às 18h00.\nApós isso, não será mais possível alterar a lista.\n\n**Palestras:**\n**Sidecar Architecture: Separando Responsabilidades sem Quebrar a Cabeça** by [Damiana Costa](https://www.linkedin.com/in/damianacosta/) e [Julia Gropo](https://www.linkedin.com/in/julia-gropo/)***:*** *O padrão arquitetural sidecar se tornou um aliado poderoso em arquiteturas distribuídas modernas, especialmente quando precisamos desacoplar responsabilidades como observabilidade, segurança, comunicação e resiliência dos serviços principais. Nesta talk, vamos explorar o que é a arquitetura sidecar, por que ela surgiu, onde ela realmente brilha — e onde complica mais do que ajuda.*\n\n19h45 - 20h15:\n**GC Internals: Anatomia de um Garbage Collector Moderno by** [Renê Cardozo](https://www.linkedin.com/in/reneepc/): *Você sabe o que acontece com a memória quando você deixa de usá-la? Nessa talk discutiremos o diferentes métodos de garbage collection e como funcionam por debaixo dos panos, com uma lupa especial sobre o incrivelmente performático GC do Go.*",
     "eventUrl": "https://www.meetup.com/gittogether-brasil/events/307760086/",
     "featuredEventPhoto": {
       "id": "527878127",
@@ -242,8 +263,8 @@
   {
     "id": "307912328",
     "title": "GitTogether Mumbai",
-    "dateTime": "2025-06-28T09:30:00+05:30",
-    "description": "IMPORTANT: **Meetup RSVP is not considered as registration.** Please register at **[gittogethers.github.io](http://gittogethers.github.io/)** by **12 PM IST on 26th June**. Confirmed participants will receive an email by the end of the same day. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nJoin us for this half-day meetup packed with insights, inspiration, and networking! Sharpen your tech skills and discover incredible open-source projects.\n\nWhat to expect:\n\n* **Tech Sessions**: Dive into the latest open-source technologies with talks by experienced developers. Expand your knowledge and toolkit!\n* **Community Spotlight**: Discover a hidden gem! One lucky participant gets to showcase a cool open-source project they've built. Could it be you?\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Agenda**\n\n* 9:30 AM to 10:00 AM: **Registration and Networking**\n* 10:00 AM to 10:10 AM: **git init (Welcome Note)**\n* 10:10 AM to 10:40 AM: **Session 1** ([Call for Sessions](gh.io/cfs))\n* 10:40 AM to 11:10 AM: **Session 2**\n* 11:10 AM to 11:30 AM: **Break and Networking**\n* 11:30 AM to 12:00 PM: **Community** **Spotlight** ([Submit for Spotlight](https://gh.io/spotlight))\n* 12:00 PM to 12:45 PM: **Session 3**\n* 12:45 PM to 1:00 PM: **git merge (Closing Note)**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Date**: Saturday 28th June, 2025\n\n**Time**: 9:30 AM to 1:00 PM IST\n\n**Venue**: To Be Announced\n\nFor any queries, please write to us at [meetups@github.com](http://meetups@github.com/)\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security? [Submit your proposal here](https://gh.io/cfs) for upcoming GitTogether events!\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
+    "dateTime": "2025-07-19T09:30:00+05:30",
+    "description": "IMPORTANT: **Meetup RSVP is not considered as registration.** Please register at **[gittogethers.github.io](http://gittogethers.github.io/)** by **12 PM IST on 17th July**. Confirmed participants will receive an email by the end of the same day. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nJoin us for this half-day meetup packed with insights, inspiration, and networking! Sharpen your tech skills and discover incredible open-source projects.\n\nWhat to expect:\n\n* **Tech Sessions**: Dive into the latest open-source technologies with talks by experienced developers. Expand your knowledge and toolkit!\n* **Community Spotlight**: Discover a hidden gem! One lucky participant gets to showcase a cool open-source project they've built. Could it be you?\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Agenda**\n\n* 9:30 AM to 10:00 AM: **Registration and Networking**\n* 10:00 AM to 10:10 AM: **git init (Welcome Note)**\n* 10:10 AM to 10:40 AM: **Session 1** ([Call for Sessions](gh.io/cfs))\n* 10:40 AM to 11:10 AM: **Session 2**\n* 11:10 AM to 11:30 AM: **Break and Networking**\n* 11:30 AM to 12:00 PM: **Community** **Spotlight** ([Submit for Spotlight](https://gh.io/spotlight))\n* 12:00 PM to 12:45 PM: **Session 3**\n* 12:45 PM to 1:00 PM: **git merge (Closing Note)**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Date**: Saturday 19th July, 2025\n\n**Time**: 9:30 AM to 1:00 PM IST\n\n**Venue**: To Be Announced\n\nFor any queries, please write to us at [meetups@github.com](http://meetups@github.com/)\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security? [Submit your proposal here](https://gh.io/cfs) for upcoming GitTogether events!\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
     "eventUrl": "https://www.meetup.com/gittogether-mumbai/events/307912328/",
     "featuredEventPhoto": null,
     "group": {
@@ -267,37 +288,5 @@
     "groupUrlname": "gittogether-mumbai",
     "imageUrl": null,
     "link": "https://www.meetup.com/gittogether-mumbai/events/307912328/"
-  },
-  {
-    "id": "308105928",
-    "title": "Calculando con el compilador: Comp time vs Run time en Rust",
-    "dateTime": "2025-05-28T17:00:00-06:00",
-    "description": "Únete al experto en Rust [Miguel Raz](https://github.com/miguelraz) para una presentación reveladora sobre 'Calculando con el compilador: Comp time vs Run time en Rust'. Esta sesión explora cómo el potente compilador de Rust permite a los desarrolladores trasladar cálculos del tiempo de ejecución al tiempo de compilación, mejorando el rendimiento y la seguridad. Aprende técnicas prácticas para aprovechar el sistema de tipos de Rust y las características de evaluación constante para detectar errores antes y optimizar tu código. Perfecto para programadores intermedios de Rust que buscan profundizar en su comprensión de las capacidades únicas del lenguaje.",
-    "eventUrl": "https://www.meetup.com/gittogether-latam/events/308105928/",
-    "featuredEventPhoto": {
-      "id": "527232991",
-      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
-    },
-    "group": {
-      "name": "GitTogether LATAM",
-      "urlname": "gittogether-latam"
-    },
-    "venues": [
-      {
-        "id": "26906060",
-        "name": "Online event",
-        "address": "",
-        "city": "",
-        "state": "",
-        "country": "",
-        "postalCode": "",
-        "lat": -8.521147,
-        "lon": 179.1962
-      }
-    ],
-    "eventType": "ONLINE",
-    "groupUrlname": "gittogether-latam",
-    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527232991/676x380.webp",
-    "link": "https://www.meetup.com/gittogether-latam/events/308105928/"
   }
 ]

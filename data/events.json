@@ -288,5 +288,37 @@
     "groupUrlname": "gittogether-mumbai",
     "imageUrl": null,
     "link": "https://www.meetup.com/gittogether-mumbai/events/307912328/"
+  },
+  {
+    "id": "308134048",
+    "title": "Git & Github Copilot from scratch",
+    "dateTime": "2025-06-07T09:00:00-05:00",
+    "description": "¡Hola, increíble comunidad de Medellín! 🌟\n\nNos complace anunciar un emocionante taller organizado por la comunidad de GitHub que no querrás perderte. 🎉\n\nEn este taller práctico, nos enfocaremos en los fundamentos esenciales de Git y GitHub, comenzando desde cero, para luego dar el siguiente paso y aprender a usar GitHub Copilot para desarrollar tu primera aplicación web.\n\n**TEMAS CLAVE:**\n\n* **Git desde cero**: Entiende los principios básicos de Git, cómo gestionar tu código y cómo aprovechar las herramientas más potentes para el control de versiones.\n* **Creación de una aplicación web con GitHub Copilot**: Aprende a usar Copilot para crear una aplicación web de forma eficiente y potenciar tus desarrollos con inteligencia artificial.\n* **Flujo de trabajo con GitHub**: Integración de Copilot en tu flujo de trabajo de desarrollo para acelerar la creación de aplicaciones y hostear tu aplicacion en github pages.\n\n**AGENDA**\n\n* 9:00 a.m. - Presentación de la comunidad de GitHub Medellín\n* 9:10 a.m. - **Git from Scratch**: Introducción a Git desde sus inicios\n* 10:40 a.m. - Break & Networking\n* 11:00 a.m. - **Aprende a crear una aplicación web con GitHub Copilot**\n* 12:00 p.m. - Rifas\n\n**Requerimientos**\n\n* **Cuenta de Github**\n* **Laptop**\n\n**Ubicación**\nUniversidad pontifica Bolivaria - Aula por confirmar del bloque 9\n\n¡No se pierdan esta oportunidad única de conectar con la comunidad, aprender y divertirse! 🌟 ¡Los esperamos con los brazos abiertos! 🤗",
+    "eventUrl": "https://www.meetup.com/gittogether-medellin/events/308134048/",
+    "featuredEventPhoto": {
+      "id": "528238238",
+      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+    },
+    "group": {
+      "name": "GitTogether Medellin",
+      "urlname": "gittogether-medellin"
+    },
+    "venues": [
+      {
+        "id": "26893557",
+        "name": "UPB",
+        "address": "Circular 1ª 70-01, barrio Laureles",
+        "city": "Medellín",
+        "state": "",
+        "country": "CO",
+        "postalCode": "meetup3",
+        "lat": 6.242341,
+        "lon": -75.58936
+      }
+    ],
+    "eventType": "PHYSICAL",
+    "groupUrlname": "gittogether-medellin",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/528238238/676x380.webp",
+    "link": "https://www.meetup.com/gittogether-medellin/events/308134048/"
   }
 ]

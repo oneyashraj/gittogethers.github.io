@@ -52,7 +52,7 @@
     "id": "307459778",
     "title": "GitTogether Delhi NCR: GitHub Copilot for Product Managers",
     "dateTime": "2025-05-31T14:00:00+05:30",
-    "description": "**Register for the event:** [https://lu.ma/ty6u5nz0](https://lu.ma/ty6u5nz0)\n\n​[GitHub](http://startups.github.com/) invites startup Product Managers to an exclusive, invite-only session focused on unlocking the power of AI and agentic workflows to accelerate product development.\n\n​This half-day event features real-world insights from experienced product leaders, a dynamic panel discussion, and a hands-on workshop introducing agentic workflows with GitHub Copilot.\n\n​No coding background needed — just a drive to innovate and build smarter.\n\n**Registrations are open:** [https://lu.ma/ty6u5nz0](https://lu.ma/ty6u5nz0)\n\n***\n\n**What You’ll Experience:**\n\n* ​**Panel Discussion:** Hear from startup Product Managers who are using AI to transform product workflows.\n* ​**Hands-On Workshop:** Learn how to use agentic AI tools to streamline prototyping, collaboration, and execution.\n* ​**AMA with Experts:** Ask your questions and get actionable advice from seasoned product leaders.\n\n***\n\n​**Who Should Attend:**\n\n* ​Product Managers at Startups\n* ​Startup Founders involved in product development\n* ​Aspiring PMs and Product Enthusiasts\n\n​**Limited seats available — RSVP now to reserve your spot:** [https://lu.ma/ty6u5nz0](https://lu.ma/ty6u5nz0)\n\nWaitlisting on Meetup will not be considered valid registration for the meetup. Register for the event on [https://lu.ma/ty6u5nz0](https://lu.ma/ty6u5nz0)\n\nReach out to [@vipulgupta2048 ](https://linkedin.com/in/vipulgupta2048)if you have any questions, are looking to speak, or volunteer for the event.",
+    "description": "Join us for this exclusive event by [GitHub](http://startups.github.com/), focused on unlocking the power of AI and agentic workflows to accelerate product development 🚀\n​The event begins with a 90-minute, invite-only workshop designed for product managers, founders, and aspiring PMs at startups. Learn how to leverage agentic AI tools—like GitHub Copilot—to rapidly prototype, collaborate, and execute product ideas!\n\nAMA with Product Leaders 💡\n​Get actionable insights on using AI to transform product workflows, learn from real-world experiences, and ask your burning questions about AI-powered product development.\n\n**​Agenda**\n\n* ​**1:30 PM:** Gates Open & Registration for Workshop\n* ​**2:00 - 3:30 PM:** From Idea to MVP - AI Coding Workshop\n* ​**3:30 - 4:00 PM:** Networking & Registrations for AMA\n* ​**4:00 - 5:00 PM:** AMA with Product Leaders\n* ​**5:00 - 6:00 PM:** Hi Tea & Networking\n\n**​AMA Panelists**\n\n* ​[Ayush Mall](https://www.linkedin.com/in/ayush-mall-a1b73819a/) \\- Product Manager\\, GenAI at Nykaa\n* ​[Shantanu Wali](https://www.linkedin.com/in/shantanuwali/)\\- Director of Product Management at LambdaTest\n* ​[Neha Singh](https://www.linkedin.com/in/nehasingh1010) \\- Senior Product Manager at Jio\n\n​**Moderator:** [Rahul Gulati](https://www.linkedin.com/in/04surf/), Manager GitHub for Startups APAC\n\n**Workshop Instructors**: [Yashraj Nayak](https://www.linkedin.com/in/yashrajnayak), Program Manager Developer Relations at GitHub and [Vipul Gupta](https://www.linkedin.com/in/vipulgupta2048/), Senior Software Engineer at Balena\n\n**​Important Things To Note 🚨**\n\n* ​Only confirmed participants would be allowed entry - no walk-ins or on-spot registration is possible due to security protocols\n* ​Please bring your government ID for entry\n* ​Workshop participants should bring their laptop and charger - entry for workshop starts at 1:30 PM\n* Check-in at ground floor with Luma QR code and proceed to 6th floor\n* ​Entry for AMA would start from 3:30 PM",
     "eventUrl": "https://www.meetup.com/gittogether-delhi/events/307459778/",
     "featuredEventPhoto": {
       "id": "527670193",
@@ -320,5 +320,37 @@
     "groupUrlname": "gittogether-medellin",
     "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/528238238/676x380.webp",
     "link": "https://www.meetup.com/gittogether-medellin/events/308134048/"
+  },
+  {
+    "id": "308158374",
+    "title": "Terra Hack em Floripa: ProgramEarth & GitHub",
+    "dateTime": "2025-06-10T18:30:00-03:00",
+    "description": "### 🌍 Aprenda a Alavancar a IA e Salvar o Planeta\n\nParticipe deste evento especial onde tecnologia e sustentabilidade se encontram!\nEstudantes e startups são **altamente incentivados** a participar.\n🎁 Ganhe brindes exclusivos e conecte-se com outras pessoas desenvolvedoras conscientes do meio ambiente.\n\n***\n\n### 🧑‍💻 Sobre o Evento\n\nOrganizado pelo **GitHub** em parceria com a organização sem fins lucrativos **ProgramEarth**.\n**Apoio:** Python Floripa,\n\n***\n\n### 🗓️ Agenda\n\n**18h30 – 19h00**\n🤝 Networking, bebidas e fotos\n\n**19h00 – 19h10**\n🌱 Boas-vindas do ProgramEarth e GitHub\nAbertura sobre a importância do Open Source e da sustentabilidade centrada na biodiversidade\n\n**19h10 – 19h25**\n💡 Introdução ao uso do Copilot com prompts\n\n**19h25 – 19h35**\n📁 ProgramEarth\nContexto sobre o repositório do hack: como navegar pelo README, quadro do projeto e tarefas\n\n**19h35 – 19h50**\n👥 Formação de grupos, Escolha de tarefas e início do hack\n\n**19h50 – 20h30**\n🏅 Distribuição de distintivos e encerramento\nCompartilhe suas fotos nas redes com as hashtags:\n`#copilotsustainability` `#biohack` `#programearth`\n\n🎤 Encerramento oficial com ProgramEarth e GitHub",
+    "eventUrl": "https://www.meetup.com/gittogether-brasil/events/308158374/",
+    "featuredEventPhoto": {
+      "id": "528250934",
+      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+    },
+    "group": {
+      "name": "GitTogether Brasil",
+      "urlname": "gittogether-brasil"
+    },
+    "venues": [
+      {
+        "id": "27513747",
+        "name": "CESUSC",
+        "address": "SC-401, 9301 - Santo Antonio de Lisboa",
+        "city": "Florianópolis",
+        "state": "",
+        "country": "BR",
+        "postalCode": "meetup49",
+        "lat": -27.500147,
+        "lon": -48.514595
+      }
+    ],
+    "eventType": "PHYSICAL",
+    "groupUrlname": "gittogether-brasil",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/528250934/676x380.webp",
+    "link": "https://www.meetup.com/gittogether-brasil/events/308158374/"
   }
 ]

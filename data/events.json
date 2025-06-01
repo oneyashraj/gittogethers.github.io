@@ -49,38 +49,6 @@
     "link": "https://www.meetup.com/gittogether-delhi/events/307190906/"
   },
   {
-    "id": "307459778",
-    "title": "GitTogether Delhi NCR: GitHub Copilot for Product Managers",
-    "dateTime": "2025-05-31T14:00:00+05:30",
-    "description": "Join us for this exclusive event by [GitHub](http://startups.github.com/), focused on unlocking the power of AI and agentic workflows to accelerate product development 🚀\n​The event begins with a 90-minute, invite-only workshop designed for product managers, founders, and aspiring PMs at startups. Learn how to leverage agentic AI tools—like GitHub Copilot—to rapidly prototype, collaborate, and execute product ideas!\n\nAMA with Product Leaders 💡\n​Get actionable insights on using AI to transform product workflows, learn from real-world experiences, and ask your burning questions about AI-powered product development.\n\n**​Agenda**\n\n* ​**1:30 PM:** Gates Open & Registration for Workshop\n* ​**2:00 - 3:30 PM:** From Idea to MVP - AI Coding Workshop\n* ​**3:30 - 4:00 PM:** Networking & Registrations for AMA\n* ​**4:00 - 5:00 PM:** AMA with Product Leaders\n* ​**5:00 - 6:00 PM:** Hi Tea & Networking\n\n**​AMA Panelists**\n\n* ​[Ayush Mall](https://www.linkedin.com/in/ayush-mall-a1b73819a/) \\- Product Manager\\, GenAI at Nykaa\n* ​[Shantanu Wali](https://www.linkedin.com/in/shantanuwali/)\\- Director of Product Management at LambdaTest\n* ​[Neha Singh](https://www.linkedin.com/in/nehasingh1010) \\- Senior Product Manager at Jio\n\n​**Moderator:** [Rahul Gulati](https://www.linkedin.com/in/04surf/), Manager GitHub for Startups APAC\n\n**Workshop Instructors**: [Yashraj Nayak](https://www.linkedin.com/in/yashrajnayak), Program Manager Developer Relations at GitHub and [Vipul Gupta](https://www.linkedin.com/in/vipulgupta2048/), Senior Software Engineer at Balena\n\n**​Important Things To Note 🚨**\n\n* ​Only confirmed participants would be allowed entry - no walk-ins or on-spot registration is possible due to security protocols\n* ​Please bring your government ID for entry\n* ​Workshop participants should bring their laptop and charger - entry for workshop starts at 1:30 PM\n* Check-in at ground floor with Luma QR code and proceed to 6th floor\n* ​Entry for AMA would start from 3:30 PM",
-    "eventUrl": "https://www.meetup.com/gittogether-delhi/events/307459778/",
-    "featuredEventPhoto": {
-      "id": "527670193",
-      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
-    },
-    "group": {
-      "name": "GitTogether Delhi",
-      "urlname": "gittogether-delhi"
-    },
-    "venues": [
-      {
-        "id": "27838393",
-        "name": "Microsoft Corporation India Pvt. Ltd.",
-        "address": "Sovereign Capital Gate, Floor – 3, 4 & 6, F.C. 12 Sector 16A, Noida, Uttar Pradesh, India - 201301",
-        "city": "Noida",
-        "state": "",
-        "country": "in",
-        "postalCode": "meetup121",
-        "lat": 28.56812,
-        "lon": 77.3162
-      }
-    ],
-    "eventType": "PHYSICAL",
-    "groupUrlname": "gittogether-delhi",
-    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527670193/676x380.webp",
-    "link": "https://www.meetup.com/gittogether-delhi/events/307459778/"
-  },
-  {
     "id": "307544122",
     "title": "GitTogether Bengaluru",
     "dateTime": "2025-07-19T09:30:00+05:30",

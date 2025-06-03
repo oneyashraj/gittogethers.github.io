@@ -293,7 +293,7 @@
     "id": "308158374",
     "title": "Terra Hack em Floripa: ProgramEarth & GitHub",
     "dateTime": "2025-06-10T18:30:00-03:00",
-    "description": "### 🌍 Aprenda a Alavancar a IA e Salvar o Planeta\n\nParticipe deste evento especial onde tecnologia e sustentabilidade se encontram!\nEstudantes e startups são **altamente incentivados** a participar.\n🎁 Ganhe brindes exclusivos e conecte-se com outras pessoas desenvolvedoras conscientes do meio ambiente.\n\n***\n\n### 🧑‍💻 Sobre o Evento\n\nOrganizado pelo **GitHub** em parceria com a organização sem fins lucrativos **ProgramEarth**.\n**Apoio:** Python Floripa,\n\n***\n\n### 🗓️ Agenda\n\n**18h30 – 19h00**\n🤝 Networking, bebidas e fotos\n\n**19h00 – 19h10**\n🌱 Boas-vindas do ProgramEarth e GitHub\nAbertura sobre a importância do Open Source e da sustentabilidade centrada na biodiversidade\n\n**19h10 – 19h25**\n💡 Introdução ao uso do Copilot com prompts\n\n**19h25 – 19h35**\n📁 ProgramEarth\nContexto sobre o repositório do hack: como navegar pelo README, quadro do projeto e tarefas\n\n**19h35 – 19h50**\n👥 Formação de grupos, Escolha de tarefas e início do hack\n\n**19h50 – 20h30**\n🏅 Distribuição de distintivos e encerramento\nCompartilhe suas fotos nas redes com as hashtags:\n`#copilotsustainability` `#biohack` `#programearth`\n\n🎤 Encerramento oficial com ProgramEarth e GitHub",
+    "description": "### 🌍 Aprenda a Alavancar a IA e Salvar o Planeta\n\nParticipe deste evento especial onde tecnologia e sustentabilidade se encontram!\nEstudantes e startups são **altamente incentivados** a participar.\n🎁 Ganhe brindes exclusivos e conecte-se com outras pessoas desenvolvedoras conscientes do meio ambiente.\n\n***\n\n### 🧑‍💻 Sobre o Evento\n\nOrganizado pelo **GitHub** em parceria com a organização sem fins lucrativos **ProgramEarth**.\n**Apoio:** UNICESUSC, Python Floripa, [Cumbuca Dev](https://cumbuca.dev/), Pyladies Floripa\n\n***\n\n### 🗓️ Agenda\n\n**18h30 – 19h00**\n🤝 Networking, bebidas e fotos\n\n**19h00 – 19h10**\n🌱 Boas-vindas do ProgramEarth e GitHub\nAbertura sobre a importância do Open Source e da sustentabilidade centrada na biodiversidade\n\n**19h10 – 19h25**\n💡 Introdução ao uso do Copilot com prompts\n\n**19h25 – 19h35**\n📁 ProgramEarth\nContexto sobre o repositório do hack: como navegar pelo README, quadro do projeto e tarefas\n\n**19h35 – 19h50**\n👥 Formação de grupos, Escolha de tarefas e início do hack\n\n**19h50 – 20h30**\n🏅 Distribuição de distintivos e encerramento\nCompartilhe suas fotos nas redes com as hashtags:\n`#copilotsustainability` `#biohack` `#programearth`\n\n🎤 Encerramento oficial com ProgramEarth e GitHub",
     "eventUrl": "https://www.meetup.com/gittogether-brasil/events/308158374/",
     "featuredEventPhoto": {
       "id": "528250934",
@@ -320,5 +320,37 @@
     "groupUrlname": "gittogether-brasil",
     "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/528250934/676x380.webp",
     "link": "https://www.meetup.com/gittogether-brasil/events/308158374/"
+  },
+  {
+    "id": "308248500",
+    "title": "GitHub Meetup",
+    "dateTime": "2025-06-11T19:00:00-06:00",
+    "description": "¡Hola comunidad!\nComo parte de Github queremos invitarlos a nuestro próximo evento donde hablaremos de GitHub.\n\nSe celebrará el 11 de Junio en Agexport, Zona 13.\n\n¿Quiénes pueden asistir?\n\n* Este evento está abierto a todos los desarrolladores.\n\n¡No se lo pierdan!\n\nEste es una gran oportunidad para aprender más sobre GitHub y para conectar con otros desarrolladores de la comunidad.\n\n¡Esperamos verlos allí!\n\nFecha: 11 de junio 2025\nHora: 19 horas\nLugar: Agexport\nP.D. Comparte esta noticia con tus amigos desarrolladores.",
+    "eventUrl": "https://www.meetup.com/gittogether-guatemala/events/308248500/",
+    "featuredEventPhoto": {
+      "id": "528330644",
+      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+    },
+    "group": {
+      "name": "GitTogether Ciudad de Guatemala",
+      "urlname": "gittogether-guatemala"
+    },
+    "venues": [
+      {
+        "id": "28081818",
+        "name": "Agexport",
+        "address": "15 Avenida 14-72 Zona 13",
+        "city": "Guatemala",
+        "state": "",
+        "country": "gt",
+        "postalCode": "meetup1",
+        "lat": 14.583431,
+        "lon": -90.52395
+      }
+    ],
+    "eventType": "PHYSICAL",
+    "groupUrlname": "gittogether-guatemala",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/528330644/676x380.webp",
+    "link": "https://www.meetup.com/gittogether-guatemala/events/308248500/"
   }
 ]

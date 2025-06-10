@@ -200,7 +200,7 @@
     "id": "307760086",
     "title": "GitTogether São Paulo - JUNHO/2025",
     "dateTime": "2025-06-27T19:00:00-03:00",
-    "description": "**⚠️ ATENÇÃO: VOCÊ DEVE SE INSCREVER UNICAMENTE [CLICANDO NESTE FORM](https://docs.google.com/forms/d/e/1FAIpQLSeaiP82qLovJqf-aQiXahp0bitItH4pvzSlQFoXxEHe9iMsHA/viewform?usp=sharing)**\n**A INSCRIÇÃO NO MEETUP NÃO CONTA COMO INSCRIÇÃO. APENAS NO LINK DO FORMS. ⚠️**\n\nTodas as informações do evento também estão no formulário. As inscrições se encerram 20/junio/2025 às 18h00.\nApós isso, não será mais possível alterar a lista.\n\n**Palestras:**\n**Sidecar Architecture: Separando Responsabilidades sem Quebrar a Cabeça** by [Damiana Costa](https://www.linkedin.com/in/damianacosta/) e [Julia Gropo](https://www.linkedin.com/in/julia-gropo/)***:*** *O padrão arquitetural sidecar se tornou um aliado poderoso em arquiteturas distribuídas modernas, especialmente quando precisamos desacoplar responsabilidades como observabilidade, segurança, comunicação e resiliência dos serviços principais. Nesta talk, vamos explorar o que é a arquitetura sidecar, por que ela surgiu, onde ela realmente brilha — e onde complica mais do que ajuda.*\n\n19h45 - 20h15:\n**GC Internals: Anatomia de um Garbage Collector Moderno by** [Renê Cardozo](https://www.linkedin.com/in/reneepc/): *Você sabe o que acontece com a memória quando você deixa de usá-la? Nessa talk discutiremos o diferentes métodos de garbage collection e como funcionam por debaixo dos panos, com uma lupa especial sobre o incrivelmente performático GC do Go.*",
+    "description": "**⚠️ ATENÇÃO: VOCÊ DEVE SE INSCREVER UNICAMENTE [CLICANDO NESTE FORM](https://docs.google.com/forms/d/e/1FAIpQLSeaiP82qLovJqf-aQiXahp0bitItH4pvzSlQFoXxEHe9iMsHA/viewform?usp=sharing)**\n**A INSCRIÇÃO NO MEETUP NÃO CONTA COMO INSCRIÇÃO. APENAS NO LINK DO FORMS. ⚠️**\n\nTodas as informações do evento também estão no formulário. As inscrições se encerram 20/junio/2025 às 18h00.\nApós isso, não será mais possível alterar a lista.\n\n**Palestras:**\n**Sidecar Architecture: Separando Responsabilidades sem Quebrar a Cabeça** by [Damiana Costa](https://www.linkedin.com/in/damianacosta/) e [Julia Gropo](https://www.linkedin.com/in/julia-gropo/)***:*** *O padrão arquitetural sidecar se tornou um aliado poderoso em arquiteturas distribuídas modernas, especialmente quando precisamos desacoplar responsabilidades como observabilidade, segurança, comunicação e resiliência dos serviços principais. Nesta talk, vamos explorar o que é a arquitetura sidecar, por que ela surgiu, onde ela realmente brilha — e onde complica mais do que ajuda.*\n\n19h45 - 20h15:\n**GC Internals: Anatomia de um Garbage Collector Moderno by** [Renê Cardozo](https://www.linkedin.com/in/reneepc/): *Você sabe o que acontece com a memória quando você deixa de usá-la? Nessa talk discutiremos o diferentes métodos de garbage collection e como funcionam por debaixo dos panos, com uma lupa especial sobre o incrivelmente perform��tico GC do Go.*",
     "eventUrl": "https://www.meetup.com/gittogether-brasil/events/307760086/",
     "featuredEventPhoto": {
       "id": "527878127",
@@ -259,7 +259,7 @@
   },
   {
     "id": "308158374",
-    "title": "Terra Hack em Floripa: ProgramEarth & GitHub",
+    "title": "Bio Hack em Floripa: ProgramEarth & GitHub",
     "dateTime": "2025-06-10T18:30:00-03:00",
     "description": "Participe deste evento especial onde tecnologia e sustentabilidade se encontram!\nEstudantes e startups são **altamente incentivados** a participar.\n🎁 Ganhe brindes exclusivos e conecte-se com outras pessoas desenvolvedoras conscientes do meio ambiente.\n\n***\n\n### 🧑‍💻 Sobre o Evento\n\nOrganizado pelo **GitHub** em parceria com a organização sem fins lucrativos **ProgramEarth**.\n**Apoio:** UNICESUSC, Python Floripa, [Cumbuca Dev](https://cumbuca.dev/), Pyladies Floripa\n\n***\n\n### 🗓️ Agenda\n\n**18h30 – 19h00**\n🤝 Networking\n\n**19h00 – 19h10**\n🌱 Boas-vindas do ProgramEarth e GitHub\nAbertura sobre a importância do Open Source e da sustentabilidade centrada na biodiversidade\n\n**19h10 – 19h25**\n💡 Introdução ao uso do Copilot com prompts\n\n**19h25 – 19h35**\n📁 ProgramEarth\nContexto sobre o repositório do hack: como navegar pelo README, quadro do projeto e tarefas\n\n**19h35 – 19h50**\n👥 Formação de grupos, Escolha de tarefas e início do hack\n\n**19h50 – 20h30**\n🏅 Distribuição de distintivos e encerramento\nCompartilhe suas fotos nas redes com as hashtags:\n`#copilotsustainability` `#biohack` `#programearth`\n\n🎤 Encerramento oficial com ProgramEarth e GitHub",
     "eventUrl": "https://www.meetup.com/gittogether-brasil/events/308158374/",
@@ -320,5 +320,37 @@
     "groupUrlname": "gittogether-guatemala",
     "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/528330644/676x380.webp",
     "link": "https://www.meetup.com/gittogether-guatemala/events/308248500/"
+  },
+  {
+    "id": "308398123",
+    "title": "GitTogether Fortaleza - Junho",
+    "dateTime": "2025-06-14T09:00:00-03:00",
+    "description": "**GitTogether Fortaleza — Junho2025**\n**Data:** 14/06/2025\n**Local:** o evento será PRESENCIAL no espaço da Universidade de Fortaleza.\n\n**Palestras:**\n**09h00 às 09:20:** Abertura\n**09h20 às 10h00:** Primeira palestra — *Da Zona de Conforto ao Código: Minha Transição de Carreira aos 40+* por *Marcos Aurélio*\n**10h00 às 10h40:** Coffee Break\n**10h40 às 11h20:** Segunda palestra — *O impacto das comunidades na transição de carreira* por *Gleice Avelino*.\n**11h20 às 12h00:** Mesa redonda com palestrantes e convidados.\n\n**Mini bio dos pessoas palestrantes:**\n**— NOME:** *Marcos Aurélio*\nDesenvolvedor Front-end na Nubba tecnologia e é exemplo vivo de que nunca é tarde para recomeçar. Iniciou sua jornada na tecnologia aos 40 anos e, com propósito e dedicação, conquistou seu espaço na área em apenas dois anos.\n\nAtua com foco em ReactJS, JavaScript, Node.js e outras tecnologias modernas, sempre valorizando o trabalho em equipe e o aprendizado contínuo.\n\n**— NOME:** *Gleice Avelino*\nAdministradora formada em RH. Graduanda do curso de ADS. Membro e Voluntária na Comunidade Tech Pyladies Fortaleza e House JS. Aluna do Projeto Geração Tech 2.0",
+    "eventUrl": "https://www.meetup.com/gittogether-brasil/events/308398123/",
+    "featuredEventPhoto": {
+      "id": "528456362",
+      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+    },
+    "group": {
+      "name": "GitTogether Brasil",
+      "urlname": "gittogether-brasil"
+    },
+    "venues": [
+      {
+        "id": "28062137",
+        "name": "Faculdade CDL",
+        "address": "Rua Vinte e Cinco de Março, 780 - Centro, Fortaleza - CE, 60060-120",
+        "city": "Fortaleza",
+        "state": "",
+        "country": "br",
+        "postalCode": "meetup5",
+        "lat": -3.730941,
+        "lon": -38.523144
+      }
+    ],
+    "eventType": "PHYSICAL",
+    "groupUrlname": "gittogether-brasil",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/528456362/676x380.webp",
+    "link": "https://www.meetup.com/gittogether-brasil/events/308398123/"
   }
 ]

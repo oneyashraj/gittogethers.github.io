@@ -273,15 +273,15 @@
     },
     "venues": [
       {
-        "id": "28062137",
-        "name": "Faculdade CDL",
-        "address": "Rua Vinte e Cinco de Março, 780 - Centro, Fortaleza - CE, 60060-120",
-        "city": "Fortaleza",
+        "id": "28088528",
+        "name": "Universidade de Fortaleza ",
+        "address": "Av Washington Soares, 1321, Edson Queiroz, CEP 60811-905",
+        "city": "Fortaleza ",
         "state": "",
         "country": "br",
         "postalCode": "meetup5",
-        "lat": -3.730941,
-        "lon": -38.523144
+        "lat": -3.769757,
+        "lon": -38.47966
       }
     ],
     "eventType": "PHYSICAL",

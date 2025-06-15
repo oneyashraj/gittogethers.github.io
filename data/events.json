@@ -224,37 +224,5 @@
     "groupUrlname": "gittogether-mumbai",
     "imageUrl": null,
     "link": "https://www.meetup.com/gittogether-mumbai/events/307912328/"
-  },
-  {
-    "id": "308398123",
-    "title": "GitTogether Fortaleza - Junho",
-    "dateTime": "2025-06-14T09:00:00-03:00",
-    "description": "**GitTogether Fortaleza — Junho2025**\n**Data:** 14/06/2025\n**Local:** o evento será PRESENCIAL no espaço da Universidade de Fortaleza.\n\n**Palestras:**\n**09h00 às 09:20:** Abertura\n**09h20 às 10h00:** Primeira palestra — *Da Zona de Conforto ao Código: Minha Transição de Carreira aos 40+* por *Marcos Aurélio*\n**10h00 às 10h40:** Coffee Break\n**10h40 às 11h20:** Segunda palestra — *O impacto das comunidades na transição de carreira* por *Gleice Avelino*.\n**11h20 às 12h00:** Mesa redonda com palestrantes e convidados.\n\n**Mini bio dos pessoas palestrantes:**\n**— NOME:** *Marcos Aurélio*\nDesenvolvedor Front-end na Nubba tecnologia e é exemplo vivo de que nunca é tarde para recomeçar. Iniciou sua jornada na tecnologia aos 40 anos e, com propósito e dedicação, conquistou seu espaço na área em apenas dois anos.\n\nAtua com foco em ReactJS, JavaScript, Node.js e outras tecnologias modernas, sempre valorizando o trabalho em equipe e o aprendizado contínuo.\n\n**— NOME:** *Gleice Avelino*\nAdministradora formada em RH. Graduanda do curso de ADS. Membro e Voluntária na Comunidade Tech Pyladies Fortaleza e House JS. Aluna do Projeto Geração Tech 2.0",
-    "eventUrl": "https://www.meetup.com/gittogether-brasil/events/308398123/",
-    "featuredEventPhoto": {
-      "id": "528456362",
-      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
-    },
-    "group": {
-      "name": "GitTogether Brasil",
-      "urlname": "gittogether-brasil"
-    },
-    "venues": [
-      {
-        "id": "28088528",
-        "name": "Universidade de Fortaleza ",
-        "address": "Av Washington Soares, 1321, Edson Queiroz, CEP 60811-905",
-        "city": "Fortaleza ",
-        "state": "",
-        "country": "br",
-        "postalCode": "meetup5",
-        "lat": -3.769757,
-        "lon": -38.47966
-      }
-    ],
-    "eventType": "PHYSICAL",
-    "groupUrlname": "gittogether-brasil",
-    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/528456362/676x380.webp",
-    "link": "https://www.meetup.com/gittogether-brasil/events/308398123/"
   }
 ]

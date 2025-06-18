@@ -224,5 +224,37 @@
     "groupUrlname": "gittogether-mumbai",
     "imageUrl": null,
     "link": "https://www.meetup.com/gittogether-mumbai/events/307912328/"
+  },
+  {
+    "id": "308372314",
+    "title": "Taller de Github Copilot",
+    "dateTime": "2025-08-02T09:00:00-05:00",
+    "description": "¡Hola, increíble comunidad de Medellín! 🌟\n\nNos complace anunciar un emocionante taller organizado por la comunidad de GitHub GitTogether Medellin que no querrás perderte. 🎉\n\nEn este taller práctico, nos enfocaremos en GitHub Copilot para desarrollar tu primera aplicación web.\n\n**TEMAS CLAVE:**\n\n* **Creación de una aplicación web con GitHub Copilot**: Aprende a usar Copilot para crear una aplicación web de forma eficiente y potenciar tus desarrollos con inteligencia artificial.\n\n**AGENDA**\n\n* 9:00 a.m. - Presentación de la comunidad de GitHub Medellín\n* 9:10 a.m. - **Taller GitHub Copilot**\n* 10:40 a.m. - Break & Networking\n* 11:00 a.m. - **Continuacion del taller GitHub Copilot**\n* 12:00 p.m. - Rifas\n\n**Requerimientos**\n\n* **Cuenta de Github**\n* **Laptop**\n\n**Ubicación**\nUniversidad pontifica Bolivaria - Bloque 9\n\n¡No se pierdan esta oportunidad única de conectar con la comunidad, aprender y divertirse! 🌟 ¡Los esperamos con los brazos abiertos! 🤗",
+    "eventUrl": "https://www.meetup.com/gittogether-medellin/events/308372314/",
+    "featuredEventPhoto": {
+      "id": "528426486",
+      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+    },
+    "group": {
+      "name": "GitTogether Medellin",
+      "urlname": "gittogether-medellin"
+    },
+    "venues": [
+      {
+        "id": "26893557",
+        "name": "UPB",
+        "address": "Circular 1ª 70-01, barrio Laureles",
+        "city": "Medellín",
+        "state": "",
+        "country": "CO",
+        "postalCode": "meetup3",
+        "lat": 6.242341,
+        "lon": -75.58936
+      }
+    ],
+    "eventType": "PHYSICAL",
+    "groupUrlname": "gittogether-medellin",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/528426486/676x380.webp",
+    "link": "https://www.meetup.com/gittogether-medellin/events/308372314/"
   }
 ]

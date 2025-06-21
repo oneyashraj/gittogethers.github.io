@@ -160,38 +160,6 @@
     "link": "https://www.meetup.com/gittogether-hyderabad/events/307564080/"
   },
   {
-    "id": "307760086",
-    "title": "GitTogether São Paulo - JUNHO/2025",
-    "dateTime": "2025-06-27T19:00:00-03:00",
-    "description": "**⚠️ ATENÇÃO: VOCÊ DEVE SE INSCREVER UNICAMENTE [CLICANDO NESTE FORM](https://docs.google.com/forms/d/e/1FAIpQLSeaiP82qLovJqf-aQiXahp0bitItH4pvzSlQFoXxEHe9iMsHA/viewform?usp=sharing)**\n**A INSCRIÇÃO NO MEETUP NÃO CONTA COMO INSCRIÇÃO. APENAS NO LINK DO FORMS. ⚠️**\n\nTodas as informações do evento também estão no formulário. As inscrições se encerram 20/junio/2025 às 18h00.\nApós isso, não será mais possível alterar a lista.\n\n**Palestras:**\n**Sidecar Architecture: Separando Responsabilidades sem Quebrar a Cabeça** by [Damiana Costa](https://www.linkedin.com/in/damianacosta/) e [Julia Gropo](https://www.linkedin.com/in/julia-gropo/)***:*** *O padrão arquitetural sidecar se tornou um aliado poderoso em arquiteturas distribuídas modernas, especialmente quando precisamos desacoplar responsabilidades como observabilidade, segurança, comunicação e resiliência dos serviços principais. Nesta talk, vamos explorar o que é a arquitetura sidecar, por que ela surgiu, onde ela realmente brilha — e onde complica mais do que ajuda.*\n\n19h45 - 20h15:\n**GC Internals: Anatomia de um Garbage Collector Moderno by** [Renê Cardozo](https://www.linkedin.com/in/reneepc/): *Você sabe o que acontece com a memória quando você deixa de usá-la? Nessa talk discutiremos o diferentes métodos de garbage collection e como funcionam por debaixo dos panos, com uma lupa especial sobre o incrivelmente performático GC do Go.*",
-    "eventUrl": "https://www.meetup.com/gittogether-brasil/events/307760086/",
-    "featuredEventPhoto": {
-      "id": "527878127",
-      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
-    },
-    "group": {
-      "name": "GitTogether Brasil",
-      "urlname": "gittogether-brasil"
-    },
-    "venues": [
-      {
-        "id": "24910132",
-        "name": "Mercado Livre",
-        "address": "Av. das Nações Unidas, 3007 - Bonfim de Osasco",
-        "city": "Osasco",
-        "state": "",
-        "country": "br",
-        "postalCode": "",
-        "lat": -23.524065,
-        "lon": -46.760563
-      }
-    ],
-    "eventType": "PHYSICAL",
-    "groupUrlname": "gittogether-brasil",
-    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527878127/676x380.webp",
-    "link": "https://www.meetup.com/gittogether-brasil/events/307760086/"
-  },
-  {
     "id": "307912328",
     "title": "GitTogether Mumbai: One Year Anniversary Meetup",
     "dateTime": "2025-07-19T09:30:00+05:30",
@@ -219,37 +187,5 @@
     "groupUrlname": "gittogether-mumbai",
     "imageUrl": null,
     "link": "https://www.meetup.com/gittogether-mumbai/events/307912328/"
-  },
-  {
-    "id": "308372314",
-    "title": "Taller de Github Copilot",
-    "dateTime": "2025-08-02T09:00:00-05:00",
-    "description": "¡Hola, increíble comunidad de Medellín! 🌟\n\nNos complace anunciar un emocionante taller organizado por la comunidad de GitHub GitTogether Medellin que no querrás perderte. 🎉\n\nEn este taller práctico, nos enfocaremos en GitHub Copilot para desarrollar tu primera aplicación web.\n\n**TEMAS CLAVE:**\n\n* **Creación de una aplicación web con GitHub Copilot**: Aprende a usar Copilot para crear una aplicación web de forma eficiente y potenciar tus desarrollos con inteligencia artificial.\n\n**AGENDA**\n\n* 9:00 a.m. - Presentación de la comunidad de GitHub Medellín\n* 9:10 a.m. - **Taller GitHub Copilot**\n* 10:40 a.m. - Break & Networking\n* 11:00 a.m. - **Continuacion del taller GitHub Copilot**\n* 12:00 p.m. - Rifas\n\n**Requerimientos**\n\n* **Cuenta de Github**\n* **Laptop**\n\n**Ubicación**\nUniversidad pontifica Bolivaria - Bloque 9\n\n¡No se pierdan esta oportunidad única de conectar con la comunidad, aprender y divertirse! 🌟 ¡Los esperamos con los brazos abiertos! 🤗",
-    "eventUrl": "https://www.meetup.com/gittogether-medellin/events/308372314/",
-    "featuredEventPhoto": {
-      "id": "528426486",
-      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
-    },
-    "group": {
-      "name": "GitTogether Medellin",
-      "urlname": "gittogether-medellin"
-    },
-    "venues": [
-      {
-        "id": "26893557",
-        "name": "UPB",
-        "address": "Circular 1ª 70-01, barrio Laureles",
-        "city": "Medellín",
-        "state": "",
-        "country": "CO",
-        "postalCode": "meetup3",
-        "lat": 6.242341,
-        "lon": -75.58936
-      }
-    ],
-    "eventType": "PHYSICAL",
-    "groupUrlname": "gittogether-medellin",
-    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/528426486/676x380.webp",
-    "link": "https://www.meetup.com/gittogether-medellin/events/308372314/"
   }
 ]

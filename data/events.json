@@ -1,37 +1,5 @@
 [
   {
-    "id": "307190867",
-    "title": "GitTogether Mumbai",
-    "dateTime": "2025-06-28T10:00:00+05:30",
-    "description": "IMPORTANT: **Meetup RSVP is not considered as registration.** Please register at **[gittogethers.github.io](http://gittogethers.github.io/)** by **12 PM IST on 26th June**. Confirmed participants will receive an email by the end of the same day. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nJoin us for this half-day meetup packed with insights, inspiration, and networking! Sharpen your tech skills and discover incredible open-source projects.\n\nWhat to expect:\n\n* **Tech Sessions**: Dive into the latest open-source technologies with talks by experienced developers. Expand your knowledge and toolkit!\n* **Community Spotlight**: Discover a hidden gem! One lucky participant gets to showcase a cool open-source project they've built. Could it be you?\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Agenda**\n\n* 9:30 AM to 10:00 AM: **Registration and Networking**\n* 10:00 AM to 10:10 AM: **git init (Welcome Note)**\n* 10:10 AM to 10:40 AM: **What's New in Grafana Loki: Making Logs Easier and Observability Smarter** by **[Nikita Shinde](https://github.com/1-Nikita)** \\- DevOps Engineer at Simbian\n* 10:40 AM to 11:10 AM: **From Processes to People: Building Resilient Engineering Teams** by **[Rahim Khan](https://github.com/akarahim) -** Engineering Manager at BookMyShow Payment Systems\n* 11:30 AM to 12:00 PM: **Community** **Spotlight: Conceptmap.AI** by **[Vishv Salvi](https://github.com/vishvsalvi)**\n* 12:00 PM to 12:45 PM: **Building AI Agents: A Practical Guide to the Model Context Protocol (MCP) with Neo4j** by **[Sumit Shatwara](https://github.com/sumitshatwara) -** Senior Solution Engineer at Neo4j\n* 12:45 PM to 1:00 PM: **git merge (Closing Note)**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n**Date**: Saturday 28th June, 2025\n**Time**: 9:30 AM to 1:00 PM IST\n**Venue**: **BookMyShow**, Empressa 14 Western Express Highway, Sahar Rd, Andheri East, Mumbai, Maharashtra 400099 (**[Map Location](https://maps.app.goo.gl/qCB8dHDAoP8eEY3F7?g_st=aw)**)\nFor any queries, please write to us at [meetups@github.com](http://meetups@github.com/)\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security? [Submit your proposal here](https://gh.io/cfs) for upcoming GitTogether events!\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
-    "eventUrl": "https://www.meetup.com/gittogether-mumbai/events/307190867/",
-    "featuredEventPhoto": {
-      "id": "528726694",
-      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
-    },
-    "group": {
-      "name": "GitTogether Mumbai",
-      "urlname": "gittogether-mumbai"
-    },
-    "venues": [
-      {
-        "id": "28084401",
-        "name": "BookMyShow",
-        "address": "Empressa 14 Western Express Highway, Sahar Rd, Andheri East",
-        "city": "Mumbai",
-        "state": "",
-        "country": "in",
-        "postalCode": "meetup1",
-        "lat": 19.10876,
-        "lon": 72.85626
-      }
-    ],
-    "eventType": "PHYSICAL",
-    "groupUrlname": "gittogether-mumbai",
-    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/528726694/676x380.webp",
-    "link": "https://www.meetup.com/gittogether-mumbai/events/307190867/"
-  },
-  {
     "id": "307544122",
     "title": "GitTogether Bengaluru: One Year Anniversary Meetup",
     "dateTime": "2025-07-19T09:30:00+05:30",
@@ -62,38 +30,6 @@
     "groupUrlname": "gittogether-bengaluru",
     "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/527659355/676x380.webp",
     "link": "https://www.meetup.com/gittogether-bengaluru/events/307544122/"
-  },
-  {
-    "id": "307544138",
-    "title": "GitTogether Bengaluru",
-    "dateTime": "2025-06-28T09:30:00+05:30",
-    "description": "IMPORTANT: **Meetup RSVP is not considered as registration.** Please register at **[gittogethers.github.io](http://gittogethers.github.io/)** by **12 PM IST on 26th June**. Confirmed participants will receive an email by the end of the same day. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nJoin us for this half-day meetup packed with insights, inspiration, and networking! Sharpen your tech skills and discover incredible open-source projects.\n\nWhat to expect:\n\n* **Tech Sessions**: Dive into the latest open-source technologies with talks by experienced developers. Expand your knowledge and toolkit!\n* **Community Spotlight**: Discover a hidden gem! One lucky participant gets to showcase a cool open-source project they've built. Could it be you?\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Agenda**\n\n* 9:30 AM to 10:00 AM: **Registration and Networking**\n* 10:00 AM to 10:10 AM: **git init (Welcome Note)**\n* 10:10 AM to 10:40 AM: **Math.random() is not really random! by [Vinit Shahdeo](https://github.com/vinitshahdeo), Engineering Lead at Stealth AI**\n* 10:40 AM to 11:10 AM: **LLMs Can Code! So Why Are You Still Here? by [Siddhartha Baidya](https://github.com/siddswork), Content Acquisition Capability Lead at Amadeus**\n* 11:10 AM to 11:30 AM: **Break and Networking**\n* 11:30 AM to 11:45 AM: **Community** **Spotlight**: **Doc-Monitor MCP** by [Akash Sathish](https://github.com/iamakash-06), Solution Consultant at Sahaj Software\n* 11:45 AM to 12:15 PM: **A New Open-Source Alternative To Vercel: Introducing Appwrite Sites by [Aditya Oberai](https://github.com/adityaoberai), Developer Advocate at Appwrite**\n* 12:15 PM to 12:30 PM: **git merge (Closing Note)**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Date**: Saturday 28th June, 2025\n\n**Time**: 9:30 AM to 1:00 PM IST\n\n**Venue**: [Amadeus Software Labs India Pvt Ltd](https://maps.app.goo.gl/RSvpdUxAWomGKQT99), 6, Etamin B Block, Prestige Tech Park Internal Rd, Kadubeesanahalli, Marathahalli, Bengaluru, Karnataka 560103\n\nFor any queries, please write to us at [meetups@github.com](http://meetups@github.com/)\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security? [Submit your proposal here](https://gh.io/cfs) for upcoming GitTogether events!\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
-    "eventUrl": "https://www.meetup.com/gittogether-bengaluru/events/307544138/",
-    "featuredEventPhoto": {
-      "id": "528739236",
-      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
-    },
-    "group": {
-      "name": "GitTogether Bengaluru",
-      "urlname": "gittogether-bengaluru"
-    },
-    "venues": [
-      {
-        "id": "27957191",
-        "name": "Amadeus Software Labs India Pvt Ltd",
-        "address": "6, Etamin B Block, Prestige Tech Park Internal Rd, Kadubeesanahalli",
-        "city": "Bengaluru",
-        "state": "",
-        "country": "in",
-        "postalCode": "meetup605110",
-        "lat": 12.943699,
-        "lon": 77.69103
-      }
-    ],
-    "eventType": "PHYSICAL",
-    "groupUrlname": "gittogether-bengaluru",
-    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/528739236/676x380.webp",
-    "link": "https://www.meetup.com/gittogether-bengaluru/events/307544138/"
   },
   {
     "id": "307544295",

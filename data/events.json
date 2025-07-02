@@ -123,5 +123,37 @@
     "groupUrlname": "gittogether-mumbai",
     "imageUrl": null,
     "link": "https://www.meetup.com/gittogether-mumbai/events/307912328/"
+  },
+  {
+    "id": "308802946",
+    "title": "GitTogether Hyderabad",
+    "dateTime": "2025-08-16T09:30:00+05:30",
+    "description": "IMPORTANT: **Meetup RSVP is not considered as registration.** Please register at **[gittogethers.github.io](http://gittogethers.github.io/)** by **12 PM IST on 14th August**. Confirmed participants will receive an email by the end of the same day. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nJoin us for this half-day meetup packed with insights, inspiration, and networking! Sharpen your tech skills and discover incredible open-source projects. What to expect:\n\n* **Tech Sessions**: Dive into the latest open-source technologies with talks by experienced developers. Expand your knowledge and toolkit!\n* **Community Spotlight**: Discover a hidden gem! One lucky participant gets to showcase a cool open-source project they've built. Could it be you?\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Agenda**\n\n* 9:30 AM to 10:00 AM: **Registration and Networking**\n* 10:00 AM to 10:10 AM: **git init (Welcome Note)**\n* 10:10 AM to 10:40 AM: **Speaker 1 (**[Speaker Submission](https://gh.io/cfs)**)**\n* 10:40 AM to 11:10 AM: **Speaker 2 (**[Speaker Submission](https://gh.io/cfs)**)**\n* 11:10 AM to 11:30 AM: **Break and Networking**\n* 11:30 AM to 12:00 PM: **Community** **Spotlight (**[Submit for Spotlight](https://gh.io/spotlight)**)**\n* 12:00 PM to 12:45 PM: **Speaker 3 (**[Speaker Submission](https://gh.io/cfs)**)**\n* 12:45 PM to 1:00 PM: **git merge (Closing Note)**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Date**: Saturday 16th August, 2025\n\n**Time**: 9:30 AM to 1:00 PM IST\n\n**Venue**: TBD\n\nFor any queries, please contact [Tanmaiyee Vadloori](https://github.com/Tanmaiyee-Vadloori), Community Leader at GitTogether Hyderabad or write to us at meetups@github.com\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security?\n\nWe're calling for developers to submit their session proposals for upcoming GitTogether events! [Submit your proposal here](https://gh.io/cfs).\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
+    "eventUrl": "https://www.meetup.com/gittogether-hyderabad/events/308802946/",
+    "featuredEventPhoto": {
+      "id": "528866382",
+      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+    },
+    "group": {
+      "name": "GitTogether Hyderabad",
+      "urlname": "gittogether-hyderabad"
+    },
+    "venues": [
+      {
+        "id": "24852415",
+        "name": "Hyderabad, India",
+        "address": "Hyderabad, India",
+        "city": "Hyderabad",
+        "state": "",
+        "country": "in",
+        "postalCode": "",
+        "lat": 17.385044,
+        "lon": 78.486671
+      }
+    ],
+    "eventType": "PHYSICAL",
+    "groupUrlname": "gittogether-hyderabad",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/528866382/676x380.webp",
+    "link": "https://www.meetup.com/gittogether-hyderabad/events/308802946/"
   }
 ]

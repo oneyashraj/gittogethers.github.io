@@ -155,5 +155,37 @@
     "groupUrlname": "gittogether-hyderabad",
     "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/528916948/676x380.webp",
     "link": "https://www.meetup.com/gittogether-hyderabad/events/308802946/"
+  },
+  {
+    "id": "309245652",
+    "title": "Build Smarter with GitHub Copilot & MongoDB Vector Search",
+    "dateTime": "2025-08-02T09:30:00+05:30",
+    "description": "**MPORTANT: Please register at** **[gh.io/bengaluru-aug25](https://gh.io/bengaluru-aug25)** by 11:59 AM IST on 31st July 2025. Confirmed participants will receive an email by the end of the same day. Only confirmed participants will be granted entry to the venue, and we are unable to make any exceptions. We appreciate your understanding and cooperation.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nJoin **GitTogether Bengaluru** and **[MongoDB User Group Bengaluru](https://www.meetup.com/mongodb-user-groups-bengaluru)** for an immersive half-day workshop where AI meets intelligent search! Learn to supercharge your development workflow with GitHub Copilot and implement cutting-edge vector search capabilities with MongoDB Atlas.\n\n**What to expect**:\n**🤖 Hands-on Coding with AI**: Build a real application using GitHub Copilot as your AI pair programmer. Implement semantic search capabilities using MongoDB Atlas Vector Search. Create compelling search experiences that understand context, not just keywords.\n💡 **Expert Guidance**: Learn directly from experienced professionals from both GitHub and MongoDB who will guide you through each step of the journey.\n**🏗️ Take-home Project**: Walk away with a working application that showcases both AI-assisted development and intelligent search capabilities.\n\n**Agenda:**\n\n* **9:30 AM to 10:00 AM:** Registration and Networking\n* **10:00 AM to 10:30 AM:** Welcome & Introduction\n\\- Overview of the workshop\n\\- Setting up your development environment\n* **10:30 AM to 11:45 AM**: Part 1 - Building with GitHub Copilot\n\\- Introduction to AI pair programming\n\\- Hands\\-on: Building your first app with Copilot\n\\- Best practices and productivity tips\n* **11:45 AM to 12:00 PM:** Break and Networking\n* **12:00 PM to 1:15 PM:** Part 2 - Implementing MongoDB Vector Search\n\\- Understanding vector embeddings and semantic search\n\\- Hands\\-on: Integrating vector search into your application\n\\- Creating compelling search experiences\n* **1:15 PM to 1:45 PM**: Integration & Wrap-up\n\\- Bringing it all together\n\\- Q&A with experts\n\\- Quiz and winners announcement\n* **1:45 PM to 2:30 PM**: Lunch and Networking\n\n**Prerequisites:**\n\\- Basic programming knowledge \\(JavaScript/Python\\)\n\\- Laptop with VS Code installed\n\\- GitHub account\n\\- MongoDB Atlas account \\(free tier\\)\n\n**Who should attend:**\nThis workshop is best suitable for intermediate developers looking to level up their skills with AI-powered development tools and modern search technologies.\n\nLimited seats available! Register now to secure your spot in this exclusive workshop.\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**GitTogethers Call for Sessions** 📢\n\nAre you someone who loves to share your knowledge? Do you have a passion for AI, Developer Experience, or Security? [Submit your proposal here](https://gh.io/cfs) for upcoming GitTogether events!\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n**Community Spotlight** 💡\n\nAre you passionate about open-source development and have a project you'd love to share? We're looking for developers like you for spotlight at our upcoming GitTogethers. [Submit your projects here](https://gh.io/spotlight).",
+    "eventUrl": "https://www.meetup.com/gittogether-bengaluru/events/309245652/",
+    "featuredEventPhoto": {
+      "id": "529015676",
+      "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+    },
+    "group": {
+      "name": "GitTogether Bengaluru",
+      "urlname": "gittogether-bengaluru"
+    },
+    "venues": [
+      {
+        "id": "25968452",
+        "name": "Microsoft Corporation (India) Pvt Ltd",
+        "address": "Prestige Ferns Galaxy, First Floor, Sy No. 7/1, 7/2 & 8/1A,, Outer Ring Road Ambalipura Village, Hobli, Varthur,",
+        "city": "Bengaluru",
+        "state": "ks",
+        "country": "in",
+        "postalCode": "",
+        "lat": 12.92211,
+        "lon": 77.66877
+      }
+    ],
+    "eventType": "PHYSICAL",
+    "groupUrlname": "gittogether-bengaluru",
+    "imageUrl": "https://secure-content.meetupstatic.com/images/classic-events/529015676/676x380.webp",
+    "link": "https://www.meetup.com/gittogether-bengaluru/events/309245652/"
   }
 ]

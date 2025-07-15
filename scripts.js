@@ -83,21 +83,21 @@ document.addEventListener('DOMContentLoaded', async () => {
                 });
                 
                 // Then filter to only keep the closest event for each city
-                const cityMap = new Map(); // Map to store closest event for each city
+                const groupMap = new Map(); // Map to store closest event for each group
                 
                 availableEvents.forEach(event => {
-                    const cityName = event.originalEvent.title.replace('GitTogether ', '');
+                    const groupName = event.originalEvent.group.name;
                     
-                    // If this city isn't in our map yet, or this event is earlier than the one we have, update it
-                    if (!cityMap.has(cityName)) {
-                        cityMap.set(cityName, event);
+                    // If this group isn't in our map yet, or this event is earlier than the one we have, update it
+                    if (!groupMap.has(groupName)) {
+                        groupMap.set(groupName, event);
                     }
                 });
                 
-                // Convert back to array and re-sort (now with one event per city)
-                const filteredEvents = Array.from(cityMap.values());
+                // Convert back to array and re-sort (now with one event per group)
+                const filteredEvents = Array.from(groupMap.values());
                 
-                // Sort by date first, then city name if same date
+                // Sort by date first, then group name if same date
                 filteredEvents.sort((a, b) => {
                     const dateA = new Date(a.originalEvent.dateTime);
                     const dateB = new Date(b.originalEvent.dateTime);
@@ -107,13 +107,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                         return dateA - dateB;
                     }
                     
-                    // If same date, sort by city name alphabetically
-                    const cityA = a.originalEvent.title.replace('GitTogether ', '');
-                    const cityB = b.originalEvent.title.replace('GitTogether ', '');
-                    return cityA.localeCompare(cityB);
+                    // If same date, sort by group name alphabetically
+                    const groupA = a.originalEvent.group.name;
+                    const groupB = b.originalEvent.group.name;
+                    return groupA.localeCompare(groupB);
                 });
                 
-                // Display the sorted events (one per city)
+                // Display the sorted events (one per group)
                 hasActiveEvents = filteredEvents.length > 0;
                 
                 filteredEvents.forEach(event => {

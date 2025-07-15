@@ -597,19 +597,6 @@ textarea:focus {
     text-decoration: underline;
 }
 
-.editable-name {
-    display: inline-block;
-    min-width: 100px;
-    padding: 0.25rem;
-    border: 1px solid transparent;
-}
-
-.editable-name.editing {
-    border-color: var(--accent-color);
-    background: rgba(255, 255, 255, 0.1);
-    outline: none;
-}
-
 #section2 .header-content,
 #section3 .header-content,
 #section2 ~ .header-content,
@@ -622,6 +609,24 @@ textarea:focus {
 #section2 ~ .name-edit-links,
 #section3 ~ .name-edit-links {
     display: none !important;
+}
+
+/* Event selection on main screen */
+#event-selection-main {
+    margin-bottom: 2rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#event-selection-main fieldset {
+    text-align: center;
+}
+
+#event-selection-main legend {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 /* Center homepage elements vertically on mobile */

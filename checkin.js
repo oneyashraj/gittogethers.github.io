@@ -17,6 +17,37 @@ document.addEventListener('DOMContentLoaded', async () => {
     let events = null;
     let userData = null;
     let eventName = null;
+    
+    // Duplicate prevention tracking
+    const submissionKey = 'gittogethers_checkin_submissions';
+    
+    // Check if user has already submitted for this event
+    const hasAlreadySubmitted = (username, eventName) => {
+        try {
+            const submissions = JSON.parse(localStorage.getItem(submissionKey) || '{}');
+            const userSubmissions = submissions[username] || [];
+            return userSubmissions.includes(eventName);
+        } catch (error) {
+            console.error('Error checking submissions:', error);
+            return false;
+        }
+    };
+    
+    // Record submission
+    const recordSubmission = (username, eventName) => {
+        try {
+            const submissions = JSON.parse(localStorage.getItem(submissionKey) || '{}');
+            if (!submissions[username]) {
+                submissions[username] = [];
+            }
+            if (!submissions[username].includes(eventName)) {
+                submissions[username].push(eventName);
+                localStorage.setItem(submissionKey, JSON.stringify(submissions));
+            }
+        } catch (error) {
+            console.error('Error recording submission:', error);
+        }
+    };
 
     // DOM element references
     const usernameInput = document.getElementById('github-username');
@@ -143,6 +174,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!validateEventSelection()) {
             return;
         }
+        
+        // Check for duplicate submission
+        const selectedEventRadio = document.querySelector('input[name="selected_event"]:checked');
+        const selectedEventName = selectedEventRadio ? selectedEventRadio.value : eventName;
+        
+        if (hasAlreadySubmitted(userData.login, selectedEventName)) {
+            showInputError(usernameInput, 'You have already checked in for this event');
+            return;
+        }
+        
+        // Set duplicate check field
+        document.getElementById('duplicate_check').value = `${userData.login}_${selectedEventName}_${Date.now()}`;
 
         // Submit form using jQuery Form plugin
         $('#bootstrapForm').ajaxSubmit({
@@ -150,9 +193,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             type: 'POST',
             dataType: 'xml',
             success: function(response) {
+                recordSubmission(userData.login, selectedEventName);
                 showThankYouMessage();
             },
             error: function() {
+                recordSubmission(userData.login, selectedEventName);
                 showThankYouMessage();
             }
         });
@@ -201,94 +246,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Update UI
             logoImage.src = userData.avatar_url;
-            const displayName = userData.name || userData.login;
-            heading.innerHTML = `Hello<span class="editable-name">${displayName}</span> 👋`;
+            heading.innerHTML = `Hello ${userData.login} 👋`;
             headerContent.classList.add('compact');
 
-            // Remove any existing name edit links to prevent duplicates
-            const existingNameEditLinks = document.querySelector('.name-edit-links');
-            if (existingNameEditLinks) {
-                existingNameEditLinks.remove();
-            }
-
-            // Add name edit links
-            const nameEditLinks = document.createElement('div');
-            nameEditLinks.className = 'name-edit-links';
-            nameEditLinks.innerHTML = `
-                <a href="#" class="not-you-link">Not you?</a>
-                <a href="#" class="edit-name-link">Edit Name</a>
-            `;
-            heading.insertAdjacentElement('afterend', nameEditLinks);
-
-            // Add event listeners for name editing
-            const editableNameSpan = heading.querySelector('.editable-name');
-            const editNameLink = nameEditLinks.querySelector('.edit-name-link');
-            const notYouLink = nameEditLinks.querySelector('.not-you-link');
-            let originalName = displayName;
-            editableNameSpan.setAttribute('data-original-name', originalName);
-
-            const cancelNameEdit = () => {
-                editableNameSpan.textContent = originalName;
-                editableNameSpan.contentEditable = false;
-                editableNameSpan.classList.remove('editing');
-                editNameLink.textContent = 'Edit Name';
-            };
-
-            const saveNameEdit = () => {
-                const newName = editableNameSpan.textContent.trim();
-                if (newName) {
-                    originalName = newName;
-                    editableNameSpan.contentEditable = false;
-                    editableNameSpan.classList.remove('editing');
-                    editNameLink.textContent = 'Edit Name';
-                    document.getElementById('766830585').value = originalName;
-                    editableNameSpan.setAttribute('data-original-name', originalName);
-                    editableNameSpan.textContent = originalName;
-                } else {
-                    cancelNameEdit();
-                }
-            };
-
-            editableNameSpan.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    if (editNameLink.textContent === 'Save') {
-                        saveNameEdit();
-                    }
-                } else if (e.key === 'Escape') {
-                    cancelNameEdit();
-                }
-            });
-
-            editNameLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                if (editNameLink.textContent === 'Edit Name') {
-                    editableNameSpan.contentEditable = true;
-                    editableNameSpan.classList.add('editing');
-                    editableNameSpan.focus();
-                    const range = document.createRange();
-                    range.selectNodeContents(editableNameSpan);
-                    const selection = window.getSelection();
-                    selection.removeAllRanges();
-                    selection.addRange(range);
-                    editNameLink.textContent = 'Save';
-                } else {
-                    saveNameEdit();
-                }
-            });
-
-            editableNameSpan.addEventListener('blur', (e) => {
-                requestAnimationFrame(() => {
-                    const activeElement = document.activeElement;
-                    if (editNameLink.textContent === 'Save' && 
-                        !activeElement?.closest('.name-edit-links') && 
-                        activeElement !== editableNameSpan) {
-                        cancelNameEdit();
-                    }
-                });
-            });
-
-            notYouLink.addEventListener('click', (e) => {
+            // Add "Not you?" link
+            const notYouLink = document.createElement('div');
+            notYouLink.className = 'name-edit-links';
+            notYouLink.innerHTML = `<a href="#" class="not-you-link">Not you?</a>`;
+            heading.insertAdjacentElement('afterend', notYouLink);
+            
+            notYouLink.querySelector('.not-you-link').addEventListener('click', (e) => {
                 e.preventDefault();
                 location.reload();
             });
@@ -299,7 +266,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Set form values
             document.getElementById('846479285').value = userData.login;
-            document.getElementById('766830585').value = displayName;
+            document.getElementById('766830585').value = userData.login;
 
             // Remove form submit handler since it's now handled globally
             form.removeEventListener('submit', handleSubmit);

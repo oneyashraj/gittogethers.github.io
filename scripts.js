@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const headerContent = document.querySelector('.header-content');
     const logoImage = document.querySelector('.logo-image');
     const heading = document.querySelector('h1');
+    const eventSelectionMain = document.getElementById('event-selection-main');
 
     // Section navigation buttons
     const proceedSection1Button = document.getElementById('proceedSection1');
@@ -55,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Populate event choices in registration form
     // Only shows events that haven't reached their registration deadline
     const populateGitTogetherChoices = () => {
-        const fieldset = document.querySelector('legend[for="1521228078"]').parentElement;
+        const fieldset = document.querySelector('#event-selection-main legend[for="1521228078"]').parentElement;
         const formGroup = fieldset.querySelector('.form-group');
         
         formGroup.innerHTML = '';
@@ -150,7 +151,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else if (!hasActiveEvents) {
                 const content = document.querySelector('.content');
                 content.innerHTML = `<div class="thank-you-message">No GitTogethers are scheduled at the moment. Please check <a href='https://gh.io/meetups'>gh.io/meetups</a> for more information.</div>`;
-                form.style.display = 'none';
+                eventSelectionMain.style.display = 'none';
+                usernameInput.parentElement.style.display = 'none';
+                proceedButton.style.display = 'none';
             }
         }
     };
@@ -163,7 +166,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         radioGroups.forEach(group => {
             // Skip if this is the event selection group or doesn't contain radio buttons
             const radios = group.querySelectorAll('input[type="radio"]');
-            if (!radios.length || group.closest('fieldset')?.querySelector('legend[for="1521228078"]')) {
+            if (!radios.length || group.closest('#event-selection-main')) {
                 return;
             }
 
@@ -387,6 +390,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Form section-specific validation
     const validateSection1 = () => {
         let isValid = true;
+        
+        // Validate event selection first
+        const eventRadios = document.querySelectorAll('input[name="entry.1334197574"]');
+        const eventContainer = eventRadios[0]?.closest('.form-group');
+        const eventChecked = Array.from(eventRadios).some(radio => radio.checked);
+        
+        if (!eventChecked) {
+            showRadioError(eventContainer, 'Please select an event.');
+            isValid = false;
+        }
+        
         const emailInput = document.getElementById('1294570093');
         
         // Validate email first
@@ -396,7 +410,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Continue with other Section 1 validations
         const requiredFields = [
-            'entry.1334197574',  // GitTogether event
             'entry.1001119393',  // Full Name
             'entry.2134794723',  // Current Role
             'entry.1174706497',  // Company/Organization
@@ -638,97 +651,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Update UI
             logoImage.src = userData.avatar_url;
-            const displayName = userData.name || userData.login;
-            heading.innerHTML = `Hello<span class="editable-name">${displayName}</span> 👋`;
+            heading.innerHTML = `Hello ${userData.login} 👋`;
             headerContent.classList.add('compact');
 
-            // Remove any existing name edit links to prevent duplicates
-            const existingNameEditLinks = document.querySelector('.name-edit-links');
-            if (existingNameEditLinks) {
-                existingNameEditLinks.remove();
-            }
-
-            // Add name edit links
-            const nameEditLinks = document.createElement('div');
-            nameEditLinks.className = 'name-edit-links';
-            nameEditLinks.innerHTML = `
-                <a href="#" class="not-you-link">Not you?</a>
-                <a href="#" class="edit-name-link">Edit Name</a>
-            `;
-            heading.insertAdjacentElement('afterend', nameEditLinks);
-
-            // Add event listeners for name editing
-            const editableNameSpan = heading.querySelector('.editable-name');
-            const editNameLink = nameEditLinks.querySelector('.edit-name-link');
-            const notYouLink = nameEditLinks.querySelector('.not-you-link');
-            let originalName = displayName;
-            editableNameSpan.setAttribute('data-original-name', originalName);
-
-            const cancelNameEdit = () => {
-                editableNameSpan.textContent = originalName;
-                editableNameSpan.contentEditable = false;
-                editableNameSpan.classList.remove('editing');
-                editNameLink.textContent = 'Edit Name';
-            };
-
-            const saveNameEdit = () => {
-                const newName = editableNameSpan.textContent.trim();
-                if (newName) {
-                    originalName = newName;
-                    editableNameSpan.contentEditable = false;
-                    editableNameSpan.classList.remove('editing');
-                    editNameLink.textContent = 'Edit Name';
-                    // Update the name in the form and data attribute
-                    document.getElementById('1001119393').value = originalName;
-                    editableNameSpan.setAttribute('data-original-name', originalName);
-                    editableNameSpan.textContent = originalName;
-                } else {
-                    cancelNameEdit();
-                }
-            };
-
-            editableNameSpan.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault(); // Prevent default Enter behavior
-                    if (editNameLink.textContent === 'Save') {
-                        saveNameEdit();
-                    }
-                } else if (e.key === 'Escape') {
-                    cancelNameEdit();
-                }
-            });
-
-            editNameLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                if (editNameLink.textContent === 'Edit Name') {
-                    editableNameSpan.contentEditable = true;
-                    editableNameSpan.classList.add('editing');
-                    editableNameSpan.focus();
-                    const range = document.createRange();
-                    range.selectNodeContents(editableNameSpan);
-                    const selection = window.getSelection();
-                    selection.removeAllRanges();
-                    selection.addRange(range);
-                    editNameLink.textContent = 'Save';
-                } else {
-                    saveNameEdit();
-                }
-            });
-
-            editableNameSpan.addEventListener('blur', (e) => {
-                // Only cancel if we clicked outside and not on the save button
-                // Use requestAnimationFrame to ensure click events are processed first
-                requestAnimationFrame(() => {
-                    const activeElement = document.activeElement;
-                    if (editNameLink.textContent === 'Save' && 
-                        !activeElement?.closest('.name-edit-links') && 
-                        activeElement !== editableNameSpan) {
-                        cancelNameEdit();
-                    }
-                });
-            });
-
-            notYouLink.addEventListener('click', (e) => {
+            // Add "Not you?" link
+            const notYouLink = document.createElement('div');
+            notYouLink.className = 'name-edit-links';
+            notYouLink.innerHTML = `<a href="#" class="not-you-link">Not you?</a>`;
+            heading.insertAdjacentElement('afterend', notYouLink);
+            
+            notYouLink.querySelector('.not-you-link').addEventListener('click', (e) => {
                 e.preventDefault();
                 location.reload();
             });
@@ -736,10 +668,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Hide username input and proceed button
             usernameInput.parentElement.style.display = 'none';
             proceedButton.style.display = 'none';
+            eventSelectionMain.style.display = 'none';
 
             // Set the GitHub Username and Full Name
             document.getElementById('1252770814').value = userData.login || '';
-            document.getElementById('1001119393').value = displayName;
 
             // Auto-fill email if available
             if (userData.email) {
@@ -865,7 +797,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             year: 'numeric'
         }).replace(' at', '').replace(',', '') : '';
         
-        const userName = document.querySelector('.editable-name')?.textContent.trim() || '';
+        const userName = document.getElementById('1001119393')?.value.trim() || '';
         const firstName = userName.split(' ')[0];
 
         const thankYouMessage = getConfigValue('messages.thank_you_message');
@@ -915,22 +847,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
-        // Cancel name edit if in progress
-        const editableNameSpan = document.querySelector('.editable-name');
-        const editNameLink = document.querySelector('.edit-name-link');
-        if (editNameLink && editNameLink.textContent === 'Save') {
-            editableNameSpan.textContent = editableNameSpan.getAttribute('data-original-name');
-            editableNameSpan.contentEditable = false;
-            editableNameSpan.classList.remove('editing');
-            editNameLink.textContent = 'Edit Name';
-        }
-
-        // Hide name edit links when leaving section 1
-        const nameEditLinks = document.querySelector('.name-edit-links');
-        if (nameEditLinks) {
-            nameEditLinks.style.display = 'none';
-        }
-
         const currentRole = document.querySelector('input[name="entry.2134794723"]:checked');
         if (currentRole && (currentRole.value === 'University Student' || currentRole.value === 'High School Student')) {
             document.getElementById('220097591').value = 'N/A';
@@ -945,10 +861,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     backSection2Button.addEventListener('click', () => {
-        const nameEditLinks = document.querySelector('.name-edit-links');
-        if (nameEditLinks) {
-            nameEditLinks.style.display = 'flex';
-        }
         showSection(section1);
     });
 
@@ -962,10 +874,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     backSection3Button.addEventListener('click', () => {
         const currentRole = document.querySelector('input[name="entry.2134794723"]:checked');
         if (currentRole && (currentRole.value === 'University Student' || currentRole.value === 'High School Student')) {
-            const nameEditLinks = document.querySelector('.name-edit-links');
-            if (nameEditLinks) {
-                nameEditLinks.style.display = 'flex';
-            }
             showSection(section1);
         } else {
             showSection(section2);

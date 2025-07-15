@@ -26,9 +26,8 @@ const rateLimiter = {
 // Contains UI messages, button configurations and background image URLs
 const loadConfig = async () => {
     try {
-        const response = await fetch('data/config.yml');
-        const yamlText = await response.text();
-        return jsyaml.load(yamlText);
+        const response = await fetch('data/config.json');
+        return await response.json();
     } catch (error) {
         console.error('Error loading config:', error);
         return null;

@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const logoImage = document.querySelector('.logo-image');
     const heading = document.querySelector('h1');
     const eventSelectionMain = document.getElementById('event-selection-main');
+    const loadingState = document.getElementById('loading-state');
+    const githubInputSection = document.getElementById('github-input-section');
 
     // Section navigation buttons
     const proceedSection1Button = document.getElementById('proceedSection1');
@@ -115,15 +117,27 @@ document.addEventListener('DOMContentLoaded', async () => {
                 hasActiveEvents = filteredEvents.length > 0;
                 
                 filteredEvents.forEach(event => {
-                    // Create event card instead of standard radio
+                    // Create event card with countdown
                     const card = document.createElement('div');
                     card.className = 'event-card';
                     card.setAttribute('data-event', event.name);
+                    card.setAttribute('data-end-time', event.end_time);
                     const cardId = `event-${event.name.replace(/\s+/g, '-').toLowerCase()}`;
+                    
+                    // Calculate countdown
+                    const endTime = new Date(event.end_time);
+                    const timeLeft = endTime - new Date();
+                    const countdownText = formatCountdown(timeLeft);
+                    
                     card.innerHTML = `
                         <input type="radio" name="entry.1334197574" value="${event.name}" id="${cardId}" class="event-radio" required>
                         <label for="${cardId}" class="event-card-label">
-                            ${event.name}
+                            <div class="event-card-content">
+                                <div class="event-title">${event.name}</div>
+                                <div class="event-countdown" data-end-time="${event.end_time}">
+                                    ${countdownText}
+                                </div>
+                            </div>
                         </label>
                     `;
                     formGroup.appendChild(card);
@@ -133,14 +147,26 @@ document.addEventListener('DOMContentLoaded', async () => {
                 document.querySelectorAll('.event-card').forEach(card => {
                     const radio = card.querySelector('input[type="radio"]');
                     card.addEventListener('click', () => {
-                        // Unselect all other cards
-                        document.querySelectorAll('.event-card').forEach(c => c.classList.remove('selected'));
+                        // Hide all other cards
+                        document.querySelectorAll('.event-card').forEach(c => {
+                            if (c !== card) {
+                                c.style.display = 'none';
+                            }
+                        });
                         // Select this card
                         card.classList.add('selected');
                         // Check the radio button
                         radio.checked = true;
+                        
+                        // Show GitHub input section
+                        githubInputSection.style.display = 'block';
+                        proceedButton.style.display = 'block';
+                        document.getElementById('error-message').style.display = 'block';
                     });
                 });
+                
+                // Start countdown timers
+                startCountdownTimers();
             }
 
             if (hasActiveEvents) {
@@ -152,10 +178,49 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const content = document.querySelector('.content');
                 content.innerHTML = `<div class="thank-you-message">No GitTogethers are scheduled at the moment. Please check <a href='https://gh.io/meetups'>gh.io/meetups</a> for more information.</div>`;
                 eventSelectionMain.style.display = 'none';
-                usernameInput.parentElement.style.display = 'none';
-                proceedButton.style.display = 'none';
+                githubInputSection.style.display = 'none';
             }
         }
+    };
+    
+    // Format countdown timer
+    const formatCountdown = (timeLeft) => {
+        if (timeLeft <= 0) {
+            return 'Registration closed';
+        }
+        
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        
+        if (days > 0) {
+            return `${days}d ${hours}h left to register`;
+        } else if (hours > 0) {
+            return `${hours}h ${minutes}m left to register`;
+        } else {
+            return `${minutes}m left to register`;
+        }
+    };
+    
+    // Start countdown timers
+    const startCountdownTimers = () => {
+        const updateCountdowns = () => {
+            document.querySelectorAll('.event-countdown').forEach(countdown => {
+                const endTime = new Date(countdown.getAttribute('data-end-time'));
+                const timeLeft = endTime - new Date();
+                countdown.textContent = formatCountdown(timeLeft);
+                
+                if (timeLeft <= 0) {
+                    const card = countdown.closest('.event-card');
+                    card.style.opacity = '0.5';
+                    card.style.pointerEvents = 'none';
+                }
+            });
+        };
+        
+        // Update immediately and then every minute
+        updateCountdowns();
+        setInterval(updateCountdowns, 60000);
     };
 
     // Convert all radio groups to card style
@@ -216,12 +281,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                     // Create the card with the Other option
                     card.innerHTML = `
                         <input type="radio" name="${el.inputName}" value="${el.inputValue}" id="${cardId}" class="event-radio">
-                        <label for="${cardId}" class="event-card-label">Other</label>
+                        <label for="${cardId}" class="event-card-label">
+                            <span class="other-text">Other</span>
+                        </label>
                     `;
                     
                     // Create the other input container
                     const otherContainer = document.createElement('div');
                     otherContainer.className = 'other-input';
+                    otherContainer.style.display = 'none';
                     otherClone.placeholder = 'Please specify...';
                     otherClone.classList.add('form-control'); // Apply standard form styling
                     
@@ -237,6 +305,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                         // Unselect all other cards
                         document.querySelectorAll(`.event-card[data-name="${el.inputName}"]`).forEach(c => {
                             c.classList.remove('selected');
+                            const otherInput = c.querySelector('.other-input');
+                            const otherText = c.querySelector('.other-text');
+                            if (otherInput && otherText) {
+                                otherInput.style.display = 'none';
+                                otherText.style.display = 'block';
+                            }
                         });
                         
                         // Select this card
@@ -244,6 +318,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                         
                         // Check the radio button
                         card.querySelector('input[type="radio"]').checked = true;
+                        
+                        // Show input and hide text
+                        otherContainer.style.display = 'block';
+                        card.querySelector('.other-text').style.display = 'none';
                         
                         // Focus the input field immediately
                         setTimeout(() => otherClone.focus(), 10);
@@ -254,6 +332,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                         // Unselect all other cards
                         document.querySelectorAll(`.event-card[data-name="${el.inputName}"]`).forEach(c => {
                             c.classList.remove('selected');
+                            const otherInput = c.querySelector('.other-input');
+                            const otherText = c.querySelector('.other-text');
+                            if (otherInput && otherText) {
+                                otherInput.style.display = 'none';
+                                otherText.style.display = 'block';
+                            }
                         });
                         
                         // Select this card
@@ -261,6 +345,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                         
                         // Check the radio button
                         card.querySelector('input[type="radio"]').checked = true;
+                        
+                        // Show input and hide text
+                        otherContainer.style.display = 'block';
+                        card.querySelector('.other-text').style.display = 'none';
                     });
                     
                 } else {
@@ -401,6 +489,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             isValid = false;
         }
         
+        // Validate full name
+        const fullNameInput = document.getElementById('1001119393');
+        if (!fullNameInput.value.trim()) {
+            showError(fullNameInput, 'Full name is required');
+            isValid = false;
+        }
+        
         const emailInput = document.getElementById('1294570093');
         
         // Validate email first
@@ -410,7 +505,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Continue with other Section 1 validations
         const requiredFields = [
-            'entry.1001119393',  // Full Name
             'entry.2134794723',  // Current Role
             'entry.1174706497',  // Company/Organization
             'entry.1547278427',  // City
@@ -651,7 +745,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Update UI
             logoImage.src = userData.avatar_url;
-            heading.innerHTML = `Hello ${userData.login} 👋`;
+            heading.innerHTML = `Hello there 👋`;
             headerContent.classList.add('compact');
 
             // Add "Not you?" link
@@ -666,8 +760,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
 
             // Hide username input and proceed button
-            usernameInput.parentElement.style.display = 'none';
+            githubInputSection.style.display = 'none';
             proceedButton.style.display = 'none';
+            document.getElementById('error-message').style.display = 'none';
             eventSelectionMain.style.display = 'none';
 
             // Set the GitHub Username and Full Name
@@ -971,6 +1066,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Initialize page
     // Load configuration, events and setup UI
     try {
+        // Show loading state
+        loadingState.style.display = 'block';
+        
         config = await loadConfig();
         events = await loadEvents();
         if (!config) {
@@ -979,8 +1077,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         await createMosaicBackground(config);
         populateGitTogetherChoices();
         addHomepageLinks();
+        
+        // Hide loading state and show content
+        loadingState.style.display = 'none';
+        eventSelectionMain.style.display = 'block';
     } catch (error) {
         console.error('Initialization error:', error);
+        loadingState.style.display = 'none';
         const content = document.querySelector('.content');
         content.innerHTML = `<div class="thank-you-message">Sorry, we're having trouble loading the application. Please try again later.</div>`;
     }

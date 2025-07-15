@@ -109,6 +109,36 @@ h1 {
     margin: 0 auto;
 }
 
+/* Loading state styles */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(88, 202, 195, 0.3);
+    border-top: 4px solid var(--accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+.loading-text {
+    color: var(--accent-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 .input-group {
     margin-bottom: 0.75rem;
 }
@@ -614,7 +644,7 @@ textarea:focus {
 /* Event selection on main screen */
 #event-selection-main {
     margin-bottom: 2rem;
-    max-width: 400px;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -627,6 +657,22 @@ textarea:focus {
     text-align: center;
     width: 100%;
     margin-bottom: 1rem;
+}
+
+#event-selection-main .form-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    #event-selection-main .form-group {
+        grid-template-columns: 1fr;
+    }
+    
+    #event-selection-main {
+        max-width: 400px;
+    }
 }
 
 /* Center homepage elements vertically on mobile */
@@ -994,7 +1040,7 @@ textarea:focus {
     cursor: pointer;
     position: relative;
     transition: all 0.3s ease;
-    min-height: 48px; /* Ensure consistent height for all cards */
+    min-height: 80px; /* Increased height for countdown */
 }
 
 .event-card .event-radio {
@@ -1010,7 +1056,7 @@ textarea:focus {
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 0.75rem 1.5rem;
+    padding: 1rem 1.5rem;
     background-color: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
@@ -1018,7 +1064,26 @@ textarea:focus {
     font-weight: 500;
     text-align: center;
     transition: all 0.3s ease;
-    min-height: 48px;
+    min-height: 80px;
+}
+
+.event-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.event-title {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.event-countdown {
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    font-weight: 400;
 }
 
 .event-card:hover .event-card-label {
@@ -1034,21 +1099,27 @@ textarea:focus {
 }
 
 /* New cleaner "Other" option handling */
-.event-card.other-option.selected .event-card-label {
-    display: none;
+.event-card.other-option .other-text {
+    display: block;
 }
 
 .other-input {
     display: none;
+    width: 100%;
+    padding: 0.5rem;
 }
 
 .event-card.other-option.selected .other-input {
     display: block;
 }
 
+.event-card.other-option.selected .other-text {
+    display: none;
+}
+
 .event-card .other-input input[type="text"] {
     width: 100%;
-    min-height: 48px;
+    min-height: 44px;
     padding: 0.75rem 1rem;
     background-color: rgba(255, 255, 255, 0.1);
     border: 2px solid var(--accent-color);
@@ -1056,7 +1127,7 @@ textarea:focus {
     color: var(--text-color);
     font-size: 1rem;
     text-align: left;
-    box-shadow: 0 4px 15px rgba(88, 202, 195, 0.4);
+    margin: 0;
 }
 
 .event-card .other-input input[type="text"]:focus {
@@ -1072,13 +1143,14 @@ textarea:focus {
 
 /* Other input field inside event cards */
 .event-card .other-input {
-    margin-top: 0.5rem;
-    padding: 0 0.5rem;
+    margin: 0;
+    padding: 0;
 }
 
 .event-card .other-input input[type="text"] {
     background-color: rgba(255, 255, 255, 0.15);
     border-color: var(--accent-color);
-    font-size: 0.9rem;
-    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
 }

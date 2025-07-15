@@ -31,8 +31,14 @@
 
             <!-- Form container with GitHub username input and multi-step registration form -->
             <div class="form-container">
+                <!-- Loading state -->
+                <div id="loading-state" class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <p class="loading-text">git init..</p>
+                </div>
+
                 <!-- Event selection moved to main screen -->
-                <div id="event-selection-main">
+                <div id="event-selection-main" style="display:none;">
                     <fieldset>
                         <legend for="1521228078">Which GitTogether you'd like to join?</legend>
                         <div class="form-group">
@@ -42,7 +48,7 @@
                 </div>
 
                 <!-- Initial GitHub username validation section -->
-                <div class="input-group">
+                <div class="input-group" id="github-input-section" style="display:none;">
                     <input 
                         type="text" 
                         id="github-username" 
@@ -51,8 +57,8 @@
                         aria-required="true"
                         aria-describedby="error-message">
                 </div>
-                <button id="proceed-button" aria-label="Submit GitHub username">Proceed</button>
-                <p class="error-message" id="error-message" role="alert" aria-live="polite"></p>
+                <button id="proceed-button" aria-label="Submit GitHub username" style="display:none;">Proceed</button>
+                <p class="error-message" id="error-message" role="alert" aria-live="polite" style="display:none;"></p>
 
                 <!-- Multi-step registration form, initially hidden -->
                 <form action="https://docs.google.com/forms/d/e/1FAIpQLScb3J5YDjU3Pn-znAV0S9rrLA1OkWGWwtqD56FayN9ptsbE4w/formResponse"
